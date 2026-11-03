@@ -83,7 +83,7 @@ Border 的章节标题可以用竖线帮助定位。如果引用和 Callout 也�
 
 **正文增强版**只针对普通 Markdown 笔记，涉及标题、段落、语义加粗、列表、引用、Callout、表格和内外链；不改 Home、标签栏、文件树、滚动条或整套主题。**可选黑灰夜间模式**则专门覆盖深色界面的基础配色，范围更广，二者彼此独立。
 
-当前按 Obsidian / Border 常见的阅读模式与实时预览结构编写，**尚未在全部平台、主题版本和实体手机上逐一验证**。想恢复原样，只需关闭相应 CSS 片段。这里的颜色和宽度是一组设计取舍，并不声称适用于所有人的视觉习惯。
+想恢复原样，只需关闭相应 CSS 片段。这里的颜色和宽度是一组设计取舍，并不声称适用于所有人的视觉习惯。
 
 设计参考：[Baymard · 行宽与阅读](https://baymard.com/research-articles/line-length-readability) · [W3C · 文字间距适配](https://www.w3.org/WAI/WCAG22/Understanding/text-spacing)。
 
