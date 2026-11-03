@@ -245,15 +245,16 @@ body:not(.is-mobile) .markdown-preview-view:not(.workbench) .markdown-preview-si
   margin-inline-start: 0 !important;
 }
 
-/* 05. 引用块 / Callout：点阵随主题强调色，仅混入 15% 中性灰降低饱和度。
-   底色透明，不铺灰底；四类语义色、标题结构与 Home 布局保持不变。 */
+/* 05. 引用块 / Callout：统一极浅中性灰底 + 柔和的主题色点阵。
+   点色由主题强调色混入 15% 中性灰，保留色相但降低饱和度；
+   四类语义色、标题结构和 Home 布局不变。 */
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
   --cr-quote-ink: color-mix(in srgb, var(--interactive-accent) 85%, #808080);
-  --cr-quote-fill: transparent;
+  --cr-quote-fill: color-mix(in srgb, var(--background-primary) 96%, #808080);
   --cr-quote-dot: color-mix(in srgb, var(--cr-quote-ink) 16%, transparent);
 }
 .theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
-  --cr-quote-fill: transparent;
+  --cr-quote-fill: color-mix(in srgb, var(--background-primary) 94%, #a8adb5);
   --cr-quote-dot: color-mix(in srgb, var(--cr-quote-ink) 16%, transparent);
 }
 
@@ -640,9 +641,9 @@ body.theme-dark:not(.is-mobile).background-underlying-CSS-dark:has(> .app-contai
   background-blend-mode: normal !important;
 }
 
-/* 深色引用和 Callout 同样跟随主题强调色，不铺整块底色。 */
+/* 深色引用和 Callout 同样跟随主题强调色，统一极浅中性灰底。 */
 body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
-  --cr-quote-fill: transparent;
+  --cr-quote-fill: color-mix(in srgb, var(--background-primary) 94%, #a8adb5);
   --cr-quote-dot: color-mix(in srgb, var(--cr-quote-ink) 16%, transparent);
 }
 
@@ -734,14 +735,6 @@ body.theme-light .workspace-tabs:not(.mod-stacked) .workspace-tab-header.is-acti
 body.theme-light .workspace-tabs:not(.mod-stacked) .workspace-tab-header.is-active .workspace-tab-header-inner {
   background-color: #ffffff !important;
   background-image: none !important;
-}
-
-/* Callout 用中性灰底承托点阵；普通引用仍保留透明底。 */
-:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) .callout {
-  background-color: #f1f1f1 !important;
-}
-.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) .callout {
-  background-color: #2c2d30 !important;
 }
 
 /* 电脑表格按内容定宽，在正文列内整体居中；宽表由外层横向滚动。 */
