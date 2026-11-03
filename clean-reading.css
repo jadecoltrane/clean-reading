@@ -994,3 +994,17 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   margin-inline-start: 0 !important;
   width: 16px;
 }
+
+
+/* 设置窗口背景取自参考截图右侧框内：#fbfbfb；白色设置卡片保持原样。 */
+body.theme-light .modal.mod-settings,
+body.theme-light .modal:has(.vertical-tab-header) {
+  --modal-background: #fbfbfb;
+  --modal-sidebar-background: #fbfbfb;
+  background-color: #fbfbfb !important;
+}
+body.theme-light :is(.modal.mod-settings, .modal:has(.vertical-tab-header))
+  :is(.modal-content, .modal-sidebar, .vertical-tab-header, .vertical-tab-content) {
+  background-color: #fbfbfb !important;
+  background-image: none !important;
+}
