@@ -58,6 +58,12 @@
   --h1-weight: 550;
   --h2-weight: 550;
   --h3-weight: 500;
+  --h4-size: 1.04em;
+  --h5-size: 1em;
+  --h6-size: 0.96em;
+  --h4-weight: 500;
+  --h5-weight: 500;
+  --h6-weight: 500;
   --cr-text-weight: 400;
   --cr-bold-weight: 500;
   --bold-weight: var(--cr-bold-weight);
@@ -124,7 +130,7 @@ body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-sizer {
 }
 
 /* 03. 普通笔记的标题层级：延续长文阅读版式。 */
-.markdown-preview-view:not(.workbench) :is(h1, h2, h3) {
+.markdown-preview-view:not(.workbench) :is(h1, h2, h3, h4, h5, h6) {
   color: var(--text-normal);
   letter-spacing: 0;
   overflow-wrap: anywhere;
@@ -172,6 +178,32 @@ body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-sizer {
   border-radius: 50%;
   background-color: var(--cr-heading-accent);
   opacity: 0.78;
+}
+
+/* 较深层标题更轻：H4 短底线、H5 浅竖线、H6 弱化文字。
+   两种 Markdown 视图使用相同标记；不引入大号彩色标题或图形装饰。 */
+.markdown-preview-view:not(.workbench) :is(h4, h5, h6) {
+  line-height: 1.5;
+  margin-block: 1.15em 0.38em;
+}
+.markdown-preview-view:not(.workbench) h4,
+.markdown-source-view.mod-cm6:not(.workbench) .cm-line.HyperMD-header-4 {
+  background-image: linear-gradient(var(--cr-heading-rule), var(--cr-heading-rule));
+  background-repeat: no-repeat;
+  background-size: 2.2em 1px;
+  background-position: left bottom;
+  padding-block-end: 0.2em;
+}
+.markdown-preview-view:not(.workbench) h5,
+.markdown-source-view.mod-cm6:not(.workbench) .cm-line.HyperMD-header-5 {
+  border-inline-start: 1px solid var(--cr-heading-rule);
+  padding-inline-start: 0.45em;
+}
+.markdown-preview-view:not(.workbench) h6,
+.markdown-source-view.mod-cm6:not(.workbench) .cm-line.HyperMD-header-6 {
+  color: var(--text-muted);
+  font-weight: 500;
+  letter-spacing: 0.015em;
 }
 
 /* 苹果系统字体使用标准 Medium 强调，只作用于语义标记。 */
@@ -308,7 +340,7 @@ body:not(.is-mobile) .markdown-preview-view:not(.workbench) .markdown-preview-si
 }
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
   .callout:is([data-callout="warning"], [data-callout="caution"], [data-callout="attention"]) {
-  --cr-signal: #d88424;
+  --cr-signal: #d07932;
 }
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
   .callout:is([data-callout="danger"], [data-callout="error"], [data-callout="failure"]) {
