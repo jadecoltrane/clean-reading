@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="480" viewBox="0 0 1200 480" role="img" aria-labelledby="t d">
+<title id="t">Clean Reading：阅读排版结构图</title>
+<desc id="d">这张原创结构图标记居中阅读列、标题竖线、引用点阵和蓝色点状链接。不是 Obsidian 截图。</desc>
+<defs><pattern id="dots" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="0.75" fill="#aab5be" opacity=".48"/></pattern></defs>
+<rect width="1200" height="480" rx="14" fill="#f7f8f6"/>
+<g font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif">
+<text x="44" y="57" font-size="25" font-weight="600" fill="#30393c">阅读的结构，不是额外的装饰</text>
+<text x="44" y="90" font-size="16" fill="#778087">一张比例与视觉标记的概念示意图</text>
+<rect x="44" y="122" width="744" height="315" rx="10" fill="#fff" stroke="#e0e5e2"/>
+<line x1="184" y1="136" x2="184" y2="424" stroke="#cbd3d0" stroke-dasharray="3 6"/>
+<line x1="656" y1="136" x2="656" y2="424" stroke="#cbd3d0" stroke-dasharray="3 6"/>
+<text x="420" y="158" font-size="14" text-anchor="middle" fill="#69767a">居中 · 65% · 最大 820px</text>
+<rect x="193" y="192" width="4" height="30" rx="2" fill="#64748b"/>
+<text x="215" y="216" font-size="24" font-weight="600" fill="#28363c">标题：指示位置</text>
+<rect x="215" y="242" width="390" height="7" rx="3.5" fill="#b1babd"/>
+<rect x="215" y="260" width="357" height="7" rx="3.5" fill="#b1babd"/>
+<rect x="215" y="278" width="379" height="7" rx="3.5" fill="#b1babd"/>
+<rect x="195" y="312" width="438" height="91" rx="10" fill="#f0f3f2"/>
+<rect x="195" y="312" width="438" height="91" rx="10" fill="url(#dots)"/>
+<text x="218" y="349" font-size="19" fill="#3f4b50">引用：补充说明，不是新的章节</text>
+<text x="218" y="379" font-size="15" fill="#64747b">保留点阵 · 移除竖线与外框</text>
+<text x="828" y="163" font-size="22" font-weight="600" fill="#30393c">不同内容，不同信号</text>
+<line x1="827" y1="184" x2="1162" y2="184" stroke="#d9dfdc"/>
+<rect x="829" y="214" width="4" height="26" rx="2" fill="#64748b"/>
+<text x="849" y="237" font-size="18" fill="#49585e">竖线指向章节</text>
+<rect x="829" y="268" width="35" height="28" rx="5" fill="#eef2f1"/>
+<rect x="829" y="268" width="35" height="28" rx="5" fill="url(#dots)"/>
+<text x="879" y="291" font-size="18" fill="#49585e">点阵承载引用</text>
+<text x="829" y="342" font-size="18" fill="#2563eb">链接还有细点状下划线</text>
+<line x1="829" y1="350" x2="1050" y2="350" stroke="#2563eb" stroke-width="1.3" stroke-dasharray="2 4"/>
+<text x="829" y="405" font-size="18" fill="#49585e">留白组织段落</text>
+</g>
+</svg>
