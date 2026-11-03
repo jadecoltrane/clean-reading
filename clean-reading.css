@@ -55,7 +55,7 @@
   --line-height-customize: 1.8;
   --p-spacing: 1.1em;
   --heading-spacing: 1.38em;
-  --h1-size: 1.50em;
+  --h1-size: 1.28em;
   --h2-size: 1.20em;
   --h3-size: 1.08em;
   --h1-weight: 550;
@@ -151,7 +151,7 @@ body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-sizer {
   line-height: 1.45;
   margin-block: 1.35em 0.48em;
 }
-/* 标题层级：H1 大字号与宽松留白、H2 字号与留白、H3 小圆点。 */
+/* 标题层级：H1 主题色与适度字号、H2 字号与留白、H3 小圆点。 */
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
   --cr-heading-accent: var(--interactive-accent, var(--text-accent));
   --cr-heading-rule: color-mix(in srgb, var(--cr-heading-accent) 30%, transparent);
@@ -163,7 +163,8 @@ body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-sizer {
   padding-inline-start: 0 !important;
   background-image: none !important;
   box-shadow: none !important;
-  color: var(--text-normal);
+  --h1-color: var(--cr-heading-accent);
+  color: var(--cr-heading-accent) !important;
   letter-spacing: 0.015em;
   line-height: 1.35;
 }
@@ -529,7 +530,7 @@ body.is-mobile .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget ta
    上版只设置 --list-indent，编辑视图的列表还用
    --list-indent-editing / --list-indent-source，导致看似不生效。 */
 body.is-mobile :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
-  --h1-size: 1.40em;
+  --h1-size: 1.24em;
   --h2-size: 1.16em;
   --h3-size: 1.07em;
   --list-indent: 0.8em;
