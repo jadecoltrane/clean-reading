@@ -325,6 +325,15 @@ body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.
   color: inherit;
   font-weight: inherit;
 }
+/* Callout 最后一段不继承正文 1.1em 段后距。
+   直接 p 与部分主题使用的 .el-p 包装层均兼容；
+   只去末端空白，不动正文段距、Callout 正常内边距与多段分隔。 */
+:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
+  .callout .callout-content > :last-child,
+:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
+  .callout .callout-content > .el-p:last-child > p:last-child {
+  margin-block-end: 0 !important;
+}
 .markdown-preview-view:not(.workbench) .callout .callout-content strong {
   font-weight: var(--cr-bold-weight) !important;
 }
