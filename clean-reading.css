@@ -942,3 +942,11 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   width: auto;
   margin-inline: var(--cr-right-panel-inset);
 }
+
+/* 整条顶栏统一采用中间文档标签栏的浅灰底色，下面各面板保持各自底色。 */
+body.theme-light .workspace-split:is(.mod-left-split, .mod-root, .mod-right-split)
+  :is(.workspace-tab-header-container, .workspace-tab-header-container-inner,
+      .workspace-tab-header-new-tab, .workspace-tab-header-tab-list) {
+  background-color: #f4f4f4 !important;
+  background-image: none !important;
+}
