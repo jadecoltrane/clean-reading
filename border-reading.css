@@ -345,10 +345,12 @@ body.is-mobile :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.w
   --list-indent-editing: 0.85em;
   --list-indent-source: 0.85em;
 }
+/* 手机正文：Obsidian 已有页面边距，不再额外叠加 12px 的左右缩进。
+   只保留 4px 呼吸空间，兼容阅读模式和实时预览；列表层级单独控制。 */
 body.is-mobile .markdown-preview-view:not(.workbench) .markdown-preview-sizer,
 body.is-mobile .markdown-source-view.mod-cm6:not(.workbench) .cm-sizer {
   max-width: 100%;
-  padding-inline: 12px;
+  padding-inline: 4px;
 }
 /* 阅读模式：同时覆盖默认主题的 ul/ol padding 和外层 .el-ul/.el-ol。 */
 body.is-mobile .markdown-reading-view .markdown-preview-view:not(.workbench) :is(ul, ol),
