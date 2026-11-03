@@ -1008,3 +1008,9 @@ body.theme-light :is(.modal.mod-settings, .modal:has(.vertical-tab-header))
   background-color: #fbfbfb !important;
   background-image: none !important;
 }
+
+/* 设置菜单选中底色与文件列表一致；参考截图取样为 #eff0f0。 */
+body.theme-light :is(.modal.mod-settings, .modal:has(.vertical-tab-header))
+  .vertical-tab-nav-item.is-active {
+  background-color: #eff0f0 !important;
+}
