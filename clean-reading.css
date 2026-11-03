@@ -670,6 +670,10 @@ body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.
 
 /* 浅色侧栏参考 ChatGPT 的中性灰白；颜色只作用于侧栏。 */
 body.theme-light :is(.mod-left-split, .mod-right-split) {
+  --background-mod-left-split: #f4f4f4 !important;
+  --background-mod-right-split: #f4f4f4 !important;
+  --background-mod-left-CSS-light: #f4f4f4 !important;
+  --background-mod-right-CSS-light: #f4f4f4 !important;
   --background-primary: #f4f4f4;
   --background-secondary: #f4f4f4;
   --background-secondary-alt: #f4f4f4;
