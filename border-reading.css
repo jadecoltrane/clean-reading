@@ -44,7 +44,7 @@
   --bold-weight: var(--br-bold-weight);
   --bold-color: inherit;
   --link-weight: 400;
-  --list-indent: 1.5em;
+  --list-indent: 0.85em;
   /* 正文、列表、引文和表格共用一个色源；层级靠结构而非整段变淡。 */
   --br-text: #30302e;
   --br-rule: color-mix(in srgb, var(--text-normal) 15%, transparent);
@@ -69,14 +69,14 @@
    只平移顶层列表容器，保留子列表自己的层级缩进；
    手机端继续使用下面单独的移动端参数。 */
 body:not(.is-mobile) :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
-  --list-indent: 0.9em;
-  --list-indent-editing: 0.9em;
-  --list-indent-source: 0.9em;
+  --list-indent: 0.8em;
+  --list-indent-editing: 0.8em;
+  --list-indent-source: 0.8em;
 }
 body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-content {
-  --list-indent: 0.9em;
-  --list-indent-editing: 0.9em;
-  --list-indent-source: 0.9em;
+  --list-indent: 0.8em;
+  --list-indent-editing: 0.8em;
+  --list-indent-source: 0.8em;
 }
 
 /* 电脑正文宽度：取当前编辑区的 65%，但绝不超过 820px。
@@ -130,7 +130,7 @@ body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-sizer {
 }
 /* 04. 列表有适度缩进，但避免默认过深。 */
 .markdown-preview-view:not(.workbench) :is(ul, ol) {
-  padding-inline-start: 1.05em !important;
+  padding-inline-start: 0.85em !important;
   margin-inline-start: 0 !important;
   margin-block: 0.44em 0.95em;
 }
@@ -150,7 +150,7 @@ body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-sizer {
 
 /* 列表通用规则出现在上方，电脑端在此最终覆盖以免失效。 */
 body:not(.is-mobile) .markdown-preview-view:not(.workbench) :is(ul, ol) {
-  padding-inline-start: 0.9em !important;
+  padding-inline-start: 0.8em !important;
   margin-inline-start: 0 !important;
 }
 body:not(.is-mobile) .markdown-preview-view:not(.workbench) .markdown-preview-sizer > :is(.el-ul, .el-ol) {
@@ -341,9 +341,9 @@ body.is-mobile :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.w
   --h1-size: 1.30em;
   --h2-size: 1.16em;
   --h3-size: 1.07em;
-  --list-indent: 0.95em;
-  --list-indent-editing: 0.95em;
-  --list-indent-source: 0.95em;
+  --list-indent: 0.85em;
+  --list-indent-editing: 0.85em;
+  --list-indent-source: 0.85em;
 }
 body.is-mobile .markdown-preview-view:not(.workbench) .markdown-preview-sizer,
 body.is-mobile .markdown-source-view.mod-cm6:not(.workbench) .cm-sizer {
@@ -353,8 +353,8 @@ body.is-mobile .markdown-source-view.mod-cm6:not(.workbench) .cm-sizer {
 /* 阅读模式：同时覆盖默认主题的 ul/ol padding 和外层 .el-ul/.el-ol。 */
 body.is-mobile .markdown-reading-view .markdown-preview-view:not(.workbench) :is(ul, ol),
 body.is-mobile .markdown-preview-view.markdown-rendered:not(.workbench) :is(ul, ol) {
-  --list-indent: 0.95em;
-  padding-inline-start: 0.95em !important;
+  --list-indent: 0.85em;
+  padding-inline-start: 0.85em !important;
   margin-inline-start: 0 !important;
 }
 body.is-mobile .markdown-preview-view:not(.workbench) .markdown-preview-sizer > :is(.el-ul, .el-ol) {
@@ -363,9 +363,9 @@ body.is-mobile .markdown-preview-view:not(.workbench) .markdown-preview-sizer > 
 }
 /* 实时预览：把代码编辑器真实使用的缩进变量传到内容根节点。 */
 body.is-mobile .markdown-source-view.mod-cm6:not(.workbench) .cm-content {
-  --list-indent: 0.95em;
-  --list-indent-editing: 0.95em;
-  --list-indent-source: 0.95em;
+  --list-indent: 0.85em;
+  --list-indent-editing: 0.85em;
+  --list-indent-source: 0.85em;
 }
 body.is-mobile .markdown-preview-view:not(.workbench) blockquote {
   margin-inline-start: 0.16em;
