@@ -3,25 +3,14 @@
    链接、列表、引用、代码和表格面向长文阅读优化。
    不附带字体和插件；只需启用这一份 CSS。 */
 
-/* 内链沿用主题色；外链取随内链变化的视觉对比色（紫色对应金黄）。 */
+/* 外链固定使用 Border 原有蓝色，不随内链或主题强调色变化。 */
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
-  --cr-external-link: #8b6b16;
-  --cr-external-link-hover: #72540b;
+  --cr-external-link: #1775d9;
+  --cr-external-link-hover: #1775d9;
 }
 .theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
-  --cr-external-link: #dcc57e;
-  --cr-external-link-hover: #f0dc9a;
-}
-/* 色相错开 150°，让冷紫对应偏黄而非荧光黄绿；明暗模式分别控制亮度。 */
-@supports (color: oklch(from purple 0.5 0.1 calc(h + 150))) {
-  :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
-    --cr-external-link: oklch(from var(--link-color, var(--interactive-accent)) 0.50 min(c, 0.12) calc(h + 150));
-    --cr-external-link-hover: oklch(from var(--link-color, var(--interactive-accent)) 0.43 min(c, 0.12) calc(h + 150));
-  }
-  .theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
-    --cr-external-link: oklch(from var(--link-color, var(--interactive-accent)) 0.82 min(c, 0.12) calc(h + 150));
-    --cr-external-link-hover: oklch(from var(--link-color, var(--interactive-accent)) 0.90 min(c, 0.12) calc(h + 150));
-  }
+  --cr-external-link: #89bdf4;
+  --cr-external-link-hover: #89bdf4;
 }
 .markdown-preview-view:not(.workbench) a:is(.internal-link, .external-link):not(:has(img)),
 .markdown-source-view.mod-cm6:not(.workbench)
