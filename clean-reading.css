@@ -55,7 +55,7 @@
   --line-height-customize: 1.8;
   --p-spacing: 1.1em;
   --heading-spacing: 1.38em;
-  --h1-size: 1.36em;
+  --h1-size: 1.50em;
   --h2-size: 1.20em;
   --h3-size: 1.08em;
   --h1-weight: 550;
@@ -140,8 +140,8 @@ body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-sizer {
   overflow-wrap: anywhere;
 }
 .markdown-preview-view:not(.workbench) h1 {
-  line-height: 1.4;
-  margin-block: 1.45em 0.65em;
+  line-height: 1.35;
+  margin-block: 1.7em 0.8em;
 }
 .markdown-preview-view:not(.workbench) h2 {
   line-height: 1.45;
@@ -151,15 +151,28 @@ body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-sizer {
   line-height: 1.45;
   margin-block: 1.35em 0.48em;
 }
-/* 标题层级：H1 主题色细竖线、H2 字号与留白、H3 小圆点。 */
+/* 标题层级：H1 大字号与宽松留白、H2 字号与留白、H3 小圆点。 */
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
   --cr-heading-accent: var(--interactive-accent, var(--text-accent));
   --cr-heading-rule: color-mix(in srgb, var(--cr-heading-accent) 30%, transparent);
 }
 .markdown-preview-view:not(.workbench) h1,
 .markdown-source-view.mod-cm6:not(.workbench) .cm-line.HyperMD-header-1 {
-  border-inline-start: 3px solid var(--cr-heading-accent);
-  padding-inline-start: 0.55em;
+  /* 一级标题采用纯文字排版，取消主题竖线、底线与装饰底图。 */
+  border: 0 !important;
+  padding-inline-start: 0 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  color: var(--text-normal);
+  letter-spacing: 0.015em;
+  line-height: 1.35;
+}
+.markdown-preview-view:not(.workbench) h1::before,
+.markdown-preview-view:not(.workbench) h1::after,
+.markdown-source-view.mod-cm6:not(.workbench) .cm-line.HyperMD-header-1::before,
+.markdown-source-view.mod-cm6:not(.workbench) .cm-line.HyperMD-header-1::after {
+  content: none !important;
+  display: none !important;
 }
 .markdown-preview-view:not(.workbench) h2,
 .markdown-source-view.mod-cm6:not(.workbench) .cm-line.HyperMD-header-2 {
@@ -516,7 +529,7 @@ body.is-mobile .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget ta
    上版只设置 --list-indent，编辑视图的列表还用
    --list-indent-editing / --list-indent-source，导致看似不生效。 */
 body.is-mobile :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
-  --h1-size: 1.30em;
+  --h1-size: 1.40em;
   --h2-size: 1.16em;
   --h3-size: 1.07em;
   --list-indent: 0.8em;
