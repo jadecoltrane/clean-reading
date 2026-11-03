@@ -3,22 +3,11 @@
    链接、列表、引用、代码和表格面向长文阅读优化。
    不附带字体和插件；只需启用这一份 CSS。 */
 
-/* 内外链采用固定蓝色而非主题强调色，避免部分主题链接过浅。
-   细点状下划线代替连续实线，保留识别度并减轻视觉重量。
-   要自定义链接颜色，仅修改下方 --cr-link-blue 即可；外链图标保留。 */
-.markdown-preview-view:not(.workbench),
-.markdown-source-view.mod-cm6:not(.workbench) {
-  --cr-link-blue: #2563eb;
-  --link-color: var(--cr-link-blue);
-  --link-color-hover: var(--cr-link-blue);
-  --link-external-color: var(--cr-link-blue);
-  --link-external-color-hover: var(--cr-link-blue);
-}
+/* 链接颜色沿用主题的内链／外链变量，点状下划线保持 Clean Reading 风格。 */
 .markdown-preview-view:not(.workbench) a:is(.internal-link, .external-link):not(:has(img)),
 .markdown-source-view.mod-cm6:not(.workbench)
   :is(a.internal-link, a.external-link, .cm-hmd-internal-link, .cm-link, .cm-url,
     .cm-hmd-internal-link a, .cm-link a, .cm-url a) {
-  color: var(--cr-link-blue) !important;
   font-weight: inherit;
   text-decoration-line: underline !important;
   text-decoration-style: dotted !important;
@@ -26,21 +15,35 @@
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
-/* 链接保持点状底线；悬停加一点清晰度，键盘焦点有可见轮廓。 */
+.markdown-preview-view:not(.workbench) a.internal-link:not(:has(img)),
+.markdown-source-view.mod-cm6:not(.workbench)
+  :is(a.internal-link, .cm-hmd-internal-link, .cm-hmd-internal-link a) {
+  color: var(--link-color, var(--interactive-accent)) !important;
+}
+.markdown-preview-view:not(.workbench) a.external-link:not(:has(img)),
+.markdown-source-view.mod-cm6:not(.workbench)
+  :is(a.external-link, .cm-link, .cm-url, .cm-link a, .cm-url a) {
+  color: var(--link-external-color, var(--link-color, var(--interactive-accent))) !important;
+}
+.markdown-preview-view:not(.workbench) a.internal-link:not(:has(img)):hover,
+.markdown-source-view.mod-cm6:not(.workbench) a.internal-link:hover {
+  color: var(--link-color-hover, var(--link-color)) !important;
+}
+.markdown-preview-view:not(.workbench) a.external-link:not(:has(img)):hover,
+.markdown-source-view.mod-cm6:not(.workbench) a.external-link:hover {
+  color: var(--link-external-color-hover, var(--link-external-color)) !important;
+}
 .markdown-preview-view:not(.workbench) a:is(.internal-link, .external-link):not(:has(img)):hover,
-.markdown-source-view.mod-cm6:not(.workbench) :is(.cm-link a, .cm-url a, a.internal-link):hover {
+.markdown-source-view.mod-cm6:not(.workbench)
+  :is(a.internal-link, a.external-link, .cm-hmd-internal-link a, .cm-link a, .cm-url a):hover {
   text-decoration-thickness: 1.5px;
-  background-color: color-mix(in srgb, var(--cr-link-blue) 9%, transparent);
+  background-color: color-mix(in srgb, currentColor 9%, transparent);
 }
 .markdown-preview-view:not(.workbench) a:is(.internal-link, .external-link):not(:has(img)):focus-visible,
 .markdown-source-view.mod-cm6:not(.workbench) a:focus-visible {
-  outline: 2px solid var(--cr-link-blue);
+  outline: 2px solid currentColor;
   outline-offset: 3px;
   border-radius: 2px;
-}
-/* 根据底色切换固定蓝色，而非追随主题强调色。 */
-body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
-  --cr-link-blue: #8ab4ff;
 }
 
 /* Reading settings for ordinary notes on any Obsidian theme. */
@@ -252,7 +255,16 @@ body:not(.is-mobile) .markdown-preview-view:not(.workbench) .markdown-preview-si
   color: var(--text-normal);
   font-weight: var(--cr-bold-weight);
 }
-/* 语义只通过小面积的图标/标题颜色传递；引用底色仍保持中性点阵。 */
+/* Note、Abstract、Summary、Quote、Example 等说明类保持中性灰图标。
+   Info／Tip 蓝，Warning 琥珀，Danger／Error 红，Success 绿。
+   统一点阵背景和正文色，不引入彩色卡片。 */
+:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
+  .callout:is([data-callout="note"], [data-callout="abstract"], [data-callout="summary"],
+              [data-callout="tldr"], [data-callout="quote"], [data-callout="cite"],
+              [data-callout="example"]) {
+  --cr-signal: var(--text-muted);
+}
+/* 四种语义色只用在图标与必要的标题文字上。 */
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
   .callout .callout-icon {
   color: var(--cr-signal, var(--text-muted));
@@ -275,11 +287,11 @@ body:not(.is-mobile) .markdown-preview-view:not(.workbench) .markdown-preview-si
   --cr-signal: #287b59;
 }
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
-  .callout:is([data-callout="info"], [data-callout="tip"], [data-callout="note"]) {
+  .callout:is([data-callout="info"], [data-callout="tip"], [data-callout="hint"]) {
   --cr-signal: #436da4;
 }
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
-  .callout:is([data-callout="warning"], [data-callout="caution"], [data-callout="danger"], [data-callout="error"])
+  .callout:is([data-callout="warning"], [data-callout="caution"], [data-callout="danger"], [data-callout="error"], [data-callout="success"], [data-callout="check"], [data-callout="done"])
   .callout-title-inner {
   color: var(--cr-signal);
 }
@@ -296,7 +308,7 @@ body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.
   --cr-signal: #88c6a2;
 }
 body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
-  .callout:is([data-callout="info"], [data-callout="tip"], [data-callout="note"]) {
+  .callout:is([data-callout="info"], [data-callout="tip"], [data-callout="hint"]) {
   --cr-signal: #8ab4ff;
 }
 /* Callout 的正文与外部段落使用相同字号、颜色、行距及字重。
@@ -467,8 +479,8 @@ body.theme-light {
   --code-background: var(--cr-code-surface);
   --tag-background: color-mix(in srgb, var(--text-normal) 6%, transparent);
   --tag-color: var(--text-muted);
-  --checkbox-color: var(--cr-link-blue);
-  --checkbox-color-hover: var(--cr-link-blue);
+  --checkbox-color: var(--interactive-accent);
+  --checkbox-color-hover: var(--interactive-accent);
 }
 .markdown-preview-view:not(.workbench) :not(pre) > code,
 .markdown-source-view.mod-cm6:not(.workbench) .cm-inline-code {
@@ -485,7 +497,7 @@ body.theme-light {
   overflow-x: auto;
 }
 .markdown-preview-view:not(.workbench) :is(.task-list-item-checkbox, input[type="checkbox"]) {
-  accent-color: var(--cr-link-blue);
+  accent-color: var(--interactive-accent);
   border-radius: 4px;
 }
 .markdown-preview-view:not(.workbench) .tag,
@@ -505,7 +517,7 @@ body.theme-light {
   padding-block-start: 0.7em;
 }
 .markdown-preview-view:not(.workbench) :is(.footnote-ref, .footnote-link) {
-  color: var(--cr-link-blue);
+  color: var(--interactive-accent);
 }
 .markdown-preview-view:not(.workbench) .markdown-embed {
   background-color: color-mix(in srgb, var(--text-normal) 2%, var(--background-primary));
