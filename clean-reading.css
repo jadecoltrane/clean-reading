@@ -1,7 +1,7 @@
-/* Clean Reading — one CSS snippet for Obsidian reading and neutral dark UI.
-   Compatible with standard Obsidian Markdown markup, no special theme required.
-   Light mode follows your theme. Dark mode uses neutral charcoal app colors.
-   No fonts, plugins or other snippet files are required. */
+/* Clean Reading · 统一阅读样式，浅色中性界面与黑灰夜间模式。
+   使用 Obsidian 标准样式变量；独立于具体主题。
+   链接、列表、引用、代码和表格面向长文阅读优化。
+   不附带字体和插件；只需启用这一份 CSS。 */
 
 /* 内外链采用固定蓝色而非主题强调色，避免部分主题链接过浅。
    细点状下划线代替连续实线，保留识别度并减轻视觉重量。
@@ -19,12 +19,28 @@
   :is(a.internal-link, a.external-link, .cm-hmd-internal-link, .cm-link, .cm-url,
     .cm-hmd-internal-link a, .cm-link a, .cm-url a) {
   color: var(--cr-link-blue) !important;
-  font-weight: inherit !important;
+  font-weight: inherit;
   text-decoration-line: underline !important;
   text-decoration-style: dotted !important;
-  text-decoration-color: currentColor !important;
-  text-decoration-thickness: 1px !important;
-  text-underline-offset: 3px !important;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+/* 链接保持点状底线；悬停加一点清晰度，键盘焦点有可见轮廓。 */
+.markdown-preview-view:not(.workbench) a:is(.internal-link, .external-link):not(:has(img)):hover,
+.markdown-source-view.mod-cm6:not(.workbench) :is(.cm-link a, .cm-url a, a.internal-link):hover {
+  text-decoration-thickness: 1.5px;
+  background-color: color-mix(in srgb, var(--cr-link-blue) 9%, transparent);
+}
+.markdown-preview-view:not(.workbench) a:is(.internal-link, .external-link):not(:has(img)):focus-visible,
+.markdown-source-view.mod-cm6:not(.workbench) a:focus-visible {
+  outline: 2px solid var(--cr-link-blue);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+/* 根据底色切换固定蓝色，而非追随主题强调色。 */
+body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
+  --cr-link-blue: #8ab4ff;
 }
 
 /* Reading settings for ordinary notes on any Obsidian theme. */
@@ -206,9 +222,9 @@ body:not(.is-mobile) .markdown-preview-view:not(.workbench) .markdown-preview-si
 .markdown-source-view.mod-cm6:not(.workbench) .cm-line.HyperMD-quote::before {
   content: none !important;
   display: none !important;
-  width: 0 !important;
-  border: 0 !important;
-  background: none !important;
+  width: 0;
+  border: 0;
+  background: none;
 }
 .markdown-source-view.mod-cm6:not(.workbench) .cm-line.HyperMD-quote {
   border-left-width: 0 !important;
@@ -235,6 +251,53 @@ body:not(.is-mobile) .markdown-preview-view:not(.workbench) .markdown-preview-si
 .markdown-preview-view:not(.workbench) .callout-title {
   color: var(--text-normal);
   font-weight: var(--cr-bold-weight);
+}
+/* 语义只通过小面积的图标/标题颜色传递；引用底色仍保持中性点阵。 */
+:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
+  .callout .callout-icon {
+  color: var(--cr-signal, var(--text-muted));
+  opacity: 0.92;
+}
+:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
+  .callout .callout-icon svg {
+  color: inherit;
+}
+:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
+  .callout:is([data-callout="warning"], [data-callout="caution"], [data-callout="attention"]) {
+  --cr-signal: #a56b24;
+}
+:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
+  .callout:is([data-callout="danger"], [data-callout="error"], [data-callout="failure"]) {
+  --cr-signal: #b3484e;
+}
+:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
+  .callout:is([data-callout="success"], [data-callout="check"], [data-callout="done"]) {
+  --cr-signal: #287b59;
+}
+:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
+  .callout:is([data-callout="info"], [data-callout="tip"], [data-callout="note"]) {
+  --cr-signal: #436da4;
+}
+:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
+  .callout:is([data-callout="warning"], [data-callout="caution"], [data-callout="danger"], [data-callout="error"])
+  .callout-title-inner {
+  color: var(--cr-signal);
+}
+body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
+  .callout:is([data-callout="warning"], [data-callout="caution"], [data-callout="attention"]) {
+  --cr-signal: #dca66b;
+}
+body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
+  .callout:is([data-callout="danger"], [data-callout="error"], [data-callout="failure"]) {
+  --cr-signal: #e68e93;
+}
+body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
+  .callout:is([data-callout="success"], [data-callout="check"], [data-callout="done"]) {
+  --cr-signal: #88c6a2;
+}
+body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
+  .callout:is([data-callout="info"], [data-callout="tip"], [data-callout="note"]) {
+  --cr-signal: #8ab4ff;
 }
 /* Callout 的正文与外部段落使用相同字号、颜色、行距及字重。
    Callout 标题保留独立的语义层级，边框和点阵背景保持原样。 */
@@ -265,12 +328,12 @@ body:not(.is-mobile) .markdown-preview-view:not(.workbench) .markdown-preview-si
 }
 .markdown-preview-view:not(.workbench) table thead tr,
 .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget table thead tr {
-  background: transparent !important;
-  background-image: none !important;
+  background: transparent;
+  background-image: none;
 }
 .markdown-preview-view:not(.workbench) table :is(th,td),
 .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget table :is(th,td) {
-  padding: 9px 12px !important;
+  padding: 9px 12px;
   border: 0 !important;
   border-bottom: 1px solid var(--cr-rule) !important;
   text-align: start;
@@ -282,7 +345,7 @@ body:not(.is-mobile) .markdown-preview-view:not(.workbench) .markdown-preview-si
 }
 .markdown-preview-view:not(.workbench) table th,
 .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget table th {
-  background: transparent !important;
+  background: transparent;
   font-weight: var(--cr-bold-weight);
   color: var(--text-normal);
 }
@@ -291,9 +354,9 @@ body.is-mobile .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget,
 body.is-mobile .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget .table-wrapper {
   display: block;
   width: 100% !important;
-  min-width: 0 !important;
-  max-width: 100% !important;
-  margin-inline: 0 !important;
+  min-width: 0;
+  max-width: 100%;
+  margin-inline: 0;
   box-sizing: border-box;
   overflow-x: visible !important;
 }
@@ -301,28 +364,28 @@ body.is-mobile .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget .t
 body.is-mobile.table-width-customized .markdown-source-view.mod-cm6.is-live-preview:not(.workbench) .cm-content > .cm-table-widget,
 body.is-mobile.table-width-customized .markdown-preview-view.markdown-rendered:not(.workbench) .markdown-preview-sizer > div:has(> table) {
   width: 100% !important;
-  max-width: 100% !important;
-  margin-inline: 0 !important;
+  max-width: 100%;
+  margin-inline: 0;
 }
 body.is-mobile .markdown-preview-view:not(.workbench) table,
 body.is-mobile .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget table {
   width: 100% !important;
-  min-width: 0 !important;
-  max-width: 100% !important;
+  min-width: 0;
+  max-width: 100%;
   table-layout: fixed;
-  margin-inline: 0 !important;
+  margin-inline: 0;
 }
 body.is-mobile .markdown-preview-view:not(.workbench) table col,
 body.is-mobile .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget table col {
-  width: auto !important;
-  min-width: 0 !important;
+  width: auto;
+  min-width: 0;
 }
 body.is-mobile .markdown-preview-view:not(.workbench) table :is(th,td),
 body.is-mobile .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget table :is(th,td) {
-  width: auto !important;
-  min-width: 0 !important;
+  width: auto;
+  min-width: 0;
   padding: 7px 5px !important;
-  white-space: normal !important;
+  white-space: normal;
   overflow-wrap: anywhere;
   word-break: normal;
 }
@@ -341,9 +404,9 @@ body.is-mobile :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.w
   --h1-size: 1.30em;
   --h2-size: 1.16em;
   --h3-size: 1.07em;
-  --list-indent: 0.65em;
-  --list-indent-editing: 0.65em;
-  --list-indent-source: 0.65em;
+  --list-indent: 0.8em;
+  --list-indent-editing: 0.8em;
+  --list-indent-source: 0.8em;
 }
 /* 手机正文：Obsidian 已有页面边距，不再额外叠加 12px 的左右缩进。
    只保留 4px 呼吸空间，兼容阅读模式和实时预览；列表层级单独控制。 */
@@ -355,21 +418,21 @@ body.is-mobile .markdown-source-view.mod-cm6:not(.workbench) .cm-sizer {
 /* 阅读模式：同时覆盖默认主题的 ul/ol padding 和外层 .el-ul/.el-ol。 */
 body.is-mobile .markdown-reading-view .markdown-preview-view:not(.workbench) :is(ul, ol),
 body.is-mobile .markdown-preview-view.markdown-rendered:not(.workbench) :is(ul, ol) {
-  --list-indent: 0.65em;
-  padding-inline-start: 0.65em !important;
+  --list-indent: 0.8em;
+  padding-inline-start: 0.85em !important;
   margin-inline-start: 0 !important;
 }
-/* 一级列表：缩进主要来自 .el-ul/.el-ol 包装层，再收回到正文附近。
-   圆点和整行文字一起左移；只影响手机普通笔记，不动页面边距或 Home。 */
+/* 一级列表只做轻微位置校正，不使用容易裁切项目符号的大负边距。
+   嵌套列表保留正常层级；编辑器缩进由原生变量控制。 */
 body.is-mobile .markdown-preview-view:not(.workbench) .markdown-preview-sizer > :is(.el-ul, .el-ol) {
   padding-inline-start: 0 !important;
-  margin-inline-start: -1.25em !important;
+  margin-inline-start: -0.15em !important;
 }
 /* 实时预览：把代码编辑器真实使用的缩进变量传到内容根节点。 */
 body.is-mobile .markdown-source-view.mod-cm6:not(.workbench) .cm-content {
-  --list-indent: 0.65em;
-  --list-indent-editing: 0.65em;
-  --list-indent-source: 0.65em;
+  --list-indent: 0.8em;
+  --list-indent-editing: 0.8em;
+  --list-indent-source: 0.8em;
 }
 body.is-mobile .markdown-preview-view:not(.workbench) blockquote {
   margin-inline-start: 0.16em;
@@ -377,6 +440,78 @@ body.is-mobile .markdown-preview-view:not(.workbench) blockquote {
   padding: 0.6em 0.75em !important;
 }
 
+
+/* 08. 中性浅色界面：使用基础变量，不覆盖用户自己的按钮和 Home 样式。 */
+body.theme-light {
+  --color-base-00: #fbfcfa;
+  --color-base-05: #f8faf7;
+  --color-base-10: #f3f5f2;
+  --color-base-20: #eaede9;
+  --color-base-25: #e1e6e0;
+  --background-primary: #fbfcfa;
+  --background-primary-alt: #f6f8f5;
+  --background-secondary: #f1f4f0;
+  --background-secondary-alt: #edf0ec;
+  --background-tertiary: #e8ece7;
+  --text-normal: #303632;
+  --text-muted: #5b655f;
+  --text-faint: #7e8881;
+  --background-modifier-border: rgba(37, 52, 43, 0.12);
+  --background-modifier-border-muted: rgba(37, 52, 43, 0.08);
+  --background-modifier-border-hover: rgba(37, 52, 43, 0.18);
+  --background-modifier-hover: rgba(37, 52, 43, 0.045);
+}
+/* 09. 代码、任务、标签、分隔线、脚注及嵌入：只统一阅读组件。 */
+:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
+  --cr-code-surface: color-mix(in srgb, var(--text-normal) 4%, var(--background-primary));
+  --code-background: var(--cr-code-surface);
+  --tag-background: color-mix(in srgb, var(--text-normal) 6%, transparent);
+  --tag-color: var(--text-muted);
+  --checkbox-color: var(--cr-link-blue);
+  --checkbox-color-hover: var(--cr-link-blue);
+}
+.markdown-preview-view:not(.workbench) :not(pre) > code,
+.markdown-source-view.mod-cm6:not(.workbench) .cm-inline-code {
+  border-radius: 4px;
+  padding-inline: 0.22em;
+  background-color: var(--cr-code-surface);
+  color: var(--text-normal);
+}
+.markdown-preview-view:not(.workbench) pre {
+  border: 1px solid var(--cr-rule);
+  border-radius: 8px;
+  background-color: var(--cr-code-surface);
+  padding: 0.8em 1em;
+  overflow-x: auto;
+}
+.markdown-preview-view:not(.workbench) :is(.task-list-item-checkbox, input[type="checkbox"]) {
+  accent-color: var(--cr-link-blue);
+  border-radius: 4px;
+}
+.markdown-preview-view:not(.workbench) .tag,
+.markdown-source-view.mod-cm6:not(.workbench) .cm-hashtag {
+  border-radius: 5px;
+  padding-inline: 0.3em;
+  text-decoration: none;
+}
+.markdown-preview-view:not(.workbench) hr {
+  border: 0;
+  border-top: 1px solid var(--cr-rule);
+  margin-block: 1.8em;
+}
+.markdown-preview-view:not(.workbench) .footnotes {
+  border-top: 1px solid var(--cr-rule);
+  margin-block-start: 1.6em;
+  padding-block-start: 0.7em;
+}
+.markdown-preview-view:not(.workbench) :is(.footnote-ref, .footnote-link) {
+  color: var(--cr-link-blue);
+}
+.markdown-preview-view:not(.workbench) .markdown-embed {
+  background-color: color-mix(in srgb, var(--text-normal) 2%, var(--background-primary));
+  border: 1px solid var(--cr-rule);
+  border-radius: 8px;
+}
 
 /* 08. 内置黑灰夜间模式：跟随 Obsidian 深色外观，覆盖界面基本配色。 */
 body.theme-dark {
