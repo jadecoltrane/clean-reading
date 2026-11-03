@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="480" viewBox="0 0 1200 480" role="img" aria-labelledby="t d">
 <title id="t">Clean Reading：阅读排版结构图</title>
-<desc id="d">这张原创结构图标记居中阅读列、标题竖线、引用点阵和蓝色点状链接。不是 Obsidian 截图。</desc>
+<desc id="d">这张原创结构图标记居中阅读列、标题竖线、引用点阵和链接设计：实线改为细点状虚线，让链接更轻盈；固定蓝色避免主题色过浅，且可以自定义。不是 Obsidian 截图。</desc>
 <defs><pattern id="dots" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="0.75" fill="#aab5be" opacity=".48"/></pattern></defs>
 <rect width="1200" height="480" rx="14" fill="#f7f8f6"/>
 <g font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif">
@@ -26,8 +26,9 @@
 <rect x="829" y="268" width="35" height="28" rx="5" fill="#eef2f1"/>
 <rect x="829" y="268" width="35" height="28" rx="5" fill="url(#dots)"/>
 <text x="879" y="291" font-size="18" fill="#49585e">点阵承载引用</text>
-<text x="829" y="342" font-size="18" fill="#2563eb">链接还有细点状下划线</text>
-<line x1="829" y1="350" x2="1050" y2="350" stroke="#2563eb" stroke-width="1.3" stroke-dasharray="2 4"/>
-<text x="829" y="405" font-size="18" fill="#49585e">留白组织段落</text>
+<text x="829" y="333" font-size="18" fill="#2563eb">细点线替代实线，阅读更轻盈</text>
+<line x1="829" y1="343" x2="1094" y2="343" stroke="#2563eb" stroke-width="1.3" stroke-linecap="round" stroke-dasharray="1 4"/>
+<text x="829" y="384" font-size="17" fill="#49585e">固定蓝色，避免主题色过淡</text>
+<text x="829" y="418" font-size="16" fill="#69777d">颜色可自行更换</text>
 </g>
 </svg>

@@ -3,7 +3,9 @@
    Only Markdown note content: no Home dashboard, vault, sidebar, ribbon, tabs or scrollbars.
    No fonts or images included; Obsidian's configured text font is respected. */
 
-/* 普通笔记内外链统一为固定蓝色 #2563eb，常显细点线。保留 Border 外链图标。 */
+/* 内外链采用固定蓝色而非主题强调色，避免部分主题链接过浅。
+   细点状下划线代替连续实线，保留识别度并减轻视觉重量。
+   要自定义链接颜色，仅修改下方 --br-link-blue 即可；外链图标保留。 */
 .markdown-preview-view:not(.workbench),
 .markdown-source-view.mod-cm6:not(.workbench) {
   --br-link-blue: #2563eb;
@@ -16,7 +18,7 @@
 .markdown-source-view.mod-cm6:not(.workbench)
   :is(a.internal-link, a.external-link, .cm-hmd-internal-link, .cm-link, .cm-url,
     .cm-hmd-internal-link a, .cm-link a, .cm-url a) {
-  color: #2563eb !important;
+  color: var(--br-link-blue) !important;
   font-weight: inherit !important;
   text-decoration-line: underline !important;
   text-decoration-style: dotted !important;
