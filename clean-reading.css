@@ -151,7 +151,7 @@ body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-sizer {
   line-height: 1.45;
   margin-block: 1.35em 0.48em;
 }
-/* 标题层级：H1 主题色细竖线、H2 淡底线、H3 小圆点。 */
+/* 标题层级：H1 主题色细竖线、H2 字号与留白、H3 小圆点。 */
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
   --cr-heading-accent: var(--interactive-accent, var(--text-accent));
   --cr-heading-rule: color-mix(in srgb, var(--cr-heading-accent) 30%, transparent);
@@ -163,8 +163,11 @@ body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-sizer {
 }
 .markdown-preview-view:not(.workbench) h2,
 .markdown-source-view.mod-cm6:not(.workbench) .cm-line.HyperMD-header-2 {
-  border-block-end: 1px solid var(--cr-heading-rule);
-  padding-block-end: 0.18em;
+  /* H2 用字号、字重与上下留白表达层级，不再画通栏底线。 */
+  border-block-end: 0 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  padding-block-end: 0;
 }
 .markdown-preview-view:not(.workbench) h3,
 .markdown-source-view.mod-cm6:not(.workbench) .cm-line.HyperMD-header-3 {
@@ -1015,12 +1018,12 @@ body.theme-light :is(.modal.mod-settings, .modal:has(.vertical-tab-header))
   background-color: #eff0f0 !important;
 }
 
-/* 文件名字号保持 15px，字重减为 350，让侧边栏更轻。 */
+/* 文件名与默认正文统一为 15px / 400。 */
 :is(.mod-left-split, .mod-right-split)
   :is(.nav-file-title, .nav-folder-title, .nav-file-title-content, .nav-folder-title-content) {
   font-family: var(--font-text) !important;
   font-size: var(--cr-body-font-size, 15px) !important;
-  font-weight: 350 !important;
+  font-weight: 400 !important;
 }
 
 /* 右侧标签图标与 Git 操作图标共用尺寸，按钮保持紧凑。 */
@@ -1052,5 +1055,5 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   border-radius: 8px !important;
 }
 :is(.modal.mod-settings, .modal:has(.vertical-tab-header)) .vertical-tab-nav-item {
-  font-weight: 350 !important;
+  font-weight: 400 !important;
 }
