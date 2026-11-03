@@ -670,9 +670,9 @@ body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.
 
 /* 浅色侧栏参考 ChatGPT 的中性灰白；颜色只作用于侧栏。 */
 body.theme-light :is(.mod-left-split, .mod-right-split) {
-  --background-primary: #f9f9f9;
-  --background-secondary: #f9f9f9;
-  --background-secondary-alt: #f9f9f9;
+  --background-primary: #f4f4f4;
+  --background-secondary: #f4f4f4;
+  --background-secondary-alt: #f4f4f4;
   --text-normal: #353535;
   --text-muted: #6b6b6b;
   --text-faint: #8f8f8f;
@@ -682,5 +682,27 @@ body.theme-light :is(.mod-left-split, .mod-right-split) {
   --nav-item-background-hover: #eeeeee;
   --nav-item-background-active: #e8e8e8;
   --background-modifier-hover: #eeeeee;
-  background-color: #f9f9f9;
+  background-color: #f4f4f4;
+}
+
+/* Border 的侧栏容器使用专用背景变量和 !important，须在同一绘制层覆盖。
+   #f4f4f4 取自参考截图中 ChatGPT 侧栏的纯色区域。 */
+body.theme-light {
+  --background-mod-left-split: #f4f4f4 !important;
+  --background-mod-right-split: #f4f4f4 !important;
+  --background-mod-left-split-light: #f4f4f4 !important;
+  --background-mod-right-split-light: #f4f4f4 !important;
+  --background-mod-left-CSS-light: #f4f4f4 !important;
+  --background-mod-right-CSS-light: #f4f4f4 !important;
+}
+body.theme-light :is(.mod-left-split, .mod-right-split),
+body.theme-light :is(.mod-left-split, .mod-right-split)
+  :is(.workspace-tabs, .workspace-tab-header-container, .workspace-tab-container,
+      .workspace-leaf, .workspace-leaf-content, .view-content, .nav-header, .nav-files-container) {
+  background-color: #f4f4f4 !important;
+  background-image: none !important;
+  --background-modifier-border: #e3e3e3;
+  --background-modifier-border-muted: #e9e9e9;
+  --divider-color: #e3e3e3;
+  --tab-outline-color: #e3e3e3;
 }
