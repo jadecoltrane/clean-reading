@@ -644,3 +644,16 @@ body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.
   --cr-quote-fill: color-mix(in srgb, var(--text-normal) 4%, var(--background-primary));
   --cr-quote-dot: color-mix(in srgb, var(--text-muted) 18%, transparent);
 }
+
+/* 左右侧边栏统一使用 14px；正文区域继续由外观设置管理。 */
+:is(.mod-left-split, .mod-right-split) {
+  --font-ui-smaller: 14px;
+  --font-ui-small: 14px;
+  --font-ui-medium: 14px;
+  --nav-item-size: 14px;
+  font-size: 14px;
+}
+:is(.mod-left-split, .mod-right-split)
+  :is(.nav-file-title, .nav-folder-title, .tree-item-self) {
+  font-size: 14px;
+}
