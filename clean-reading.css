@@ -48,6 +48,9 @@
 
 /* Reading settings for ordinary notes on any Obsidian theme. */
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
+  /* 正文默认 14px，可通过 --cr-body-font-size 自定义。 */
+  --font-text-size: var(--cr-body-font-size, 14px);
+  font-size: var(--font-text-size);
   --line-height-normal: 1.8;
   --line-height-customize: 1.8;
   --p-spacing: 1.1em;
@@ -85,6 +88,7 @@
    保留行距、正文对比和字重优化，代码仍使用系统等宽字体。 */
 .markdown-preview-view:not(.workbench),
 .markdown-source-view.mod-cm6:not(.workbench) .cm-content {
+  font-size: var(--font-text-size);
   line-height: var(--line-height-normal);
   color: var(--cr-text);
   font-weight: var(--cr-text-weight);
