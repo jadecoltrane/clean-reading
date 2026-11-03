@@ -956,8 +956,8 @@ body:not(.is-mobile) .workspace-split.mod-right-split
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content[data-type="git-view"] .nav-buttons-container > .clickable-icon svg {
-  width: 20px;
-  height: 20px;
+  width: var(--cr-sidebar-action-icon-size);
+  height: var(--cr-sidebar-action-icon-size);
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content[data-type="git-view"] .git-commit-msg {
@@ -1013,4 +1013,31 @@ body.theme-light :is(.modal.mod-settings, .modal:has(.vertical-tab-header))
 body.theme-light :is(.modal.mod-settings, .modal:has(.vertical-tab-header))
   .vertical-tab-nav-item.is-active {
   background-color: #eff0f0 !important;
+}
+
+/* 文件名与默认正文同为 15px / 400，避免界面字体与选中字重造成视觉放大。 */
+:is(.mod-left-split, .mod-right-split)
+  :is(.nav-file-title, .nav-folder-title, .nav-file-title-content, .nav-folder-title-content) {
+  font-family: var(--font-text) !important;
+  font-size: var(--cr-body-font-size, 15px) !important;
+  font-weight: 400 !important;
+}
+
+/* 右侧标签图标与 Git 操作图标共用尺寸，按钮保持紧凑。 */
+body:not(.is-mobile) .workspace-split.mod-right-split {
+  --cr-sidebar-action-icon-size: var(--icon-s, 16px);
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
+  :is(.workspace-tab-header-inner-icon, .nav-buttons-container > .clickable-icon) {
+  --icon-size: var(--cr-sidebar-action-icon-size);
+}
+body:not(.is-mobile) .workspace-split.mod-right-split .workspace-tab-header-inner-icon svg {
+  width: var(--cr-sidebar-action-icon-size);
+  height: var(--cr-sidebar-action-icon-size);
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="git-view"] .nav-buttons-container > .clickable-icon {
+  flex-basis: calc(var(--cr-sidebar-action-icon-size) + 12px);
+  width: calc(var(--cr-sidebar-action-icon-size) + 12px);
+  height: calc(var(--cr-sidebar-action-icon-size) + 12px);
 }
