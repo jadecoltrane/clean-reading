@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="480" viewBox="0 0 1200 480" role="img" aria-labelledby="t d">
 <title id="t">Clean Reading：阅读排版结构图</title>
-<desc id="d">这张原创结构图标记居中阅读列、标题竖线、引用点阵和链接设计：实线改为细点状虚线，让链接更轻盈；固定蓝色避免主题色过浅，且可以自定义。不是 Obsidian 截图。</desc>
+<desc id="d">通用 Obsidian 阅读增强结构示意：居中正文、标题标记由主题决定、引用淡点阵、固定蓝色点状虚线链接。黑灰夜间模式已整合在同一 CSS 中。非截图。</desc>
 <defs><pattern id="dots" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="0.75" fill="#aab5be" opacity=".48"/></pattern></defs>
 <rect width="1200" height="480" rx="14" fill="#f7f8f6"/>
 <g font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif">
@@ -22,7 +22,7 @@
 <text x="828" y="163" font-size="22" font-weight="600" fill="#30393c">不同内容，不同信号</text>
 <line x1="827" y1="184" x2="1162" y2="184" stroke="#d9dfdc"/>
 <rect x="829" y="214" width="4" height="26" rx="2" fill="#64748b"/>
-<text x="849" y="237" font-size="18" fill="#49585e">竖线指向章节</text>
+<text x="849" y="237" font-size="18" fill="#49585e">标题标记由主题决定</text>
 <rect x="829" y="268" width="35" height="28" rx="5" fill="#eef2f1"/>
 <rect x="829" y="268" width="35" height="28" rx="5" fill="url(#dots)"/>
 <text x="879" y="291" font-size="18" fill="#49585e">点阵承载引用</text>

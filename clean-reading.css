@@ -1,24 +1,24 @@
-/* Border Reading — public edition, v1.0
-   A lightweight CSS snippet for Chinese long-form reading in Obsidian + Border.
-   Only Markdown note content: no Home dashboard, vault, sidebar, ribbon, tabs or scrollbars.
-   No fonts or images included; Obsidian's configured text font is respected. */
+/* Clean Reading — one CSS snippet for Obsidian reading and neutral dark UI.
+   Compatible with standard Obsidian Markdown markup, no special theme required.
+   Light mode follows your theme. Dark mode uses neutral charcoal app colors.
+   No fonts, plugins or other snippet files are required. */
 
 /* 内外链采用固定蓝色而非主题强调色，避免部分主题链接过浅。
    细点状下划线代替连续实线，保留识别度并减轻视觉重量。
-   要自定义链接颜色，仅修改下方 --br-link-blue 即可；外链图标保留。 */
+   要自定义链接颜色，仅修改下方 --cr-link-blue 即可；外链图标保留。 */
 .markdown-preview-view:not(.workbench),
 .markdown-source-view.mod-cm6:not(.workbench) {
-  --br-link-blue: #2563eb;
-  --link-color: var(--br-link-blue);
-  --link-color-hover: var(--br-link-blue);
-  --link-external-color: var(--br-link-blue);
-  --link-external-color-hover: var(--br-link-blue);
+  --cr-link-blue: #2563eb;
+  --link-color: var(--cr-link-blue);
+  --link-color-hover: var(--cr-link-blue);
+  --link-external-color: var(--cr-link-blue);
+  --link-external-color-hover: var(--cr-link-blue);
 }
 .markdown-preview-view:not(.workbench) a:is(.internal-link, .external-link):not(:has(img)),
 .markdown-source-view.mod-cm6:not(.workbench)
   :is(a.internal-link, a.external-link, .cm-hmd-internal-link, .cm-link, .cm-url,
     .cm-hmd-internal-link a, .cm-link a, .cm-url a) {
-  color: var(--br-link-blue) !important;
+  color: var(--cr-link-blue) !important;
   font-weight: inherit !important;
   text-decoration-line: underline !important;
   text-decoration-style: dotted !important;
@@ -27,7 +27,7 @@
   text-underline-offset: 3px !important;
 }
 
-/* Text settings only for ordinary notes; Border keeps control of the UI. */
+/* Reading settings for ordinary notes on any Obsidian theme. */
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
   --line-height-normal: 1.8;
   --line-height-customize: 1.8;
@@ -39,21 +39,21 @@
   --h1-weight: 550;
   --h2-weight: 550;
   --h3-weight: 500;
-  --br-text-weight: 400;
-  --br-bold-weight: 500;
-  --bold-weight: var(--br-bold-weight);
+  --cr-text-weight: 400;
+  --cr-bold-weight: 500;
+  --bold-weight: var(--cr-bold-weight);
   --bold-color: inherit;
   --link-weight: 400;
   --list-indent: 0.65em;
   /* 正文、列表、引文和表格共用一个色源；层级靠结构而非整段变淡。 */
-  --br-text: #30302e;
-  --br-rule: color-mix(in srgb, var(--text-normal) 15%, transparent);
+  --cr-text: var(--text-normal, #30302e);
+  --cr-rule: color-mix(in srgb, var(--text-normal) 15%, transparent);
 }
 .theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
-  --br-text: #deded9;
+  --cr-text: var(--text-normal, #deded9);
 }
 .theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
-  --br-rule: color-mix(in srgb, var(--text-normal) 23%, transparent);
+  --cr-rule: color-mix(in srgb, var(--text-normal) 23%, transparent);
 }
 
 /* 不强制指定字体：遵循 Obsidian「外观 → 正文字体」的默认设置。
@@ -61,11 +61,11 @@
 .markdown-preview-view:not(.workbench),
 .markdown-source-view.mod-cm6:not(.workbench) .cm-content {
   line-height: var(--line-height-normal);
-  color: var(--br-text);
-  font-weight: var(--br-text-weight);
+  color: var(--cr-text);
+  font-weight: var(--cr-text-weight);
 }
 
-/* 电脑普通笔记：显著减少 Border 的 2em 列表缩进。
+/* 电脑普通笔记：减少默认可能偏深的列表缩进。
    只平移顶层列表容器，保留子列表自己的层级缩进；
    手机端继续使用下面单独的移动端参数。 */
 body:not(.is-mobile) :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
@@ -126,7 +126,7 @@ body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-sizer {
 /* 苹果系统字体使用标准 Medium 强调，只作用于语义标记。 */
 .markdown-preview-view:not(.workbench) :is(p, li, blockquote, td) strong,
 .markdown-source-view.mod-cm6:not(.workbench) .cm-line:not(.HyperMD-header) .cm-strong {
-  font-weight: var(--br-bold-weight) !important;
+  font-weight: var(--cr-bold-weight) !important;
 }
 /* 04. 列表有适度缩进，但避免默认过深。 */
 .markdown-preview-view:not(.workbench) :is(ul, ol) {
@@ -161,20 +161,20 @@ body:not(.is-mobile) .markdown-preview-view:not(.workbench) .markdown-preview-si
 /* 05. 引用块 / Callout：底色和点阵随主题强调色变化。
    完全移除四周边框与左侧竖线；non-note pages 不受影响。 */
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
-  --br-quote-fill: color-mix(in srgb, var(--interactive-accent) 8%, var(--background-primary));
-  --br-quote-dot: color-mix(in srgb, var(--interactive-accent) 10%, transparent);
+  --cr-quote-fill: color-mix(in srgb, var(--interactive-accent) 8%, var(--background-primary));
+  --cr-quote-dot: color-mix(in srgb, var(--interactive-accent) 10%, transparent);
 }
 .theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
-  --br-quote-fill: color-mix(in srgb, var(--interactive-accent) 13%, var(--background-primary));
-  --br-quote-dot: color-mix(in srgb, var(--interactive-accent) 12%, transparent);
+  --cr-quote-fill: color-mix(in srgb, var(--interactive-accent) 13%, var(--background-primary));
+  --cr-quote-dot: color-mix(in srgb, var(--interactive-accent) 12%, transparent);
 }
 
 /* 阅读模式、实时预览都保持相同的轻纹理。
    编辑器每行独立渲染，因此边框只加在阅读块，不逐行画框。 */
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
   :is(blockquote, .cm-line.HyperMD-quote) {
-  background-color: var(--br-quote-fill) !important;
-  background-image: radial-gradient(circle, var(--br-quote-dot) 0.65px, transparent 0.95px) !important;
+  background-color: var(--cr-quote-fill) !important;
+  background-image: radial-gradient(circle, var(--cr-quote-dot) 0.65px, transparent 0.95px) !important;
   background-size: 6px 6px !important;
   background-repeat: repeat !important;
   border-inline-start: 0 !important;
@@ -194,11 +194,11 @@ body:not(.is-mobile) .markdown-preview-view:not(.workbench) .markdown-preview-si
   border-radius: 8px !important;
   font-size: 1em;
   line-height: var(--line-height-normal);
-  font-weight: var(--br-text-weight);
-  color: var(--br-text);
+  font-weight: var(--cr-text-weight);
+  color: var(--cr-text);
 }
 
-/* Border 主题的侧线来自 blockquote::before。 */
+/* 有些主题通过 blockquote::before 绘制左竖线，统一取消它。 */
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
   blockquote::before,
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
@@ -223,8 +223,8 @@ body:not(.is-mobile) .markdown-preview-view:not(.workbench) .markdown-preview-si
   --callout-border-width: 0px;
   --callout-border-opacity: 0;
   --callout-padding: 0.7em 0.9em;
-  background-color: var(--br-quote-fill) !important;
-  background-image: radial-gradient(circle, var(--br-quote-dot) 0.65px, transparent 0.95px) !important;
+  background-color: var(--cr-quote-fill) !important;
+  background-image: radial-gradient(circle, var(--cr-quote-dot) 0.65px, transparent 0.95px) !important;
   background-size: 6px 6px !important;
   background-repeat: repeat !important;
   border: 0 !important;
@@ -234,15 +234,15 @@ body:not(.is-mobile) .markdown-preview-view:not(.workbench) .markdown-preview-si
 }
 .markdown-preview-view:not(.workbench) .callout-title {
   color: var(--text-normal);
-  font-weight: var(--br-bold-weight);
+  font-weight: var(--cr-bold-weight);
 }
 /* Callout 的正文与外部段落使用相同字号、颜色、行距及字重。
    Callout 标题保留独立的语义层级，边框和点阵背景保持原样。 */
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) .callout-content {
   font-size: 1em;
   line-height: var(--line-height-normal);
-  font-weight: var(--br-text-weight);
-  color: var(--br-text);
+  font-weight: var(--cr-text-weight);
+  color: var(--cr-text);
 }
 .markdown-preview-view:not(.workbench) .callout-content :is(p, li) {
   font-size: inherit;
@@ -251,7 +251,7 @@ body:not(.is-mobile) .markdown-preview-view:not(.workbench) .markdown-preview-si
   font-weight: inherit;
 }
 .markdown-preview-view:not(.workbench) .callout .callout-content strong {
-  font-weight: var(--br-bold-weight) !important;
+  font-weight: var(--cr-bold-weight) !important;
 }
 
 /* 06. 表格保留浅色横线；手机上所有列适配屏幕，正文自然换行。 */
@@ -272,18 +272,18 @@ body:not(.is-mobile) .markdown-preview-view:not(.workbench) .markdown-preview-si
 .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget table :is(th,td) {
   padding: 9px 12px !important;
   border: 0 !important;
-  border-bottom: 1px solid var(--br-rule) !important;
+  border-bottom: 1px solid var(--cr-rule) !important;
   text-align: start;
   vertical-align: top;
   word-break: normal;
   overflow-wrap: break-word;
-  color: var(--br-text);
-  font-weight: var(--br-text-weight);
+  color: var(--cr-text);
+  font-weight: var(--cr-text-weight);
 }
 .markdown-preview-view:not(.workbench) table th,
 .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget table th {
   background: transparent !important;
-  font-weight: var(--br-bold-weight);
+  font-weight: var(--cr-bold-weight);
   color: var(--text-normal);
 }
 body.is-mobile .markdown-preview-view:not(.workbench) .el-table,
@@ -297,7 +297,7 @@ body.is-mobile .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget .t
   box-sizing: border-box;
   overflow-x: visible !important;
 }
-/* Border 的自定义表宽选择器优先级更高，单独取消它的扩宽和负边距。 */
+/* 兼容自定义表格宽度的主题：单独取消扩宽和负边距。 */
 body.is-mobile.table-width-customized .markdown-source-view.mod-cm6.is-live-preview:not(.workbench) .cm-content > .cm-table-widget,
 body.is-mobile.table-width-customized .markdown-preview-view.markdown-rendered:not(.workbench) .markdown-preview-sizer > div:has(> table) {
   width: 100% !important;
@@ -377,3 +377,46 @@ body.is-mobile .markdown-preview-view:not(.workbench) blockquote {
   padding: 0.6em 0.75em !important;
 }
 
+
+/* 08. 内置黑灰夜间模式：跟随 Obsidian 深色外观，覆盖界面基本配色。 */
+body.theme-dark {
+  --color-base-00: #202124 !important;
+  --color-base-05: #232428 !important;
+  --color-base-10: #27282c !important;
+  --color-base-15: #292a2f !important;
+  --color-base-20: #303136 !important;
+  --color-base-25: #35363b !important;
+
+  --background-primary: #202124 !important;
+  --background-primary-alt: #26272b !important;
+  --background-secondary: #1a1b1f !important;
+  --background-secondary-alt: #24252a !important;
+  --background-tertiary: #17181c !important;
+  --background-underlying: #17181c !important;
+  --background-underlying-dark: #17181c !important;
+
+  --background-mod-root-split: #202124 !important;
+  --background-mod-left-split: #1a1b1f !important;
+  --background-mod-right-split: #1a1b1f !important;
+  --text-normal: #e5e6e8 !important;
+  --text-muted: #b5b7be !important;
+  --text-faint: #878b93 !important;
+
+  --background-modifier-border: rgba(255,255,255,0.11) !important;
+  --background-modifier-border-muted: rgba(255,255,255,0.07) !important;
+  --background-modifier-border-hover: rgba(255,255,255,0.15) !important;
+  --background-modifier-hover: rgba(255,255,255,0.06) !important;
+  --workspace-background-translucent: rgba(23,24,28,0.82) !important;
+}
+
+/* 兼容部分主题的底层背景着色类；不要求安装特定主题。 */
+body.theme-dark:not(.is-mobile).background-underlying-CSS-dark:has(> .app-container) {
+  background: var(--background-underlying) !important;
+  background-blend-mode: normal !important;
+}
+
+/* 深色引用和 Callout 使用中性灰点阵，而非主题强调色。 */
+body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
+  --cr-quote-fill: color-mix(in srgb, var(--text-normal) 4%, var(--background-primary));
+  --cr-quote-dot: color-mix(in srgb, var(--text-muted) 18%, transparent);
+}
