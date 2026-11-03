@@ -817,7 +817,7 @@ body.theme-light .view-header {
   background-image: none !important;
 }
 
-/* 左侧文件列表匹配参考截图的 ChatGPT 左栏 #fcfcfc，工具按钮栏保持浅灰。 */
+/* 左侧文件列表使用参考截图的 ChatGPT 左栏 #fcfcfc。 */
 body.theme-light .workspace-split.mod-left-split {
   --background-primary: #fcfcfc;
   --background-secondary: #fcfcfc;
@@ -845,7 +845,7 @@ body.theme-light :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(
   background-image: none !important;
 }
 
-/* 右栏工具按钮以下的面板为白色；nav-header 和标签栏继续使用浅灰。 */
+/* 右栏内容面板为白色。 */
 body.theme-light .workspace-split.mod-right-split {
   --background-primary: #ffffff;
   --background-secondary: #ffffff;
@@ -862,4 +862,83 @@ body.theme-light .workspace-split.mod-right-split .view-content
   :is(input[type="text"], input[type="search"], textarea, .dropdown) {
   background-color: #ffffff !important;
   background-image: none !important;
+}
+
+/* 左侧两排工具栏与文件列表同底色，选中项取自 ChatGPT 参考图。 */
+body.theme-light .workspace-split.mod-left-split {
+  --nav-item-background-active: #eff0f0;
+  --nav-item-background-selected: #eff0f0;
+  --background-activated-file-light: #eff0f0 !important;
+}
+body.theme-light .workspace-split.mod-left-split
+  :is(.nav-header, .workspace-tab-header-container, .workspace-tab-header-container-inner,
+      .workspace-tab-header-new-tab, .workspace-tab-header-tab-list) {
+  background-color: #fcfcfc !important;
+  background-image: none !important;
+}
+body.theme-light .workspace-split.mod-left-split
+  :is(.nav-file-title, .nav-folder-title).is-active:not(.is-being-dragged) {
+  background-color: #eff0f0 !important;
+}
+
+/* 右侧标签/操作按钮区与下方白色面板一致。 */
+body.theme-light .workspace-split.mod-right-split
+  :is(.nav-header, .workspace-tab-header-container, .workspace-tab-header-container-inner,
+      .workspace-tab-header-new-tab, .workspace-tab-header-tab-list) {
+  background-color: #ffffff !important;
+  background-image: none !important;
+}
+
+/* Git 操作按钮、提交输入框和右侧标签图标共用 16px 的起始边距。 */
+body:not(.is-mobile) .workspace-split.mod-right-split {
+  --cr-right-panel-inset: 16px;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split .workspace-tab-header-container {
+  padding-inline-start: var(--cr-right-panel-inset);
+}
+body:not(.is-mobile) .workspace-split.mod-right-split .workspace-tab-header-container-inner {
+  padding-inline-start: 0;
+  margin-inline-start: 0;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split .workspace-tab-header {
+  padding-inline: 0;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split .workspace-tab-header-inner {
+  padding-inline: 6px;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split .workspace-tab-header-inner-icon {
+  margin-inline: 0;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="git-view"] .git-view > .nav-header {
+  padding-inline: var(--cr-right-panel-inset);
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="git-view"] .nav-buttons-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-inline: 0;
+  padding-inline: 0;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="git-view"] .nav-buttons-container > .clickable-icon {
+  box-sizing: border-box;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  padding: 6px;
+  margin: 0;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="git-view"] .nav-buttons-container > .clickable-icon svg {
+  width: 20px;
+  height: 20px;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="git-view"] .git-commit-msg {
+  width: auto;
+  margin-inline: var(--cr-right-panel-inset);
 }
