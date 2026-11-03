@@ -3,7 +3,26 @@
    链接、列表、引用、代码和表格面向长文阅读优化。
    不附带字体和插件；只需启用这一份 CSS。 */
 
-/* 链接颜色沿用主题的内链／外链变量，点状下划线保持 Clean Reading 风格。 */
+/* 内链沿用主题色；外链取随内链变化的视觉对比色（紫色对应金黄）。 */
+:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
+  --cr-external-link: #8b6b16;
+  --cr-external-link-hover: #72540b;
+}
+.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
+  --cr-external-link: #dcc57e;
+  --cr-external-link-hover: #f0dc9a;
+}
+/* 色相错开 150°，让冷紫对应偏黄而非荧光黄绿；明暗模式分别控制亮度。 */
+@supports (color: oklch(from purple 0.5 0.1 calc(h + 150))) {
+  :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
+    --cr-external-link: oklch(from var(--link-color, var(--interactive-accent)) 0.50 min(c, 0.12) calc(h + 150));
+    --cr-external-link-hover: oklch(from var(--link-color, var(--interactive-accent)) 0.43 min(c, 0.12) calc(h + 150));
+  }
+  .theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
+    --cr-external-link: oklch(from var(--link-color, var(--interactive-accent)) 0.82 min(c, 0.12) calc(h + 150));
+    --cr-external-link-hover: oklch(from var(--link-color, var(--interactive-accent)) 0.90 min(c, 0.12) calc(h + 150));
+  }
+}
 .markdown-preview-view:not(.workbench) a:is(.internal-link, .external-link):not(:has(img)),
 .markdown-source-view.mod-cm6:not(.workbench)
   :is(a.internal-link, a.external-link, .cm-hmd-internal-link, .cm-link, .cm-url,
@@ -23,7 +42,7 @@
 .markdown-preview-view:not(.workbench) a.external-link:not(:has(img)),
 .markdown-source-view.mod-cm6:not(.workbench)
   :is(a.external-link, .cm-link, .cm-url, .cm-link a, .cm-url a) {
-  color: var(--link-external-color, var(--link-color, var(--interactive-accent))) !important;
+  color: var(--cr-external-link) !important;
 }
 .markdown-preview-view:not(.workbench) a.internal-link:not(:has(img)):hover,
 .markdown-source-view.mod-cm6:not(.workbench) a.internal-link:hover {
@@ -31,7 +50,7 @@
 }
 .markdown-preview-view:not(.workbench) a.external-link:not(:has(img)):hover,
 .markdown-source-view.mod-cm6:not(.workbench) a.external-link:hover {
-  color: var(--link-external-color-hover, var(--link-external-color)) !important;
+  color: var(--cr-external-link-hover) !important;
 }
 .markdown-preview-view:not(.workbench) a:is(.internal-link, .external-link):not(:has(img)):hover,
 .markdown-source-view.mod-cm6:not(.workbench)
@@ -44,6 +63,18 @@
   outline: 2px solid currentColor;
   outline-offset: 3px;
   border-radius: 2px;
+}
+
+
+/* 外链不显示小箭头，也不保留箭头占用的右侧空位。 */
+:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) a.external-link {
+  background-image: none !important;
+  padding-inline-end: 0 !important;
+}
+:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) a.external-link::after,
+:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) a.external-link > .external-link-icon {
+  content: none !important;
+  display: none !important;
 }
 
 /* Reading settings for ordinary notes on any Obsidian theme. */
@@ -1070,4 +1101,11 @@ body:not(.is-mobile) .workspace-split.mod-right-split
 }
 :is(.modal.mod-settings, .modal:has(.vertical-tab-header)) .vertical-tab-nav-item {
   font-weight: 400 !important;
+}
+
+/* 右侧属性、大纲、链接等内容区统一留白；Git 使用上方已有的独立布局。 */
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content:not([data-type="git-view"]) > .view-content {
+  box-sizing: border-box;
+  padding-inline: var(--cr-right-panel-inset, 16px) !important;
 }
