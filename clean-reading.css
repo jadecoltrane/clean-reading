@@ -657,3 +657,30 @@ body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.
   :is(.nav-file-title, .nav-folder-title, .tree-item-self) {
   font-size: 14px;
 }
+
+/* 文件列表通过行内留白增加间距，让虚拟滚动仍可测量真实行高。 */
+:is(.mod-left-split, .mod-right-split) {
+  --nav-item-padding: 6px 8px;
+}
+:is(.mod-left-split, .mod-right-split)
+  :is(.nav-file-title, .nav-folder-title) {
+  padding-block: 6px;
+  line-height: 1.5;
+}
+
+/* 浅色侧栏参考 ChatGPT 的中性灰白；颜色只作用于侧栏。 */
+body.theme-light :is(.mod-left-split, .mod-right-split) {
+  --background-primary: #f9f9f9;
+  --background-secondary: #f9f9f9;
+  --background-secondary-alt: #f9f9f9;
+  --text-normal: #353535;
+  --text-muted: #6b6b6b;
+  --text-faint: #8f8f8f;
+  --nav-item-color: #353535;
+  --nav-item-color-hover: #202020;
+  --nav-item-color-active: #202020;
+  --nav-item-background-hover: #eeeeee;
+  --nav-item-background-active: #e8e8e8;
+  --background-modifier-hover: #eeeeee;
+  background-color: #f9f9f9;
+}
