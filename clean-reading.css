@@ -889,12 +889,12 @@ body.theme-light .workspace-split.mod-right-split
   background-image: none !important;
 }
 
-/* Git 操作按钮、提交输入框和右侧标签图标共用 16px 的起始边距。 */
+/* 图标可见区域与输入框外边缘对齐：扣除图标按钮内部的 6px 留白。 */
 body:not(.is-mobile) .workspace-split.mod-right-split {
   --cr-right-panel-inset: 16px;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split .workspace-tab-header-container {
-  padding-inline-start: var(--cr-right-panel-inset);
+  padding-inline-start: calc(var(--cr-right-panel-inset) - 6px);
 }
 body:not(.is-mobile) .workspace-split.mod-right-split .workspace-tab-header-container-inner {
   padding-inline-start: 0;
@@ -911,7 +911,7 @@ body:not(.is-mobile) .workspace-split.mod-right-split .workspace-tab-header-inne
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content[data-type="git-view"] .git-view > .nav-header {
-  padding-inline: var(--cr-right-panel-inset);
+  padding-inline: calc(var(--cr-right-panel-inset) - 6px);
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content[data-type="git-view"] .nav-buttons-container {
@@ -949,4 +949,26 @@ body.theme-light .workspace-split:is(.mod-left-split, .mod-root, .mod-right-spli
       .workspace-tab-header-new-tab, .workspace-tab-header-tab-list) {
   background-color: #f4f4f4 !important;
   background-image: none !important;
+}
+
+/* Git 分组箭头取消系统向左悬挂的偏移，与提交框左边缘共用同一基线。 */
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="git-view"] .git-view > .nav-files-container {
+  box-sizing: border-box;
+  padding-inline: var(--cr-right-panel-inset);
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="git-view"] .git-view > .nav-files-container
+  > .tree-item.mod-root > div > .tree-item-self {
+  position: relative;
+  margin-inline: 0;
+  padding-inline-start: 24px !important;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="git-view"] .git-view > .nav-files-container
+  > .tree-item.mod-root > div > .tree-item-self > .tree-item-icon {
+  position: absolute;
+  inset-inline-start: 0;
+  margin-inline-start: 0 !important;
+  width: 16px;
 }
