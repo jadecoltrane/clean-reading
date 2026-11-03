@@ -1015,12 +1015,12 @@ body.theme-light :is(.modal.mod-settings, .modal:has(.vertical-tab-header))
   background-color: #eff0f0 !important;
 }
 
-/* 文件名与默认正文同为 15px / 400，避免界面字体与选中字重造成视觉放大。 */
+/* 文件名字号保持 15px，字重减为 350，让侧边栏更轻。 */
 :is(.mod-left-split, .mod-right-split)
   :is(.nav-file-title, .nav-folder-title, .nav-file-title-content, .nav-folder-title-content) {
   font-family: var(--font-text) !important;
   font-size: var(--cr-body-font-size, 15px) !important;
-  font-weight: 400 !important;
+  font-weight: 350 !important;
 }
 
 /* 右侧标签图标与 Git 操作图标共用尺寸，按钮保持紧凑。 */
@@ -1040,4 +1040,17 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   flex-basis: calc(var(--cr-sidebar-action-icon-size) + 12px);
   width: calc(var(--cr-sidebar-action-icon-size) + 12px);
   height: calc(var(--cr-sidebar-action-icon-size) + 12px);
+}
+
+/* 文件列表与设置菜单统一使用 8px 选中圆角，不改变行高与缩进。 */
+:is(.mod-left-split, .mod-right-split) {
+  --nav-item-radius: 8px;
+}
+:is(.mod-left-split, .mod-right-split)
+  :is(.nav-file-title, .nav-folder-title).is-active,
+:is(.modal.mod-settings, .modal:has(.vertical-tab-header)) .vertical-tab-nav-item.is-active {
+  border-radius: 8px !important;
+}
+:is(.modal.mod-settings, .modal:has(.vertical-tab-header)) .vertical-tab-nav-item {
+  font-weight: 350 !important;
 }
