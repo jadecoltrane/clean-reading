@@ -823,3 +823,50 @@ body.theme-light .view-header {
   background-color: #f4f4f4 !important;
   background-image: none !important;
 }
+
+/* 左侧文件列表匹配参考截图的 ChatGPT 左栏 #fcfcfc，工具按钮栏保持浅灰。 */
+body.theme-light .workspace-split.mod-left-split {
+  --background-primary: #fcfcfc;
+  --background-secondary: #fcfcfc;
+  --background-secondary-alt: #fcfcfc;
+  --background-mod-left-split: #fcfcfc !important;
+  --background-mod-left-split-light: #fcfcfc !important;
+  --background-mod-left-CSS-light: #fcfcfc !important;
+  background-color: #fcfcfc !important;
+}
+body.theme-light .workspace-split.mod-left-split
+  :is(.workspace-tab-container, .workspace-leaf, .workspace-leaf-content,
+      .view-content, .nav-files-container) {
+  background-color: #fcfcfc !important;
+  background-image: none !important;
+}
+
+/* 面包屑和笔记属性属于白色纸面，不使用系统控件的灰底。 */
+body.theme-light .view-header,
+body.theme-light :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
+  :is(.metadata-container, .metadata-property, .metadata-property-key,
+      .metadata-property-key-input),
+body.theme-light :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
+  .metadata-property-key input {
+  background-color: #ffffff !important;
+  background-image: none !important;
+}
+
+/* 右栏工具按钮以下的面板为白色；nav-header 和标签栏继续使用浅灰。 */
+body.theme-light .workspace-split.mod-right-split {
+  --background-primary: #ffffff;
+  --background-secondary: #ffffff;
+  --background-secondary-alt: #ffffff;
+  --background-mod-right-split: #ffffff !important;
+  --background-mod-right-split-light: #ffffff !important;
+  --background-mod-right-CSS-light: #ffffff !important;
+  background-color: #ffffff !important;
+}
+body.theme-light .workspace-split.mod-right-split
+  :is(.workspace-tab-container, .workspace-leaf, .workspace-leaf-content,
+      .view-content, .nav-files-container),
+body.theme-light .workspace-split.mod-right-split .view-content
+  :is(input[type="text"], input[type="search"], textarea, .dropdown) {
+  background-color: #ffffff !important;
+  background-image: none !important;
+}
