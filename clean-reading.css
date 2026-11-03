@@ -246,16 +246,16 @@ body:not(.is-mobile) .markdown-preview-view:not(.workbench) .markdown-preview-si
 }
 
 /* 05. 引用块 / Callout：统一极浅中性灰底 + 柔和的主题色点阵。
-   点色由主题强调色混入 15% 中性灰，保留色相但降低饱和度；
+   点色由主题强调色混入 8% 中性灰，保留色相但降低饱和度；
    四类语义色、标题结构和 Home 布局不变。 */
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
-  --cr-quote-ink: color-mix(in srgb, var(--interactive-accent) 85%, #808080);
+  --cr-quote-ink: color-mix(in srgb, var(--interactive-accent) 92%, #808080);
   --cr-quote-fill: color-mix(in srgb, var(--background-primary) 96%, #808080);
-  --cr-quote-dot: color-mix(in srgb, var(--cr-quote-ink) 16%, transparent);
+  --cr-quote-dot: color-mix(in srgb, var(--cr-quote-ink) 24%, transparent);
 }
 .theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
   --cr-quote-fill: color-mix(in srgb, var(--background-primary) 94%, #a8adb5);
-  --cr-quote-dot: color-mix(in srgb, var(--cr-quote-ink) 16%, transparent);
+  --cr-quote-dot: color-mix(in srgb, var(--cr-quote-ink) 24%, transparent);
 }
 
 /* 阅读模式、实时预览都保持相同的轻纹理。
@@ -644,7 +644,7 @@ body.theme-dark:not(.is-mobile).background-underlying-CSS-dark:has(> .app-contai
 /* 深色引用和 Callout 同样跟随主题强调色，统一极浅中性灰底。 */
 body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
   --cr-quote-fill: color-mix(in srgb, var(--background-primary) 94%, #a8adb5);
-  --cr-quote-dot: color-mix(in srgb, var(--cr-quote-ink) 16%, transparent);
+  --cr-quote-dot: color-mix(in srgb, var(--cr-quote-ink) 24%, transparent);
 }
 
 /* 左右侧边栏统一使用 14px；正文区域继续由外观设置管理。 */
