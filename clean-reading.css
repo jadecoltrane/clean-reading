@@ -735,3 +735,30 @@ body.theme-light .workspace-tabs:not(.mod-stacked) .workspace-tab-header.is-acti
   background-color: #ffffff !important;
   background-image: none !important;
 }
+
+/* Callout 用中性灰底承托点阵；普通引用仍保留透明底。 */
+:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) .callout {
+  background-color: #f1f1f1 !important;
+}
+.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) .callout {
+  background-color: #2c2d30 !important;
+}
+
+/* 电脑表格按内容定宽，在正文列内整体居中；宽表由外层横向滚动。 */
+body:not(.is-mobile) .markdown-preview-view:not(.workbench) .el-table,
+body:not(.is-mobile) .markdown-preview-view:not(.workbench) .markdown-preview-sizer > div:has(> table),
+body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget,
+body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget .table-wrapper {
+  display: block;
+  width: 100% !important;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin-inline: 0 !important;
+  overflow-x: auto;
+}
+body:not(.is-mobile) .markdown-preview-view.markdown-rendered:not(.workbench) table,
+body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget table {
+  display: table;
+  width: auto !important;
+  margin-inline: auto !important;
+}
