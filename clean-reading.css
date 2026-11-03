@@ -48,8 +48,8 @@
 
 /* Reading settings for ordinary notes on any Obsidian theme. */
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
-  /* 正文默认 14px，可通过 --cr-body-font-size 自定义。 */
-  --font-text-size: var(--cr-body-font-size, 14px);
+  /* 正文默认 15px，可通过 --cr-body-font-size 自定义。 */
+  --font-text-size: var(--cr-body-font-size, 15px);
   font-size: var(--font-text-size);
   --line-height-normal: 1.8;
   --line-height-customize: 1.8;
@@ -668,17 +668,17 @@ body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.
   --cr-quote-dot: color-mix(in srgb, var(--cr-quote-ink) 24%, transparent);
 }
 
-/* 左右侧边栏统一使用 14px；正文区域继续由外观设置管理。 */
+/* 左右侧边栏统一使用 15px；正文区域继续由外观设置管理。 */
 :is(.mod-left-split, .mod-right-split) {
-  --font-ui-smaller: 14px;
-  --font-ui-small: 14px;
-  --font-ui-medium: 14px;
-  --nav-item-size: 14px;
-  font-size: 14px;
+  --font-ui-smaller: 15px;
+  --font-ui-small: 15px;
+  --font-ui-medium: 15px;
+  --nav-item-size: 15px;
+  font-size: 15px;
 }
 :is(.mod-left-split, .mod-right-split)
   :is(.nav-file-title, .nav-folder-title, .tree-item-self) {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 /* 文件列表通过行内留白增加间距，让虚拟滚动仍可测量真实行高。 */
