@@ -711,3 +711,27 @@ body.theme-light :is(.mod-left-split, .mod-right-split)
   --divider-color: #e3e3e3;
   --tab-outline-color: #e3e3e3;
 }
+
+/* 顶部标签栏与侧栏共用中性浅灰，覆盖主题的标签栏独立底色。 */
+body.theme-light {
+  --titlebar-background: #f4f4f4;
+  --titlebar-background-focused: #f4f4f4;
+  --tab-container-background: #f4f4f4;
+  --tab-background-active: #ffffff;
+  --background-activated-tab-header-light: #ffffff;
+  --tab-outline-color: #e3e3e3;
+}
+body.theme-light :is(.titlebar, .workspace-tab-header-container,
+  .workspace-tab-header-container-inner, .workspace-tab-header-new-tab,
+  .workspace-tab-header-tab-list) {
+  background-color: #f4f4f4 !important;
+  background-image: none !important;
+}
+body.theme-light .workspace-tabs:not(.mod-stacked) .workspace-tab-header:not(.is-active) {
+  background-color: transparent !important;
+}
+body.theme-light .workspace-tabs:not(.mod-stacked) .workspace-tab-header.is-active,
+body.theme-light .workspace-tabs:not(.mod-stacked) .workspace-tab-header.is-active .workspace-tab-header-inner {
+  background-color: #ffffff !important;
+  background-image: none !important;
+}
