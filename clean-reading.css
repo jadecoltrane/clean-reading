@@ -533,13 +533,13 @@ body.is-mobile .markdown-preview-view:not(.workbench) blockquote {
 
 /* 08. 中性浅色界面：使用基础变量，不覆盖用户自己的按钮和 Home 样式。 */
 body.theme-light {
-  --color-base-00: #f4f4f4;
+  --color-base-00: #ffffff;
   --color-base-05: #f4f4f4;
   --color-base-10: #eeeeee;
   --color-base-20: #e6e6e6;
   --color-base-25: #dedede;
-  --background-primary: #f4f4f4;
-  --background-primary-alt: #f4f4f4;
+  --background-primary: #ffffff;
+  --background-primary-alt: #ffffff;
   --background-secondary: #f4f4f4;
   --background-secondary-alt: #f4f4f4;
   --background-tertiary: #f4f4f4;
@@ -804,4 +804,22 @@ body.theme-light :is(.suggestion-item.is-selected, .menu-item.selected,
   .vertical-tab-nav-item.is-active, .suggestion-item:hover,
   .menu-item:not(.is-disabled):hover) {
   background-color: #e8e8e8 !important;
+}
+
+/* 正文纸面为白色；浅灰只用于界面和工具栏，Home 继续使用工作台样式。 */
+body.theme-light {
+  --background-mod-root-split: #ffffff !important;
+  --background-mod-root-split-light: #ffffff !important;
+  --background-mod-root-CSS-light: #ffffff !important;
+}
+body.theme-light .workspace-leaf-content[data-type="markdown"]:not(:has(.workbench)),
+body.theme-light :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
+  --background-primary: #ffffff;
+  --background-primary-alt: #ffffff;
+  background-color: #ffffff !important;
+  background-image: none !important;
+}
+body.theme-light .view-header {
+  background-color: #f4f4f4 !important;
+  background-image: none !important;
 }
