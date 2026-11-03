@@ -245,16 +245,17 @@ body:not(.is-mobile) .markdown-preview-view:not(.workbench) .markdown-preview-si
   margin-inline-start: 0 !important;
 }
 
-/* 05. 引用块 / Callout：统一极浅中性灰底 + 柔和的主题色点阵。
-   点色由主题强调色混入 8% 中性灰，保留色相但降低饱和度；
+/* 05. 引用与 Callout：极浅灰底略带主题色，点阵保留主题强调色。
+   点阵为 92% 强调色 + 8% 灰调、24% 透明度；底色只含约 1% 强调色。
    四类语义色、标题结构和 Home 布局不变。 */
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
   --cr-quote-ink: color-mix(in srgb, var(--interactive-accent) 92%, #808080);
-  --cr-quote-fill: color-mix(in srgb, var(--background-primary) 96%, #808080);
+  --cr-quote-tint: color-mix(in srgb, var(--interactive-accent) 22%, #808080);
+  --cr-quote-fill: color-mix(in srgb, var(--background-primary) 95%, var(--cr-quote-tint));
   --cr-quote-dot: color-mix(in srgb, var(--cr-quote-ink) 24%, transparent);
 }
 .theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
-  --cr-quote-fill: color-mix(in srgb, var(--background-primary) 94%, #a8adb5);
+  --cr-quote-fill: color-mix(in srgb, var(--background-primary) 94%, var(--cr-quote-tint));
   --cr-quote-dot: color-mix(in srgb, var(--cr-quote-ink) 24%, transparent);
 }
 
@@ -408,27 +409,35 @@ body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.
   font-weight: var(--cr-bold-weight) !important;
 }
 
-/* 06. 表格保留浅色横线；手机上所有列适配屏幕，正文自然换行。 */
+/* 06. 无外框的全宽表格：透明表头、浅横线，手机保留自适应换行。 */
 .markdown-preview-view:not(.workbench) table,
 .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget table {
+  width: 100% !important;
+  max-width: 100%;
   border-collapse: collapse;
+  border-spacing: 0;
   border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
   font-size: 1em;
   line-height: 1.62;
   table-layout: auto;
+  --cr-table-rule: color-mix(in srgb, var(--text-normal) 10%, transparent);
 }
-.markdown-preview-view:not(.workbench) table thead tr,
-.markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget table thead tr {
-  background: transparent;
-  background-image: none;
+/* 表头和单元格完全透明，禁用主题交替底色与单元格阴影。 */
+.markdown-preview-view:not(.workbench) table :is(thead, tbody, tr, th, td),
+.markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget table :is(thead, tbody, tr, th, td) {
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
 }
 .markdown-preview-view:not(.workbench) table :is(th,td),
 .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget table :is(th,td) {
-  padding: 9px 12px;
+  padding: 0.68em 0.65em !important;
   border: 0 !important;
-  border-bottom: 1px solid var(--cr-rule) !important;
+  border-bottom: 1px solid var(--cr-table-rule) !important;
   text-align: start;
-  vertical-align: top;
+  vertical-align: middle;
   word-break: normal;
   overflow-wrap: break-word;
   color: var(--cr-text);
@@ -436,9 +445,21 @@ body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.
 }
 .markdown-preview-view:not(.workbench) table th,
 .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget table th {
-  background: transparent;
-  font-weight: var(--cr-bold-weight);
+  font-weight: 600;
   color: var(--text-normal);
+}
+/* 表格首尾与正文齐头；最后一行不再画收尾线。 */
+.markdown-preview-view:not(.workbench) table tr > :first-child,
+.markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget table tr > :first-child {
+  padding-inline-start: 0 !important;
+}
+.markdown-preview-view:not(.workbench) table tr > :last-child,
+.markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget table tr > :last-child {
+  padding-inline-end: 0 !important;
+}
+.markdown-preview-view:not(.workbench) table tbody tr:last-child > :is(td, th),
+.markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget table tbody tr:last-child > :is(td, th) {
+  border-bottom: 0 !important;
 }
 body.is-mobile .markdown-preview-view:not(.workbench) .el-table,
 body.is-mobile .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget,
@@ -643,7 +664,7 @@ body.theme-dark:not(.is-mobile).background-underlying-CSS-dark:has(> .app-contai
 
 /* 深色引用和 Callout 同样跟随主题强调色，统一极浅中性灰底。 */
 body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
-  --cr-quote-fill: color-mix(in srgb, var(--background-primary) 94%, #a8adb5);
+  --cr-quote-fill: color-mix(in srgb, var(--background-primary) 94%, var(--cr-quote-tint));
   --cr-quote-dot: color-mix(in srgb, var(--cr-quote-ink) 24%, transparent);
 }
 
@@ -737,7 +758,7 @@ body.theme-light .workspace-tabs:not(.mod-stacked) .workspace-tab-header.is-acti
   background-image: none !important;
 }
 
-/* 电脑表格按内容定宽，在正文列内整体居中；宽表由外层横向滚动。 */
+/* 电脑表格铺满正文列；宽内容仍通过外层容器横向滚动。 */
 body:not(.is-mobile) .markdown-preview-view:not(.workbench) .el-table,
 body:not(.is-mobile) .markdown-preview-view:not(.workbench) .markdown-preview-sizer > div:has(> table),
 body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget,
@@ -752,8 +773,9 @@ body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-table-wid
 body:not(.is-mobile) .markdown-preview-view.markdown-rendered:not(.workbench) table,
 body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget table {
   display: table;
-  width: auto !important;
-  margin-inline: auto !important;
+  width: 100% !important;
+  max-width: 100%;
+  margin-inline: 0 !important;
 }
 
 /* 系统浮层与输入控件使用实色中性背景，避免主题毛玻璃再次染色。 */
