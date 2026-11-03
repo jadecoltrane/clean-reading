@@ -533,23 +533,23 @@ body.is-mobile .markdown-preview-view:not(.workbench) blockquote {
 
 /* 08. 中性浅色界面：使用基础变量，不覆盖用户自己的按钮和 Home 样式。 */
 body.theme-light {
-  --color-base-00: #fbfcfa;
-  --color-base-05: #f8faf7;
-  --color-base-10: #f3f5f2;
-  --color-base-20: #eaede9;
-  --color-base-25: #e1e6e0;
-  --background-primary: #fbfcfa;
-  --background-primary-alt: #f6f8f5;
-  --background-secondary: #f1f4f0;
-  --background-secondary-alt: #edf0ec;
-  --background-tertiary: #e8ece7;
-  --text-normal: #303632;
-  --text-muted: #5b655f;
-  --text-faint: #7e8881;
-  --background-modifier-border: rgba(37, 52, 43, 0.12);
-  --background-modifier-border-muted: rgba(37, 52, 43, 0.08);
-  --background-modifier-border-hover: rgba(37, 52, 43, 0.18);
-  --background-modifier-hover: rgba(37, 52, 43, 0.045);
+  --color-base-00: #f4f4f4;
+  --color-base-05: #f4f4f4;
+  --color-base-10: #eeeeee;
+  --color-base-20: #e6e6e6;
+  --color-base-25: #dedede;
+  --background-primary: #f4f4f4;
+  --background-primary-alt: #f4f4f4;
+  --background-secondary: #f4f4f4;
+  --background-secondary-alt: #f4f4f4;
+  --background-tertiary: #f4f4f4;
+  --text-normal: #353535;
+  --text-muted: #666666;
+  --text-faint: #888888;
+  --background-modifier-border: rgba(0, 0, 0, 0.12);
+  --background-modifier-border-muted: rgba(0, 0, 0, 0.08);
+  --background-modifier-border-hover: rgba(0, 0, 0, 0.18);
+  --background-modifier-hover: #e8e8e8;
 }
 /* 09. 代码、任务、标签、分隔线、脚注及嵌入：只统一阅读组件。 */
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
@@ -761,4 +761,47 @@ body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-table-wid
   display: table;
   width: auto !important;
   margin-inline: auto !important;
+}
+
+/* 系统浮层与输入控件使用实色中性背景，避免主题毛玻璃再次染色。 */
+body.theme-light {
+  --background-underlying: #f4f4f4;
+  --workspace-background-translucent: #f4f4f4;
+  --raised-background: #f4f4f4;
+  --modal-background: #f4f4f4;
+  --modal-sidebar-background: #f4f4f4;
+  --prompt-background: #f4f4f4;
+  --menu-background: #f4f4f4;
+  --popover-background: #f4f4f4;
+  --background-modifier-form-field: #f4f4f4;
+  --background-modifier-form-field-highlighted: #e8e8e8;
+  --interactive-normal: #f4f4f4;
+  --interactive-hover: #e8e8e8;
+  --search-result-background: #f4f4f4;
+  --search-result-background-hover: #e8e8e8;
+  --background-modifier-message: #f4f4f4;
+  --tooltip-background: #f4f4f4;
+  --tooltip-color: #353535;
+}
+body.theme-light :is(.modal, .modal-content, .modal-sidebar,
+  .vertical-tab-header, .vertical-tab-content,
+  .suggestion-container, .suggestion, .suggestion-content,
+  .prompt, .prompt-results, .prompt-instructions, .menu, .menu-scroll,
+  .popover, .hover-popover, .tooltip, .notice) {
+  background-color: #f4f4f4 !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  color: #353535;
+}
+body.theme-light :is(input[type="text"], input[type="search"],
+  input[type="email"], input[type="password"], input[type="number"],
+  input[type="url"], input.prompt-input, textarea, select, .dropdown) {
+  background-color: #f4f4f4 !important;
+  background-image: none !important;
+}
+body.theme-light :is(.suggestion-item.is-selected, .menu-item.selected,
+  .vertical-tab-nav-item.is-active, .suggestion-item:hover,
+  .menu-item:not(.is-disabled):hover) {
+  background-color: #e8e8e8 !important;
 }
