@@ -1,0 +1,373 @@
+/* Border Reading — public edition, v1.0
+   A lightweight CSS snippet for Chinese long-form reading in Obsidian + Border.
+   Only Markdown note content: no Home dashboard, vault, sidebar, ribbon, tabs or scrollbars.
+   No fonts or images included; Obsidian's configured text font is respected. */
+
+/* 普通笔记内外链统一为固定蓝色 #2563eb，常显细点线。保留 Border 外链图标。 */
+.markdown-preview-view:not(.workbench),
+.markdown-source-view.mod-cm6:not(.workbench) {
+  --br-link-blue: #2563eb;
+  --link-color: var(--br-link-blue);
+  --link-color-hover: var(--br-link-blue);
+  --link-external-color: var(--br-link-blue);
+  --link-external-color-hover: var(--br-link-blue);
+}
+.markdown-preview-view:not(.workbench) a:is(.internal-link, .external-link):not(:has(img)),
+.markdown-source-view.mod-cm6:not(.workbench)
+  :is(a.internal-link, a.external-link, .cm-hmd-internal-link, .cm-link, .cm-url,
+    .cm-hmd-internal-link a, .cm-link a, .cm-url a) {
+  color: #2563eb !important;
+  font-weight: inherit !important;
+  text-decoration-line: underline !important;
+  text-decoration-style: dotted !important;
+  text-decoration-color: currentColor !important;
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: 3px !important;
+}
+
+/* Text settings only for ordinary notes; Border keeps control of the UI. */
+:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
+  --line-height-normal: 1.8;
+  --line-height-customize: 1.8;
+  --p-spacing: 1.1em;
+  --heading-spacing: 1.38em;
+  --h1-size: 1.36em;
+  --h2-size: 1.20em;
+  --h3-size: 1.08em;
+  --h1-weight: 550;
+  --h2-weight: 550;
+  --h3-weight: 500;
+  --br-text-weight: 400;
+  --br-bold-weight: 500;
+  --bold-weight: var(--br-bold-weight);
+  --bold-color: inherit;
+  --link-weight: 400;
+  --list-indent: 1.5em;
+  /* 正文、列表、引文和表格共用一个色源；层级靠结构而非整段变淡。 */
+  --br-text: #30302e;
+  --br-rule: color-mix(in srgb, var(--text-normal) 15%, transparent);
+}
+.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
+  --br-text: #deded9;
+}
+.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
+  --br-rule: color-mix(in srgb, var(--text-normal) 23%, transparent);
+}
+
+/* 不强制指定字体：遵循 Obsidian「外观 → 正文字体」的默认设置。
+   保留行距、正文对比和字重优化，代码仍使用系统等宽字体。 */
+.markdown-preview-view:not(.workbench),
+.markdown-source-view.mod-cm6:not(.workbench) .cm-content {
+  line-height: var(--line-height-normal);
+  color: var(--br-text);
+  font-weight: var(--br-text-weight);
+}
+
+/* 电脑普通笔记：显著减少 Border 的 2em 列表缩进。
+   只平移顶层列表容器，保留子列表自己的层级缩进；
+   手机端继续使用下面单独的移动端参数。 */
+body:not(.is-mobile) :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
+  --list-indent: 0.9em;
+  --list-indent-editing: 0.9em;
+  --list-indent-source: 0.9em;
+}
+body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-content {
+  --list-indent: 0.9em;
+  --list-indent-editing: 0.9em;
+  --list-indent-source: 0.9em;
+}
+
+/* 电脑正文宽度：取当前编辑区的 65%，但绝不超过 820px。
+   同步 Obsidian 原生 readable-line-length 变量，兼容阅读模式和实时预览。
+   低宽度窗口确保至少留有可读空间；手机与 Home 的布局不受影响。 */
+body:not(.is-mobile) :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
+  --file-line-width: 820px;
+}
+body:not(.is-mobile) .markdown-preview-view:not(.workbench) .markdown-preview-sizer,
+body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-sizer {
+  width: min(65%, 820px) !important;
+  min-width: min(100%, 600px) !important;
+  max-width: 820px !important;
+  margin-inline: auto !important;
+  padding-inline: 16px;
+  box-sizing: border-box;
+}
+.markdown-preview-view:not(.workbench) p {
+  margin-block: 0 1.1em;
+  line-height: var(--line-height-normal);
+  letter-spacing: 0;
+}
+.markdown-source-view.mod-cm6:not(.workbench) .cm-line:not(.HyperMD-header):not(.HyperMD-codeblock) {
+  line-height: var(--line-height-normal);
+  letter-spacing: 0;
+}
+
+/* 03. 普通笔记的标题层级：延续长文阅读版式。 */
+.markdown-preview-view:not(.workbench) :is(h1, h2, h3) {
+  color: var(--text-normal);
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+.markdown-preview-view:not(.workbench) h1 {
+  line-height: 1.4;
+  margin-block: 1.45em 0.65em;
+}
+.markdown-preview-view:not(.workbench) h2 {
+  line-height: 1.45;
+  margin-block: 1.55em 0.58em;
+}
+.markdown-preview-view:not(.workbench) h3 {
+  line-height: 1.45;
+  margin-block: 1.35em 0.48em;
+}
+
+/* 苹果系统字体使用标准 Medium 强调，只作用于语义标记。 */
+.markdown-preview-view:not(.workbench) :is(p, li, blockquote, td) strong,
+.markdown-source-view.mod-cm6:not(.workbench) .cm-line:not(.HyperMD-header) .cm-strong {
+  font-weight: var(--br-bold-weight) !important;
+}
+/* 04. 列表有适度缩进，但避免默认过深。 */
+.markdown-preview-view:not(.workbench) :is(ul, ol) {
+  padding-inline-start: 1.05em !important;
+  margin-inline-start: 0 !important;
+  margin-block: 0.44em 0.95em;
+}
+.markdown-preview-view:not(.workbench) :is(.el-ul, .el-ol) {
+  margin-inline-start: 0 !important;
+  padding-inline-start: 0 !important;
+}
+.markdown-preview-view:not(.workbench) li {
+  line-height: 1.7;
+}
+.markdown-preview-view:not(.workbench) li + li {
+  margin-top: 0.28em;
+}
+.markdown-preview-view:not(.workbench) li > p:last-child {
+  margin-bottom: 0.28em;
+}
+
+/* 列表通用规则出现在上方，电脑端在此最终覆盖以免失效。 */
+body:not(.is-mobile) .markdown-preview-view:not(.workbench) :is(ul, ol) {
+  padding-inline-start: 0.9em !important;
+  margin-inline-start: 0 !important;
+}
+body:not(.is-mobile) .markdown-preview-view:not(.workbench) .markdown-preview-sizer > :is(.el-ul, .el-ol) {
+  padding-inline-start: 0 !important;
+  margin-inline-start: 0 !important;
+}
+
+/* 05. 引用块 / Callout：底色和点阵随主题强调色变化。
+   完全移除四周边框与左侧竖线；non-note pages 不受影响。 */
+:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
+  --br-quote-fill: color-mix(in srgb, var(--interactive-accent) 8%, var(--background-primary));
+  --br-quote-dot: color-mix(in srgb, var(--interactive-accent) 10%, transparent);
+}
+.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
+  --br-quote-fill: color-mix(in srgb, var(--interactive-accent) 13%, var(--background-primary));
+  --br-quote-dot: color-mix(in srgb, var(--interactive-accent) 12%, transparent);
+}
+
+/* 阅读模式、实时预览都保持相同的轻纹理。
+   编辑器每行独立渲染，因此边框只加在阅读块，不逐行画框。 */
+:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
+  :is(blockquote, .cm-line.HyperMD-quote) {
+  background-color: var(--br-quote-fill) !important;
+  background-image: radial-gradient(circle, var(--br-quote-dot) 0.65px, transparent 0.95px) !important;
+  background-size: 6px 6px !important;
+  background-repeat: repeat !important;
+  border-inline-start: 0 !important;
+  box-shadow: none !important;
+}
+.markdown-preview-view:not(.workbench) blockquote {
+  --blockquote-border-thickness: 0px;
+  --blockquote-padding: 8px;
+  display: flow-root;
+  box-sizing: border-box;
+  width: auto;
+  max-width: 100%;
+  margin-block: 1em 1.15em;
+  margin-inline-start: 0;
+  padding: 0.65em 0.9em !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  font-size: 1em;
+  line-height: var(--line-height-normal);
+  font-weight: var(--br-text-weight);
+  color: var(--br-text);
+}
+
+/* Border 主题的侧线来自 blockquote::before。 */
+:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
+  blockquote::before,
+:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
+  .markdown-rendered blockquote::before,
+.markdown-source-view.mod-cm6:not(.workbench) .cm-line.HyperMD-quote::before {
+  content: none !important;
+  display: none !important;
+  width: 0 !important;
+  border: 0 !important;
+  background: none !important;
+}
+.markdown-source-view.mod-cm6:not(.workbench) .cm-line.HyperMD-quote {
+  border-left-width: 0 !important;
+  border-inline-start-width: 0 !important;
+}
+.markdown-preview-view:not(.workbench) blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* Callout 同样只保留点阵背景与圆角，标题与正文结构不变。 */
+:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) .callout {
+  --callout-border-width: 0px;
+  --callout-border-opacity: 0;
+  --callout-padding: 0.7em 0.9em;
+  background-color: var(--br-quote-fill) !important;
+  background-image: radial-gradient(circle, var(--br-quote-dot) 0.65px, transparent 0.95px) !important;
+  background-size: 6px 6px !important;
+  background-repeat: repeat !important;
+  border: 0 !important;
+  border-inline-start: 0 !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+}
+.markdown-preview-view:not(.workbench) .callout-title {
+  color: var(--text-normal);
+  font-weight: var(--br-bold-weight);
+}
+/* Callout 的正文与外部段落使用相同字号、颜色、行距及字重。
+   Callout 标题保留独立的语义层级，边框和点阵背景保持原样。 */
+:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) .callout-content {
+  font-size: 1em;
+  line-height: var(--line-height-normal);
+  font-weight: var(--br-text-weight);
+  color: var(--br-text);
+}
+.markdown-preview-view:not(.workbench) .callout-content :is(p, li) {
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  font-weight: inherit;
+}
+.markdown-preview-view:not(.workbench) .callout .callout-content strong {
+  font-weight: var(--br-bold-weight) !important;
+}
+
+/* 06. 表格保留浅色横线；手机上所有列适配屏幕，正文自然换行。 */
+.markdown-preview-view:not(.workbench) table,
+.markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget table {
+  border-collapse: collapse;
+  border: none !important;
+  font-size: 1em;
+  line-height: 1.62;
+  table-layout: auto;
+}
+.markdown-preview-view:not(.workbench) table thead tr,
+.markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget table thead tr {
+  background: transparent !important;
+  background-image: none !important;
+}
+.markdown-preview-view:not(.workbench) table :is(th,td),
+.markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget table :is(th,td) {
+  padding: 9px 12px !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--br-rule) !important;
+  text-align: start;
+  vertical-align: top;
+  word-break: normal;
+  overflow-wrap: break-word;
+  color: var(--br-text);
+  font-weight: var(--br-text-weight);
+}
+.markdown-preview-view:not(.workbench) table th,
+.markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget table th {
+  background: transparent !important;
+  font-weight: var(--br-bold-weight);
+  color: var(--text-normal);
+}
+body.is-mobile .markdown-preview-view:not(.workbench) .el-table,
+body.is-mobile .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget,
+body.is-mobile .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget .table-wrapper {
+  display: block;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  margin-inline: 0 !important;
+  box-sizing: border-box;
+  overflow-x: visible !important;
+}
+/* Border 的自定义表宽选择器优先级更高，单独取消它的扩宽和负边距。 */
+body.is-mobile.table-width-customized .markdown-source-view.mod-cm6.is-live-preview:not(.workbench) .cm-content > .cm-table-widget,
+body.is-mobile.table-width-customized .markdown-preview-view.markdown-rendered:not(.workbench) .markdown-preview-sizer > div:has(> table) {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-inline: 0 !important;
+}
+body.is-mobile .markdown-preview-view:not(.workbench) table,
+body.is-mobile .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget table {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  table-layout: fixed;
+  margin-inline: 0 !important;
+}
+body.is-mobile .markdown-preview-view:not(.workbench) table col,
+body.is-mobile .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget table col {
+  width: auto !important;
+  min-width: 0 !important;
+}
+body.is-mobile .markdown-preview-view:not(.workbench) table :is(th,td),
+body.is-mobile .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget table :is(th,td) {
+  width: auto !important;
+  min-width: 0 !important;
+  padding: 7px 5px !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+body.is-mobile .markdown-preview-view:not(.workbench) table :is(a, code),
+body.is-mobile .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget table :is(a, code, .table-cell-wrapper) {
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* 07. 手机笔记正文宽度与列表缩进。 */
+/* 移动端缩进：阅读模式和实时预览是两套渲染机制。
+   上版只设置 --list-indent，编辑视图的列表还用
+   --list-indent-editing / --list-indent-source，导致看似不生效。 */
+body.is-mobile :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
+  --h1-size: 1.30em;
+  --h2-size: 1.16em;
+  --h3-size: 1.07em;
+  --list-indent: 0.95em;
+  --list-indent-editing: 0.95em;
+  --list-indent-source: 0.95em;
+}
+body.is-mobile .markdown-preview-view:not(.workbench) .markdown-preview-sizer,
+body.is-mobile .markdown-source-view.mod-cm6:not(.workbench) .cm-sizer {
+  max-width: 100%;
+  padding-inline: 12px;
+}
+/* 阅读模式：同时覆盖默认主题的 ul/ol padding 和外层 .el-ul/.el-ol。 */
+body.is-mobile .markdown-reading-view .markdown-preview-view:not(.workbench) :is(ul, ol),
+body.is-mobile .markdown-preview-view.markdown-rendered:not(.workbench) :is(ul, ol) {
+  --list-indent: 0.95em;
+  padding-inline-start: 0.95em !important;
+  margin-inline-start: 0 !important;
+}
+body.is-mobile .markdown-preview-view:not(.workbench) .markdown-preview-sizer > :is(.el-ul, .el-ol) {
+  padding-inline-start: 0 !important;
+  margin-inline-start: -0.1em !important;
+}
+/* 实时预览：把代码编辑器真实使用的缩进变量传到内容根节点。 */
+body.is-mobile .markdown-source-view.mod-cm6:not(.workbench) .cm-content {
+  --list-indent: 0.95em;
+  --list-indent-editing: 0.95em;
+  --list-indent-source: 0.95em;
+}
+body.is-mobile .markdown-preview-view:not(.workbench) blockquote {
+  margin-inline-start: 0.16em;
+  max-width: calc(100% - 0.16em);
+  padding: 0.6em 0.75em !important;
+}
+
