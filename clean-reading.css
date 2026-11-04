@@ -1369,6 +1369,23 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   display: none !important;
 }
 
+/* 叶子标签没有真实图标元素，使用同尺寸标签图形填充既有占位。
+   有真实图标或折叠控件的行不生成第二个图标。 */
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="tag"] :is(.view-content, .tag-container)
+  .tree-item-self:not(:has(> .tree-item-icon))::before {
+  content: "" !important;
+  display: block !important;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  margin: 0 8px 0 0 !important;
+  background-color: currentColor;
+  opacity: var(--icon-opacity, 0.85);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2224%22 height=%2224%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82Z%22/%3E%3Ccircle cx=%227%22 cy=%227%22 r=%221%22/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2224%22 height=%2224%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82Z%22/%3E%3Ccircle cx=%227%22 cy=%227%22 r=%221%22/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
 /* 明暗配色遵从当前主题，键盘焦点留在整行内部。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .tree-item-self:is(.is-active, .is-selected, .has-focus, :hover) {
