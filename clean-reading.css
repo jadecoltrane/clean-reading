@@ -1391,3 +1391,12 @@ body.theme-dark :is(.modal.mod-settings, .modal:has(.vertical-tab-header))
   --background-primary: #202124;
   background-color: #202124 !important;
 }
+
+/* 仅调亮深色设置页的分组卡片；内容区与导航底色不变。 */
+body.theme-dark :is(.modal.mod-settings, .modal:has(.vertical-tab-header)) {
+  --setting-items-background: #2d2e32;
+}
+body.theme-dark :is(.modal.mod-settings, .modal:has(.vertical-tab-header))
+  .setting-group > .setting-items {
+  background-color: #2d2e32 !important;
+}
