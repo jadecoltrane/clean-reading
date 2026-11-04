@@ -972,18 +972,17 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content[data-type="git-view"] .git-view > .nav-header {
   padding-inline: calc(var(--cr-right-panel-inset) - 6px);
 }
-/* Git 操作图标同顶栏靠齐；八颗按钮单行、等距铺满，避免刷新按钮换到第二行。
-   超窄侧栏可横向滚动而不裁剪操作按钮，宽侧栏把最大跨度限制在 340px。 */
+/* Git 八个操作按钮包含初始无 clickable-icon 类的 #refresh。
+   用八列网格给全部直接子元素分配位置，防止刷新按钮掉到第二行。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content[data-type="git-view"] .nav-buttons-container {
-  display: flex;
+  display: grid !important;
   box-sizing: border-box;
+  grid-template-columns: repeat(8, minmax(26px, 1fr));
+  align-items: center;
+  gap: 2px;
   width: 100%;
   max-width: 340px;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: nowrap;
-  gap: 2px;
   overflow-x: auto;
   scrollbar-width: none;
   margin-inline: 0;
@@ -994,17 +993,21 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   display: none;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="git-view"] .nav-buttons-container > .clickable-icon {
+  .workspace-leaf-content[data-type="git-view"] .nav-buttons-container > * {
   box-sizing: border-box;
-  flex: 0 0 28px;
-  min-width: 28px;
-  width: 28px;
-  height: 28px;
-  padding: 6px;
-  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: stretch;
+  min-width: 26px;
+  width: 100% !important;
+  height: 28px !important;
+  padding: 6px !important;
+  margin: 0 !important;
+  --icon-size: var(--cr-sidebar-action-icon-size);
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="git-view"] .nav-buttons-container > .clickable-icon svg {
+  .workspace-leaf-content[data-type="git-view"] .nav-buttons-container > * svg {
   width: var(--cr-sidebar-action-icon-size);
   height: var(--cr-sidebar-action-icon-size);
 }
@@ -1090,12 +1093,6 @@ body:not(.is-mobile) .workspace-split.mod-right-split .workspace-tab-header-inne
   width: var(--cr-sidebar-action-icon-size);
   height: var(--cr-sidebar-action-icon-size);
 }
-body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="git-view"] .nav-buttons-container > .clickable-icon {
-  flex-basis: calc(var(--cr-sidebar-action-icon-size) + 12px);
-  width: calc(var(--cr-sidebar-action-icon-size) + 12px);
-  height: calc(var(--cr-sidebar-action-icon-size) + 12px);
-}
 
 /* 文件列表与设置菜单统一使用 8px 选中圆角，不改变行高与缩进。 */
 :is(.mod-left-split, .mod-right-split) {
@@ -1115,4 +1112,13 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content:not([data-type="git-view"]) > .view-content {
   box-sizing: border-box;
   padding-inline: var(--cr-right-panel-inset, 16px) !important;
+}
+
+/* Desktop perimeter: modest breathing room; no resize-handle or OS-titlebar hacks. */
+body:not(.is-mobile) {
+  --cr-window-inset: 10px;
+}
+body:not(.is-mobile) > .app-container {
+  box-sizing: border-box;
+  padding: var(--cr-window-inset);
 }
