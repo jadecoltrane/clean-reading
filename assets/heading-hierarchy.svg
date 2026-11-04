@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1120" height="730" viewBox="0 0 1120 730" role="img" aria-labelledby="title desc">
   <title id="title">Clean Reading 六级标题层级示意</title>
-  <desc id="desc">电脑端 H1 到 H6 都以正文大小为基准，字号分别为 1.30、1.20、1.08、1.04、1.00、0.96 em，H1 顶部短横线、H2 文字右侧淡线、H3 左上折角、H4 短底线、H5 浅竖线、H6 柔和文字。</desc>
+  <desc id="desc">电脑端 H1 到 H6 都以正文大小为基准，字号分别为 1.30、1.20、1.08、1.04、1.00、0.96 em，H1 顶部短横线、H2 纯文字留白、H3 左上折角、H4 短底线、H5 浅竖线、H6 柔和文字。</desc>
   <rect width="1120" height="730" fill="#f7f7f5"/>
   <rect x="24" y="24" width="1072" height="682" rx="22" fill="#ffffff" stroke="#e1e3e5"/>
   <text x="72" y="94" fill="#292d31" font-size="31" font-weight="600" font-family="Arial, 'Noto Sans CJK SC', 'PingFang SC', sans-serif">层级清楚，声音可以很轻</text>
@@ -13,7 +13,6 @@
     <text x="953" y="218" fill="#697079" font-size="19">1.30em</text>
     <line x1="72" y1="250" x2="1048" y2="250" stroke="#eff0f1"/>
 
-    <line x1="488" y1="292" x2="549" y2="292" stroke="#c3cbd0" stroke-width="1.5"/>
     <text x="77" y="301" fill="#9299a1" font-size="19">H2</text>
     <text x="192" y="303" fill="#292d31" font-size="28.8" font-weight="600">章节之间的清晰边界</text>
     <text x="953" y="301" fill="#697079" font-size="19">1.20em</text>
