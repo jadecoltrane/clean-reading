@@ -1130,3 +1130,11 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   padding-inline-start: var(--cr-right-content-inset, 28px) !important;
   padding-inline-end: var(--cr-right-panel-inset, 16px) !important;
 }
+
+/* “全部属性”视图自带列表缩进，因此使用与右边相同的 16px
+   外层留白，避免和标签列表相比显得过度向内收缩。
+   只调整此面板，不影响属性图标、行高、顶栏或其他右侧视图。 */
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="all-properties"] > .view-content {
+  padding-inline-start: var(--cr-right-panel-inset, 16px) !important;
+}
