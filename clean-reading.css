@@ -857,8 +857,6 @@ body.theme-light .workspace-split.mod-right-split
 /* 图标可见区域与输入框外边缘对齐：扣除图标按钮内部的 6px 留白。 */
 body:not(.is-mobile) .workspace-split.mod-right-split {
   --cr-right-panel-inset: 16px;
-  /* 同一条内容基线：和右侧顶部标签按钮的起点相呼应。 */
-  --cr-right-content-inset: 38px;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split .workspace-tab-header-container {
   padding-inline-start: calc(var(--cr-right-panel-inset) - 6px);
@@ -876,21 +874,19 @@ body:not(.is-mobile) .workspace-split.mod-right-split .workspace-tab-header-inne
 body:not(.is-mobile) .workspace-split.mod-right-split .workspace-tab-header-inner-icon {
   margin-inline: 0;
 }
-body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="git-view"] .git-view > .nav-header {
-  padding-inline: calc(var(--cr-right-panel-inset) - 6px);
-}
-/* Git 八个操作按钮包含初始无 clickable-icon 类的 #refresh。
-   用八列网格给全部直接子元素分配位置，防止刷新按钮掉到第二行。 */
+
+/* Git 操作按钮使用八列单行网格；窄栏从起点滚动，不居中裁切。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content[data-type="git-view"] .nav-buttons-container {
   display: grid !important;
   box-sizing: border-box;
   grid-template-columns: repeat(8, minmax(26px, 1fr));
+  justify-content: start !important;
+  min-width: 0;
   align-items: center;
   gap: 2px;
   width: 100%;
-  max-width: 340px;
+  max-width: 100%;
   overflow-x: auto;
   scrollbar-width: none;
   margin-inline: 0;
@@ -905,25 +901,22 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   justify-self: stretch;
   min-width: 26px;
   width: 100% !important;
   height: 28px !important;
-  padding: 6px !important;
+  padding: 5px !important;
   margin: 0 !important;
   --icon-size: var(--cr-sidebar-action-icon-size);
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content[data-type="git-view"] .nav-buttons-container > * svg {
+  flex-shrink: 0;
   width: var(--cr-sidebar-action-icon-size);
   height: var(--cr-sidebar-action-icon-size);
 }
-body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="git-view"] .git-commit-msg {
-  width: auto;
-  margin-inline: var(--cr-right-panel-inset);
-}
+
 
 /* 整条顶栏统一采用中间文档标签栏的浅灰底色，下面各面板保持各自底色。 */
 body.theme-light .workspace-split:is(.mod-left-split, .mod-root, .mod-right-split)
@@ -937,7 +930,7 @@ body.theme-light .workspace-split:is(.mod-left-split, .mod-root, .mod-right-spli
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content[data-type="git-view"] .git-view > .nav-files-container {
   box-sizing: border-box;
-  padding-inline: var(--cr-right-panel-inset);
+  padding-inline: 0;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content[data-type="git-view"] .git-view > .nav-files-container
@@ -1015,37 +1008,93 @@ body:not(.is-mobile) .workspace-split.mod-right-split .workspace-tab-header-inne
   font-weight: 400 !important;
 }
 
-/* 右侧每个打开的面板共用同一内容起点。
-   “全部属性”自身的图标距内容区约 12px，因此外层由 16px 调整为 38px；
-   列表项自身的缩进与计数位置保持不动。仅桌面端生效。 */
+/* 右栏只由 view-content 提供一层水平留白，子容器不再叠加外距。
+   首层容器使用直接子级选择器，保留树形列表内部的层级缩进。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content > .view-content {
   box-sizing: border-box;
-  padding-inline-start: var(--cr-right-content-inset) !important;
-  padding-inline-end: var(--cr-right-panel-inset) !important;
+  min-width: 0;
+  padding-inline: var(--cr-right-panel-inset) !important;
 }
-
-/* 标签、链接、反链、大纲等视图自带 12px 左侧内距：
-   外层增加 10px 后，把首层容器内距改为 2px，以保持各视图可见内容
-   落在同一基线上。只重置容器，不改树形子级的层级缩进。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:not([data-type="all-properties"]):not([data-type="git-view"])
-  > .view-content :is(.tag-container, .backlink-pane, .outgoing-link-pane,
-                     .outline, .item-list, .nav-files-container, .search-result-container) {
-  padding-inline-start: 2px !important;
-}
-
-/* Git 视图的输入框、文件树和工具栏已有专属内距；
-   统一外层后清掉这些重复间距，不碰八按钮网格和树形子级缩进。 */
+  .workspace-leaf-content > .view-content > :is(.tag-container, .backlink-pane,
+    .outgoing-link-pane, .outline, .item-list, .nav-files-container,
+    .search-result-container, .all-properties-container),
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="git-view"] .git-view > .nav-header {
+  .workspace-leaf-content > .view-content > .node-insert-event
+    > :is(.tag-container, .backlink-pane, .outgoing-link-pane, .outline,
+          .item-list, .nav-files-container, .search-result-container,
+          .all-properties-container) {
   padding-inline: 0 !important;
+  margin-inline: 0 !important;
+}
+
+/* 首层树行的图标在内容起点内占位；子行沿用原有缩进。
+   Border 的标签图标由 ::before 绘制，也必须取消悬挂外移。 */
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content:not([data-type="git-view"]) > .view-content
+  .tree-item-self:not(.tree-item-children .tree-item-self) {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  padding-inline-start: 0 !important;
+  margin-inline-start: 0 !important;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content:not([data-type="git-view"]) > .view-content
+  .tree-item-self:not(.tree-item-children .tree-item-self) > .tree-item-icon,
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="tag"] > .view-content
+  .tree-item-self:not(.tree-item-children .tree-item-self)::before {
+  position: static !important;
+  transform: none !important;
+  margin-inline: 0 !important;
+  flex: 0 0 16px;
+  width: 16px;
+}
+
+/* Git 的提交框在插件中有 calc() 宽度，必须明确覆盖为内容区全宽。 */
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="git-view"] .git-view {
+  box-sizing: border-box;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content[data-type="git-view"] .git-commit-msg {
-  margin-inline: 0 !important;
+  box-sizing: border-box;
+  min-width: 0;
+  width: 100% !important;
+  max-width: 100%;
+  margin: 4px 0 !important;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="git-view"] .git-commit-msg textarea {
+  box-sizing: border-box;
+  min-width: 0;
+  width: 100%;
+  padding-inline-end: 28px;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="git-view"] .git-view > .nav-header {
+  box-sizing: border-box;
+  min-width: 0;
+  /* 按钮内部 5px 留白与上方标签图标共用可见起点。 */
+  width: calc(100% + 10px);
+  margin-inline: -5px;
+  padding-inline: 0 !important;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content[data-type="git-view"] .git-view > .nav-files-container {
+  min-width: 0;
+  margin-inline: 0 !important;
   padding-inline: 0 !important;
 }
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="git-view"] .git-view > .nav-files-container
+  > .tree-item.mod-root {
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
