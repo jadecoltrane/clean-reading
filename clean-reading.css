@@ -1422,3 +1422,12 @@ body.theme-dark .workspace-split.mod-root
   :is(.view-header, .view-header-title-container, .view-header-nav-buttons) {
   background-color: var(--cr-night-reading-bg, #1a1b1f) !important;
 }
+
+/* 隐藏文件浏览器中 Cmd/Ctrl+F 调出的内联搜索框。
+   仅针对左侧文件树，不影响 Obsidian 独立搜索、其他面板或工具按钮。 */
+body .workspace-split.mod-left-split
+  .workspace-tabs:has(.is-active[data-type="file-explorer"]) .search-input-container,
+body .workspace-split.mod-left-split
+  .workspace-leaf-content[data-type="file-explorer"] .search-input-container {
+  display: none !important;
+}
