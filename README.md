@@ -1,6 +1,6 @@
 # Clean Reading
 
-![Clean Reading：安静的阅读空间](assets/clean-reading-cover.svg)
+![Clean Reading：简洁封面与文章排版示意](assets/clean-reading-cover-editorial.svg)
 
 **让界面退后，让阅读发生。**
 
