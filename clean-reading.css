@@ -1188,3 +1188,24 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   width: 16px;
   height: 16px;
 }
+
+/* 右侧列表以顶部操作图标的左边界为基准。
+   标签行的图标（含主题提供的伪元素）会向栏外悬挂，
+   因此平移整行而非只给文本加 padding；计数仍贴齐原右侧边界。
+   真实子级原有缩进保持不变。 */
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .tag-container .tag-pane-tag {
+  --cr-tag-row-shift: 34px;
+  box-sizing: border-box;
+  margin-inline-start: var(--cr-tag-row-shift) !important;
+  width: calc(100% - var(--cr-tag-row-shift));
+  max-width: calc(100% - var(--cr-tag-row-shift));
+}
+
+/* “全部属性”列表的类型图标原本比顶部操作按钮多内缩一层。
+   取消这层外侧留白，和标签面板使用同一左侧视觉基线。
+   不影响其他面板的内距、行高或手机端。 */
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="all-properties"] > .view-content {
+  padding-inline-start: 0 !important;
+}
