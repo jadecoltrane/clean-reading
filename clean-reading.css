@@ -297,28 +297,27 @@ body:not(.is-mobile) .markdown-preview-view:not(.workbench) .markdown-preview-si
   margin-inline-start: 0 !important;
 }
 
-/* 05. 引用与 Callout：低对比度点阵与极浅背景。
-   普通引用沿用主题色点阵；Callout 点阵跟随各类型的语义色，
-   标题保持正常文字色，图标保留类型色，Home 布局不受影响。 */
+/* 05. 普通引用与 Callout 有不同的视觉任务：
+   普通引用用平滑浅底与主题色细竖线标记引文；
+   Callout 保留语义色点阵与图标，标题为正常文字色。 */
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
   --cr-quote-ink: color-mix(in srgb, var(--interactive-accent) 92%, #808080);
+  --cr-quote-rule: color-mix(in srgb, var(--cr-quote-ink) 45%, transparent);
   --cr-quote-tint: color-mix(in srgb, var(--interactive-accent) 22%, #808080);
   --cr-quote-fill: color-mix(in srgb, var(--background-primary) 95%, var(--cr-quote-tint));
-  --cr-quote-dot: color-mix(in srgb, var(--cr-quote-ink) 24%, transparent);
 }
 .theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
   --cr-quote-fill: color-mix(in srgb, var(--background-primary) 94%, var(--cr-quote-tint));
-  --cr-quote-dot: color-mix(in srgb, var(--cr-quote-ink) 24%, transparent);
 }
 
-/* 阅读模式、实时预览都保持相同的轻纹理。
-   编辑器每行独立渲染，因此边框只加在阅读块，不逐行画框。 */
+/* 普通引用在阅读模式为整块、实时预览为逐行渲染；
+   用背景绘制 2px 细竖线，不改变盒模型宽度，也避免双线。 */
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
   :is(blockquote, .cm-line.HyperMD-quote) {
   background-color: var(--cr-quote-fill) !important;
-  background-image: radial-gradient(circle, var(--cr-quote-dot) 0.65px, transparent 0.95px) !important;
-  background-size: 6px 6px !important;
-  background-repeat: repeat !important;
+  background-image: linear-gradient(to right, var(--cr-quote-rule) 0 2px, transparent 2px) !important;
+  background-size: 100% 100% !important;
+  background-repeat: no-repeat !important;
   border-inline-start: 0 !important;
   box-shadow: none !important;
 }
@@ -714,10 +713,9 @@ body.theme-dark:not(.is-mobile).background-underlying-CSS-dark:has(> .app-contai
   background-blend-mode: normal !important;
 }
 
-/* 深色引用和 Callout 同样跟随主题强调色，统一极浅中性灰底。 */
+/* 夜间模式沿用轻量底色；引用细线与 Callout 点阵各自独立。 */
 body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
   --cr-quote-fill: color-mix(in srgb, var(--background-primary) 94%, var(--cr-quote-tint));
-  --cr-quote-dot: color-mix(in srgb, var(--cr-quote-ink) 24%, transparent);
 }
 
 /* 左右侧边栏统一使用 15px；正文区域继续由外观设置管理。 */
