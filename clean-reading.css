@@ -1125,13 +1125,23 @@ body:not(.is-mobile) .workspace-split.mod-right-split
 }
 
 
-/* 标签与全部属性使用相同的列表边距：外层 12px，行内 8px。
-   属性列表为平面列表，清除树容器的额外内距，不平移整个面板。 */
+/* 标签与全部属性共用外层 12px、行内 8px 的留白。
+   属性使用真实图标，标签使用主题伪元素图标，两者共用内容起点。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) > .view-content {
   padding-inline: 12px !important;
   --nav-item-padding: 6px 8px;
 }
+/* 列表的水平留白由外层和行提供，兼容无名的首层树容器。
+   保留列表本身的垂直留白与滚动设置。 */
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="all-properties"] > .view-content
+  :is(.all-properties-container, .all-properties-list, .properties-list),
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="all-properties"] > .view-content > div:has(> .tree-item),
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="all-properties"] > .view-content
+  > .node-insert-event > div:has(> .tree-item),
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content[data-type="all-properties"] > .view-content
   :is(.tree-item, .tree-item-children) {
@@ -1150,8 +1160,17 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   padding-inline: 8px !important;
   margin-inline: 0 !important;
 }
+/* 系统零宽 ::before 仍是 flex 项，会在真实属性图标前多产生一个 gap。
+   属性已有真实图标，移除空占位；标签的主题伪元素图标保留。 */
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="all-properties"] > .view-content .tree-item-self::before {
+  content: none !important;
+  display: none !important;
+}
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content[data-type="all-properties"] > .view-content .tree-item-self > .tree-item-icon {
+  box-sizing: border-box;
+  padding-inline: 0 !important;
   position: static !important;
   flex: 0 0 16px;
   width: 16px;
