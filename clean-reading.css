@@ -972,22 +972,34 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content[data-type="git-view"] .git-view > .nav-header {
   padding-inline: calc(var(--cr-right-panel-inset) - 6px);
 }
+/* Git 操作图标同顶栏靠齐；八颗按钮单行、等距铺满，避免刷新按钮换到第二行。
+   超窄侧栏可横向滚动而不裁剪操作按钮，宽侧栏把最大跨度限制在 340px。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content[data-type="git-view"] .nav-buttons-container {
   display: flex;
-  justify-content: flex-start;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 340px;
+  justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 4px;
+  flex-wrap: nowrap;
+  gap: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
   margin-inline: 0;
   padding-inline: 0;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="git-view"] .nav-buttons-container::-webkit-scrollbar {
+  display: none;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content[data-type="git-view"] .nav-buttons-container > .clickable-icon {
   box-sizing: border-box;
-  flex: 0 0 32px;
-  width: 32px;
-  height: 32px;
+  flex: 0 0 28px;
+  min-width: 28px;
+  width: 28px;
+  height: 28px;
   padding: 6px;
   margin: 0;
 }
