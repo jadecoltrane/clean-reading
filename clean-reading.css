@@ -1448,14 +1448,14 @@ body.theme-dark :is(.modal.mod-settings, .modal:has(.vertical-tab-header))
   background-color: #202124 !important;
 }
 
-/* 深色设置分组卡片与左侧选中导航项一致：#2f3033。
-   仅改卡片底色，不更改文字、搜索框、右侧底板或选中项状态。 */
+/* 深色设置分组卡片采用柔和灰阶 #26272b：
+   比页面底板略亮，弱于左侧选中项；不影响其他区域。 */
 body.theme-dark :is(.modal.mod-settings, .modal:has(.vertical-tab-header)) {
-  --setting-items-background: #2f3033;
+  --setting-items-background: #26272b;
 }
 body.theme-dark :is(.modal.mod-settings, .modal:has(.vertical-tab-header))
   .setting-group > .setting-items {
-  background-color: #2f3033 !important;
+  background-color: #26272b !important;
 }
 
 /* 深色笔记页：将中央标签栏和路径导航行与下方阅读区域同色。
