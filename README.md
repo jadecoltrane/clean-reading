@@ -1,5 +1,7 @@
 # Clean Reading
 
+![Clean Reading：安静的阅读空间](assets/clean-reading-cover.svg)
+
 **让界面退后，让阅读发生。**
 
 Clean Reading 是一份为 Obsidian 长文阅读设计的 CSS 片段。它关心的不是给每个元素增加存在感，而是让文字、结构与必要的提示各得其所：正文足够舒展，标题清楚但克制，颜色只在有信息价值的地方出现。浅色与深色界面遵循同一套阅读逻辑。
@@ -9,6 +11,12 @@ Clean Reading 是一份为 Obsidian 长文阅读设计的 CSS 片段。它关心
 *Obsidian 实机阅读视图：一列适合持续阅读的正文，比占满整个窗口更重要。*
 
 [下载 CSS](clean-reading.css) · [设计取舍](#设计取舍) · [字号速览](#字号速览) · [安装](#安装)
+
+### 阅读排版：前后对比
+
+![Clean Reading 阅读排版前后对比示意](assets/reading-before-after.svg)
+
+*根据改版前后的真实页面重新绘制的排版示意，非 Obsidian 实机截图；对比的重点是阅读宽度、段落节奏与标题层级。下方保留真实界面截图以展示实际效果。*
 
 ## 设计取舍
 
