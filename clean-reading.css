@@ -1015,7 +1015,7 @@ body:not(.is-mobile) .workspace-split.mod-right-split .view-content .tree-item-f
   margin-inline: 0 !important;
   padding-inline: 0 !important;
 }
-/* 工具栏独立于树列表；首个可见图标也从 16px 开始。 */
+/* 工具栏与树列表共用外层留白，按钮保留主题自身的内部留白。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content > .nav-header {
   box-sizing: border-box;
@@ -1027,16 +1027,12 @@ body:not(.is-mobile) .workspace-split.mod-right-split .view-content .nav-header 
   margin-inline: 0 !important;
   padding-inline: 0 !important;
 }
+/* 保留主题原生的按钮内距与点击区域，容器只提供按钮之间的间隔。 */
 body:not(.is-mobile) .workspace-split.mod-right-split .nav-buttons-container {
+  gap: 4px;
   box-sizing: border-box;
   min-width: 0;
   max-width: 100%;
-  justify-content: flex-start !important;
-  margin-inline: 0 !important;
-  padding-inline: 0 !important;
-}
-body:not(.is-mobile) .workspace-split.mod-right-split
-  .nav-buttons-container > .clickable-icon {
   justify-content: flex-start !important;
   margin-inline: 0 !important;
   padding-inline: 0 !important;
@@ -1100,10 +1096,10 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   display: flex;
   flex: 1 0 26px;
   align-items: center;
-  justify-content: flex-start !important;
+  justify-content: center !important;
   min-width: 26px;
   height: 28px;
-  padding: 5px 0 !important;
+  padding: 5px !important;
   margin: 0 !important;
   --icon-size: var(--icon-s, 16px);
 }
