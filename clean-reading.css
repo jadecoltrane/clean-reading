@@ -1008,20 +1008,20 @@ body:not(.is-mobile) .workspace-split.mod-right-split {
   --nav-item-margin-bottom: 1px;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type] > .view-content {
+  .workspace-leaf-content:not([data-type="tag"]):not([data-type="all-properties"])[data-type] > .view-content {
   box-sizing: border-box;
   min-width: 0;
   padding-left: var(--cr-right-panel-inset) !important;
   padding-right: var(--cr-right-panel-inset) !important;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content > .view-content > *,
-body:not(.is-mobile) .workspace-split.mod-right-split .view-content
+  .workspace-leaf-content:not([data-type="tag"]):not([data-type="all-properties"]) > .view-content > *,
+body:not(.is-mobile) .workspace-split.mod-right-split .workspace-leaf-content:not([data-type="tag"]):not([data-type="all-properties"]) .view-content
   :is(.tag-container, .backlink-pane, .outgoing-link-pane, .outline,
       .item-list, .nav-files-container, .search-result-container,
       .all-properties-container, .all-properties-list, .properties-list,
       .file-properties-container, .git-view),
-body:not(.is-mobile) .workspace-split.mod-right-split .view-content
+body:not(.is-mobile) .workspace-split.mod-right-split .workspace-leaf-content:not([data-type="tag"]):not([data-type="all-properties"]) .view-content
   :not(.tree-item):not(.tree-item-children):has(> .tree-item) {
   box-sizing: border-box;
   padding-inline: 0 !important;
@@ -1033,15 +1033,15 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   margin-inline: 0 !important;
 }
 /* 虚拟树的不可见根节点不占层级缩进；真实子节点保留原有缩进。 */
-body:not(.is-mobile) .workspace-split.mod-right-split .view-content .tree-item.mod-root,
-body:not(.is-mobile) .workspace-split.mod-right-split .view-content
+body:not(.is-mobile) .workspace-split.mod-right-split .workspace-leaf-content:not([data-type="tag"]):not([data-type="all-properties"]) .view-content .tree-item.mod-root,
+body:not(.is-mobile) .workspace-split.mod-right-split .workspace-leaf-content:not([data-type="tag"]):not([data-type="all-properties"]) .view-content
   .tree-item.mod-root > .tree-item-children {
   padding-inline: 0 !important;
   margin-inline: 0 !important;
   border-inline-start: 0;
 }
 /* 行内上下留白、行高和行间距直接定义，避免 Border 再引入不同节奏。 */
-body:not(.is-mobile) .workspace-split.mod-right-split .view-content .tree-item-self {
+body:not(.is-mobile) .workspace-split.mod-right-split .workspace-leaf-content:not([data-type="tag"]):not([data-type="all-properties"]) .view-content .tree-item-self {
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -1050,13 +1050,13 @@ body:not(.is-mobile) .workspace-split.mod-right-split .view-content .tree-item-s
   margin: 0 0 1px !important;
   line-height: 1.3 !important;
 }
-body:not(.is-mobile) .workspace-split.mod-right-split .view-content
+body:not(.is-mobile) .workspace-split.mod-right-split .workspace-leaf-content:not([data-type="tag"]):not([data-type="all-properties"]) .view-content
   .tree-item-self :is(.tree-item-inner, .tree-item-flair) {
   line-height: 1.3 !important;
 }
 /* 不给零宽基线伪元素强设宽度，也不通过 gap 让空元素占位。
    Border 真正绘制的标签图标继续使用主题本身的宽度。 */
-body:not(.is-mobile) .workspace-split.mod-right-split .view-content .tree-item-self::before {
+body:not(.is-mobile) .workspace-split.mod-right-split .workspace-leaf-content:not([data-type="tag"]):not([data-type="all-properties"]) .view-content .tree-item-self::before {
   position: static !important;
   left: auto !important;
   right: auto !important;
@@ -1064,12 +1064,12 @@ body:not(.is-mobile) .workspace-split.mod-right-split .view-content .tree-item-s
   flex: 0 0 auto;
   margin: 0 !important;
 }
-body:not(.is-mobile) .workspace-split.mod-right-split .view-content
+body:not(.is-mobile) .workspace-split.mod-right-split .workspace-leaf-content:not([data-type="tag"]):not([data-type="all-properties"]) .view-content
   .tree-item-self:has(> .tree-item-icon)::before {
   content: none !important;
   display: none !important;
 }
-body:not(.is-mobile) .workspace-split.mod-right-split .view-content
+body:not(.is-mobile) .workspace-split.mod-right-split .workspace-leaf-content:not([data-type="tag"]):not([data-type="all-properties"]) .view-content
   .tree-item-self > .tree-item-icon {
   box-sizing: border-box;
   position: static !important;
@@ -1080,27 +1080,27 @@ body:not(.is-mobile) .workspace-split.mod-right-split .view-content
   padding-inline: 0 !important;
   margin-inline: 0 8px !important;
 }
-body:not(.is-mobile) .workspace-split.mod-right-split .view-content .tree-item-inner {
+body:not(.is-mobile) .workspace-split.mod-right-split .workspace-leaf-content:not([data-type="tag"]):not([data-type="all-properties"]) .view-content .tree-item-inner {
   min-width: 0;
   padding-inline: 0 !important;
   margin-inline: 0 !important;
 }
-body:not(.is-mobile) .workspace-split.mod-right-split .view-content .tree-item-flair-outer {
+body:not(.is-mobile) .workspace-split.mod-right-split .workspace-leaf-content:not([data-type="tag"]):not([data-type="all-properties"]) .view-content .tree-item-flair-outer {
   flex-shrink: 0;
   margin-inline: auto 0 !important;
   padding-inline-end: 0 !important;
 }
-body:not(.is-mobile) .workspace-split.mod-right-split .view-content .tree-item-flair {
+body:not(.is-mobile) .workspace-split.mod-right-split .workspace-leaf-content:not([data-type="tag"]):not([data-type="all-properties"]) .view-content .tree-item-flair {
   margin-inline: 0 !important;
   padding-inline: 0 !important;
 }
 /* 工具栏与树列表共用外层留白，按钮保留主题自身的内部留白。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content > .nav-header {
+  .workspace-leaf-content:not([data-type="tag"]):not([data-type="all-properties"]) > .nav-header {
   box-sizing: border-box;
   padding-inline: calc(var(--cr-right-panel-inset) - var(--cr-right-button-padding)) !important;
 }
-body:not(.is-mobile) .workspace-split.mod-right-split .view-content .nav-header {
+body:not(.is-mobile) .workspace-split.mod-right-split .workspace-leaf-content:not([data-type="tag"]):not([data-type="all-properties"]) .view-content .nav-header {
   box-sizing: border-box;
   width: calc(100% + 2 * var(--cr-right-button-padding));
   margin-inline: calc(-1 * var(--cr-right-button-padding)) !important;
@@ -1210,25 +1210,32 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   height: 16px;
 }
 
-/* 标签 / 属性面板：两种列表采用同一对齐基准。 */
+/* 标签 / 全部属性：按钮图标和行内容共用右栏内容起点。
+   外距 = 共用起点 - 按钮内距；行内距与按钮内距相同。
+   嵌套标签的真实子节点仍由主题提供层级缩进。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) {
-  --cr-gutter: 8px;
-  --cr-row-pad-x: var(--cr-right-button-padding, 6px);
+  --cr-panel-gutter: calc(var(--cr-right-panel-inset) - var(--cr-right-button-padding));
+  --cr-row-pad-x: var(--cr-right-button-padding);
 }
-
-/* 顶部工具栏共享面板内距。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) > .nav-header {
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) > .nav-header,
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) > .view-content {
   box-sizing: border-box;
-  padding-inline: var(--cr-gutter) !important;
-  margin-inline: 0 !important;
+  min-width: 0;
+  padding-inline: var(--cr-panel-gutter) !important;
 }
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) > .nav-header,
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .nav-header {
   box-sizing: border-box;
   width: 100% !important;
   margin-inline: 0 !important;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .nav-header {
   padding-inline: 0 !important;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
@@ -1237,72 +1244,121 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   padding-inline: 0 !important;
 }
 
-/* 列表容器只设置一层外侧留白。 */
+/* 只清除列表外壳和虚拟根节点的重复留白，不展开真实层级。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) > .view-content {
-  box-sizing: border-box;
-  padding-inline: var(--cr-gutter) !important;
-}
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) > .view-content > :not(.tree-item):not(.tree-item-children),
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content
-  :is(.tag-container, .all-properties-container, .all-properties-list, .properties-list) {
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content :is(.tag-container, .all-properties-container, .all-properties-list, .properties-list),
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content :not(.tree-item):not(.tree-item-children):has(> .tree-item),
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .tree-item.mod-root,
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .tree-item.mod-root > .tree-item-children {
   box-sizing: border-box;
   min-width: 0;
   padding-inline: 0 !important;
   margin-inline: 0 !important;
 }
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .tree-item.mod-root > .tree-item-children {
+  border-inline-start: 0;
+}
 
-/* 选中背景、图标和计数都保持在同一行内。 */
+/* 高亮使用行本身的盒子；长名称收缩，计数保持在行的内边距内。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .tree-item-self {
   box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center;
+  column-gap: 0 !important;
   position: relative !important;
   width: 100% !important;
+  max-width: 100%;
   min-width: 0;
-  margin-inline: 0 !important;
-  padding-inline: var(--cr-row-pad-x) !important;
+  margin: 0 0 1px !important;
+  padding: 6px var(--cr-row-pad-x) !important;
+  line-height: 1.3 !important;
+  border: 0 !important;
   border-radius: 6px !important;
+  box-shadow: none !important;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="tag"] .view-content .tree-item-self {
-  padding-block: 4px !important;
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .tree-item-self::before {
+  position: static !important;
+  inset: auto !important;
+  transform: none !important;
+  flex: 0 0 16px;
+  width: 16px;
+  margin: 0 8px 0 0 !important;
 }
-/* 不再为普通标签的主题伪图标预留 24px；折叠箭头依旧存在。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="tag"] .view-content
-  .tree-item-self:not(:has(> .tree-item-icon))::before {
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .tree-item-self:has(> .tree-item-icon)::before,
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .tree-item-self::after {
   content: none !important;
   display: none !important;
 }
-
-/* 数字右对齐，无背景或独立的选中框。 */
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .tree-item-self > .tree-item-icon {
+  box-sizing: border-box;
+  position: static !important;
+  inset: auto !important;
+  transform: none !important;
+  flex: 0 0 16px;
+  width: 16px;
+  padding: 0 !important;
+  margin-inline: 0 8px !important;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .tree-item-inner {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 0 !important;
+  margin-inline: 0 8px !important;
+  line-height: 1.3 !important;
+}
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .tree-item-flair-outer {
   flex: 0 0 auto;
+  min-width: 0;
   margin-inline: auto 0 !important;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content :is(.tree-item-flair-outer, .tree-item-flair) {
   padding: 0 !important;
   background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  line-height: 1.3 !important;
+  font-variant-numeric: tabular-nums;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .tree-item-flair {
   margin: 0 !important;
-  padding: 0 !important;
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  font-variant-numeric: tabular-nums;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content :is(.tree-item-flair-outer, .tree-item-flair)::before,
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content :is(.tree-item-flair-outer, .tree-item-flair)::after {
+  content: none !important;
+  display: none !important;
 }
 
-/* 整行选中与悬停样式；夜间遵从主题。 */
-body.theme-light:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"])
-  .tree-item-self:is(.is-active, .is-selected, .has-focus, :hover) {
-  background-color: #eff0f0 !important;
+/* 明暗配色遵从当前主题，键盘焦点留在整行内部。 */
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .tree-item-self:is(.is-active, .is-selected, .has-focus, :hover) {
+  background: var(--background-modifier-hover) !important;
 }
-body.theme-dark:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"])
-  .tree-item-self:is(.is-active, .is-selected, .has-focus, :hover) {
-  background-color: var(--background-modifier-hover) !important;
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .tree-item-self:focus-visible {
+  outline: 2px solid var(--background-modifier-border-focus);
+  outline-offset: -2px;
 }
 
 /* 深色阅读与侧栏对调层次：正文采用原侧栏 #1a1b1f，
