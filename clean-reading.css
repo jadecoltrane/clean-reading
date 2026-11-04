@@ -297,9 +297,9 @@ body:not(.is-mobile) .markdown-preview-view:not(.workbench) .markdown-preview-si
   margin-inline-start: 0 !important;
 }
 
-/* 05. 引用与 Callout：极浅灰底略带主题色，点阵保留主题强调色。
-   点阵为 92% 强调色 + 8% 灰调、24% 透明度；底色只含约 1% 强调色。
-   四类语义色、标题结构和 Home 布局不变。 */
+/* 05. 引用与 Callout：低对比度点阵与极浅背景。
+   普通引用沿用主题色点阵；Callout 点阵跟随各类型的语义色，
+   标题保持正常文字色，图标保留类型色，Home 布局不受影响。 */
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
   --cr-quote-ink: color-mix(in srgb, var(--interactive-accent) 92%, #808080);
   --cr-quote-tint: color-mix(in srgb, var(--interactive-accent) 22%, #808080);
@@ -360,13 +360,15 @@ body:not(.is-mobile) .markdown-preview-view:not(.workbench) .markdown-preview-si
   margin-bottom: 0;
 }
 
-/* Callout 同样只保留点阵背景与圆角，标题与正文结构不变。 */
+/* Callout 的点阵与图标共用语义色，未知类型回落为中性灰。 */
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) .callout {
+  --cr-signal: var(--text-muted);
+  --cr-callout-dot: color-mix(in srgb, var(--cr-signal) 24%, transparent);
   --callout-border-width: 0px;
   --callout-border-opacity: 0;
   --callout-padding: 0.7em 0.9em;
   background-color: var(--cr-quote-fill) !important;
-  background-image: radial-gradient(circle, var(--cr-quote-dot) 0.65px, transparent 0.95px) !important;
+  background-image: radial-gradient(circle, var(--cr-callout-dot) 0.65px, transparent 0.95px) !important;
   background-size: 6px 6px !important;
   background-repeat: repeat !important;
   border: 0 !important;
@@ -374,20 +376,23 @@ body:not(.is-mobile) .markdown-preview-view:not(.workbench) .markdown-preview-si
   border-radius: 8px !important;
   box-shadow: none !important;
 }
+:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
+  .callout :is(.callout-title, .callout-title-inner) {
+  color: var(--text-normal) !important;
+}
 .markdown-preview-view:not(.workbench) .callout-title {
-  color: var(--text-normal);
   font-weight: var(--cr-bold-weight);
 }
-/* Note、Abstract、Summary、Quote、Example 等说明类保持中性灰图标。
+/* Note、Abstract、Summary、Quote、Example 等说明类使用中性灰点阵与图标。
    Info／Tip 蓝，Warning 琥珀，Danger／Error 红，Success 绿。
-   统一点阵背景和正文色，不引入彩色卡片。 */
+   标题与正文保持正常文字色，不使用整块高饱和度背景。 */
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
   .callout:is([data-callout="note"], [data-callout="abstract"], [data-callout="summary"],
               [data-callout="tldr"], [data-callout="quote"], [data-callout="cite"],
               [data-callout="example"]) {
   --cr-signal: var(--text-muted);
 }
-/* 四种语义色只用在图标与必要的标题文字上。 */
+/* 语义色用于图标与点阵，而不用于标题文字。 */
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
   .callout .callout-icon {
   color: var(--cr-signal, var(--text-muted));
@@ -413,11 +418,6 @@ body:not(.is-mobile) .markdown-preview-view:not(.workbench) .markdown-preview-si
   .callout:is([data-callout="info"], [data-callout="tip"], [data-callout="hint"]) {
   --cr-signal: #436da4;
 }
-:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
-  .callout:is([data-callout="warning"], [data-callout="caution"], [data-callout="danger"], [data-callout="error"], [data-callout="success"], [data-callout="check"], [data-callout="done"])
-  .callout-title-inner {
-  color: var(--cr-signal);
-}
 body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
   .callout:is([data-callout="warning"], [data-callout="caution"], [data-callout="attention"]) {
   --cr-signal: #f0b84d;
@@ -434,8 +434,8 @@ body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.
   .callout:is([data-callout="info"], [data-callout="tip"], [data-callout="hint"]) {
   --cr-signal: #8ab4ff;
 }
-/* Callout 的正文与外部段落使用相同字号、颜色、行距及字重。
-   Callout 标题保留独立的语义层级，边框和点阵背景保持原样。 */
+/* Callout 的标题与正文均使用正常文字颜色。
+   保留原有字号、行距、字重及点阵布局。 */
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) .callout-content {
   font-size: 1em;
   line-height: var(--line-height-normal);
