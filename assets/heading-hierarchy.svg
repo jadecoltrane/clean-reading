@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="730" viewBox="0 0 1120 730" role="img" aria-labelledby="title desc">
+  <title id="title">Clean Reading 六级标题层级示意</title>
+  <desc id="desc">电脑端 H1 到 H6 都以正文大小为基准，字号分别为 1.30、1.20、1.08、1.04、1.00、0.96 em，标记依次从纯文字、小圆点、短底线、浅竖线到柔和文字。</desc>
+  <rect width="1120" height="730" fill="#f7f7f5"/>
+  <rect x="24" y="24" width="1072" height="682" rx="22" fill="#ffffff" stroke="#e1e3e5"/>
+  <text x="72" y="94" fill="#292d31" font-size="31" font-weight="600" font-family="Arial, 'Noto Sans CJK SC', 'PingFang SC', sans-serif">层级清楚，声音可以很轻</text>
+  <text x="73" y="133" fill="#697079" font-size="18" font-family="Arial, 'Noto Sans CJK SC', 'PingFang SC', sans-serif">六级标题共享同一个正文基准 · 电脑端比例示意</text>
+  <line x1="72" y1="157" x2="1048" y2="157" stroke="#e7e9eb"/>
+  <g font-family="Arial, 'Noto Sans CJK SC', 'PingFang SC', sans-serif">
+    <text x="77" y="218" fill="#9299a1" font-size="19">H1</text>
+    <text x="192" y="220" fill="#292d31" font-size="31.2" font-weight="600">一篇文章的主标题</text>
+    <text x="953" y="218" fill="#697079" font-size="19">1.30em</text>
+    <line x1="72" y1="250" x2="1048" y2="250" stroke="#eff0f1"/>
+
+    <text x="77" y="301" fill="#9299a1" font-size="19">H2</text>
+    <text x="192" y="303" fill="#292d31" font-size="28.8" font-weight="600">章节之间的清晰边界</text>
+    <text x="953" y="301" fill="#697079" font-size="19">1.20em</text>
+    <line x1="72" y1="333" x2="1048" y2="333" stroke="#eff0f1"/>
+
+    <text x="77" y="384" fill="#9299a1" font-size="19">H3</text>
+    <circle cx="195" cy="373" r="4.5" fill="#7393a9"/>
+    <text x="211" y="386" fill="#292d31" font-size="25.9" font-weight="500">小圆点提示下一层内容</text>
+    <text x="953" y="384" fill="#697079" font-size="19">1.08em</text>
+    <line x1="72" y1="416" x2="1048" y2="416" stroke="#eff0f1"/>
+
+    <text x="77" y="467" fill="#9299a1" font-size="19">H4</text>
+    <text x="192" y="469" fill="#292d31" font-size="25" font-weight="500">用一点短线补足辨识度</text>
+    <line x1="192" y1="475" x2="235" y2="475" stroke="#becad3" stroke-width="2"/>
+    <text x="953" y="467" fill="#697079" font-size="19">1.04em</text>
+    <line x1="72" y1="499" x2="1048" y2="499" stroke="#eff0f1"/>
+
+    <text x="77" y="550" fill="#9299a1" font-size="19">H5</text>
+    <line x1="192" y1="528" x2="192" y2="557" stroke="#becad3" stroke-width="2"/>
+    <text x="208" y="552" fill="#292d31" font-size="24" font-weight="500">轻微的竖线，保留层级</text>
+    <text x="953" y="550" fill="#697079" font-size="19">1.00em</text>
+    <line x1="72" y1="582" x2="1048" y2="582" stroke="#eff0f1"/>
+
+    <text x="77" y="633" fill="#9299a1" font-size="19">H6</text>
+    <text x="192" y="635" fill="#747c83" font-size="23" font-weight="500">以柔和文字完成最后一级</text>
+    <text x="953" y="633" fill="#697079" font-size="19">0.96em</text>
+  </g>
+  <text x="73" y="679" fill="#8a9096" font-size="16" font-family="Arial, 'Noto Sans CJK SC', 'PingFang SC', sans-serif">图中为层级关系示意，并非 Obsidian 实机截图；字体与显示尺寸以实际环境为准。</text>
+</svg>
