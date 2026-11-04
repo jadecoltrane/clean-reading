@@ -611,35 +611,57 @@ body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.
   --cr-quote-fill: color-mix(in srgb, var(--background-primary) 94%, var(--cr-quote-tint));
 }
 
-/* 普通界面文字与笔记正文共用字体和字号来源。
-   --cr-body-font-size 可选；未设置时跟随 Obsidian 的正文字号。 */
+/* 正文字号为基准，所有非正文的应用界面文字小 1px。
+   --cr-ui-font-size 仍保留正文字号含义，供正文和文件树使用；
+   --cr-chrome-font-size 仅给 Obsidian 侧栏、工具、设置及弹窗使用。 */
 body {
   --cr-ui-font-size: var(--cr-body-font-size, var(--font-text-size, 15px));
+  --cr-chrome-font-size: calc(var(--cr-ui-font-size) - 1px);
   --font-interface: var(--font-text) !important;
-  --font-ui-smaller: var(--cr-ui-font-size);
-  --font-ui-small: var(--cr-ui-font-size);
-  --font-ui-medium: var(--cr-ui-font-size);
-  --input-font-size: var(--cr-ui-font-size);
-  --nav-item-size: var(--cr-ui-font-size);
-  --tab-font-size: var(--cr-ui-font-size);
+  --font-ui-smaller: var(--cr-chrome-font-size);
+  --font-ui-small: var(--cr-chrome-font-size);
+  --font-ui-medium: var(--cr-chrome-font-size);
+  --font-ui-large: var(--cr-chrome-font-size);
+  --input-font-size: var(--cr-chrome-font-size);
+  --nav-item-size: var(--cr-chrome-font-size);
+  --tab-font-size: var(--cr-chrome-font-size);
+  --metadata-label-font-size: var(--cr-chrome-font-size);
+  --metadata-input-font-size: var(--cr-chrome-font-size);
   font-family: var(--font-text);
 }
 :is(.mod-left-split, .mod-right-split, .workspace-drawer) {
-  --font-ui-smaller: var(--cr-ui-font-size);
-  --font-ui-small: var(--cr-ui-font-size);
-  --font-ui-medium: var(--cr-ui-font-size);
-  --nav-item-size: var(--cr-ui-font-size);
+  --font-ui-smaller: var(--cr-chrome-font-size);
+  --font-ui-small: var(--cr-chrome-font-size);
+  --font-ui-medium: var(--cr-chrome-font-size);
+  --font-ui-large: var(--cr-chrome-font-size);
+  --nav-item-size: var(--cr-chrome-font-size);
   font-family: var(--font-text) !important;
-  font-size: var(--cr-ui-font-size);
+  font-size: var(--cr-chrome-font-size);
 }
-/* 搜索标题、匹配片段和计数有各自的核心样式，显式绑定同一字体来源。 */
+/* 搜索结果与右侧树形列表的文字统一，比正文小 1px。 */
 :is(.mod-left-split, .mod-right-split, .workspace-drawer)
   :is(.search-result-file-title, .search-result-file-title-name,
       .search-result-file-match, .search-result-file-matched-text,
       .search-result-count, .search-results-info, .search-results-result-count,
       .tree-item-self, .tree-item-inner, .view-header-title) {
   font-family: var(--font-text) !important;
-  font-size: var(--cr-ui-font-size) !important;
+  font-size: var(--cr-chrome-font-size) !important;
+}
+/* 设置、菜单、标签页、工具标题及状态栏属于界面，不覆盖文章正文。 */
+body :is(.workspace-tab-header, .workspace-tab-header-inner-title,
+  .view-header, .view-header-title, .nav-header, .status-bar,
+  .workspace-sidedock-vault-profile, .search-input-container, .search-empty-state,
+  .pane-empty, .tag-pane-empty, .bookmarks-pane-empty, .modal, .menu,
+  .prompt, .suggestion-container, .tooltip, .notice, .setting-item,
+  .vertical-tab-nav-item, .menu-item, .suggestion-item,
+  input, textarea, select, button):not(:is(.markdown-preview-view *,
+  .markdown-source-view *)) {
+  font-family: var(--font-text) !important;
+  font-size: var(--cr-chrome-font-size) !important;
+}
+body :is(.workspace-tab-header, .view-header, .nav-header, .status-bar,
+  .modal-container, .menu, .prompt, .suggestion-container) {
+  font-size: var(--cr-chrome-font-size);
 }
 :is(.mod-left-split, .mod-right-split, .workspace-drawer)
   :is(.search-result-file-title, .search-result-file-match) {
@@ -898,18 +920,17 @@ body.theme-light .workspace-split:is(.mod-left-split, .mod-root, .mod-right-spli
   background-image: none !important;
 }
 
-/* 侧栏导航与正文共用字体来源和常规字重。 */
+/* 侧栏名称统一采用比正文小 1px 的界面字号。 */
 :is(.mod-left-split, .mod-right-split)
   :is(.nav-file-title, .nav-folder-title, .nav-file-title-content, .nav-folder-title-content) {
   font-family: var(--font-text) !important;
-  font-size: var(--cr-ui-font-size) !important;
+  font-size: var(--cr-chrome-font-size) !important;
   font-weight: 400 !important;
 }
-/* 左侧文件/文件夹名称始终比笔记正文小 1px；
-   与正文字号共用基准，不更改行高、缩进和图标。 */
+/* 文件树与其他界面现在使用同一个字号，不重复减小。 */
 .workspace-leaf-content[data-type="file-explorer"]
   :is(.nav-file-title, .nav-folder-title, .nav-file-title-content, .nav-folder-title-content) {
-  font-size: calc(var(--cr-ui-font-size) - 1px) !important;
+  font-size: var(--cr-chrome-font-size) !important;
 }
 
 /* 右侧标签图标与 Git 操作图标共用尺寸，按钮保持紧凑。 */
