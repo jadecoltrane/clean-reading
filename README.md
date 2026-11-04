@@ -8,11 +8,19 @@ Clean Reading 是一份为 Obsidian 长文阅读设计的 CSS 片段。它关心
 
 [设计取舍](#设计取舍) · [安装](#安装)
 
-### 阅读排版：前后对比
+### 阅读排版：实机前后对比
 
-![Clean Reading 阅读排版前后对比示意](assets/reading-before-after.svg)
+同一份测试文稿，在开启 Clean Reading 前后的 Obsidian 阅读视图。重点观察标题层级、正文的呼吸感、引用和表格的呈现方式。
 
-*根据改版前后的真实页面重新绘制的排版示意，非 Obsidian 实机截图；对比的重点是阅读宽度、段落节奏与标题层级。下方保留真实界面截图以展示实际效果。*
+**改前｜未启用 Clean Reading**
+
+![改前：普通标题、引用和紧凑表格的实际阅读界面](assets/screenshots/reading-before.webp)
+
+**改后｜启用 Clean Reading**
+
+![改后：标题标记、柔和引用与舒展表格的实际阅读界面](assets/screenshots/reading-after.webp)
+
+*两张图片均为 Obsidian 实机截图，展示的是同一篇测试文稿。实际效果随主题、字体、窗口宽度及设备而变化。*
 
 ## 设计取舍
 
