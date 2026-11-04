@@ -1373,11 +1373,12 @@ body.theme-dark :is(.modal.mod-settings, .modal:has(.vertical-tab-header))
   background-color: #202124 !important;
 }
 
-/* 仅调亮深色设置页的分组卡片；内容区与导航底色不变。 */
+/* 深色设置卡片使用与左侧“搜索设置”输入框相同的 #2e2e2e；
+   页面底板、导航和控件颜色不变。 */
 body.theme-dark :is(.modal.mod-settings, .modal:has(.vertical-tab-header)) {
-  --setting-items-background: #2d2e32;
+  --setting-items-background: #2e2e2e;
 }
 body.theme-dark :is(.modal.mod-settings, .modal:has(.vertical-tab-header))
   .setting-group > .setting-items {
-  background-color: #2d2e32 !important;
+  background-color: #2e2e2e !important;
 }
