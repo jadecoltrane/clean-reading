@@ -964,6 +964,8 @@ body.theme-light .workspace-split.mod-right-split
 /* 图标可见区域与输入框外边缘对齐：扣除图标按钮内部的 6px 留白。 */
 body:not(.is-mobile) .workspace-split.mod-right-split {
   --cr-right-panel-inset: 16px;
+  /* 同一条内容基线：和右侧顶部标签按钮的起点相呼应。 */
+  --cr-right-content-inset: 38px;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split .workspace-tab-header-container {
   padding-inline-start: calc(var(--cr-right-panel-inset) - 6px);
@@ -1120,19 +1122,37 @@ body:not(.is-mobile) .workspace-split.mod-right-split .workspace-tab-header-inne
   font-weight: 400 !important;
 }
 
-/* 右侧普通面板（属性、大纲、链接等）左侧增加留白；
-   仅内容区左侧从 16px 提至 28px，右侧保持 16px，Git 与顶栏不变。 */
+/* 右侧每个打开的面板共用同一内容起点。
+   “全部属性”自身的图标距内容区约 12px，因此外层由 16px 调整为 38px；
+   列表项自身的缩进与计数位置保持不动。仅桌面端生效。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:not([data-type="git-view"]) > .view-content {
+  .workspace-leaf-content > .view-content {
   box-sizing: border-box;
-  padding-inline-start: var(--cr-right-content-inset, 28px) !important;
-  padding-inline-end: var(--cr-right-panel-inset, 16px) !important;
+  padding-inline-start: var(--cr-right-content-inset) !important;
+  padding-inline-end: var(--cr-right-panel-inset) !important;
 }
 
-/* “全部属性”视图自带列表缩进，因此使用与右边相同的 16px
-   外层留白，避免和标签列表相比显得过度向内收缩。
-   只调整此面板，不影响属性图标、行高、顶栏或其他右侧视图。 */
+/* 标签、链接、反链、大纲等视图自带 12px 左侧内距：
+   外层增加 10px 后，把首层容器内距改为 2px，以保持各视图可见内容
+   落在同一基线上。只重置容器，不改树形子级的层级缩进。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="all-properties"] > .view-content {
-  padding-inline-start: var(--cr-right-panel-inset, 16px) !important;
+  .workspace-leaf-content:not([data-type="all-properties"]):not([data-type="git-view"])
+  > .view-content :is(.tag-container, .backlink-pane, .outgoing-link-pane,
+                     .outline, .item-list, .nav-files-container, .search-result-container) {
+  padding-inline-start: 2px !important;
+}
+
+/* Git 视图的输入框、文件树和工具栏已有专属内距；
+   统一外层后清掉这些重复间距，不碰八按钮网格和树形子级缩进。 */
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="git-view"] .git-view > .nav-header {
+  padding-inline: 0 !important;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="git-view"] .git-commit-msg {
+  margin-inline: 0 !important;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="git-view"] .git-view > .nav-files-container {
+  padding-inline: 0 !important;
 }
