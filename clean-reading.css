@@ -1056,6 +1056,7 @@ body:not(.is-mobile) .workspace-split.mod-right-split .view-content
 }
 body:not(.is-mobile) .workspace-split.mod-right-split .view-content .tree-item-inner {
   min-width: 0;
+  padding-inline: 0 !important;
   margin-inline: 0 !important;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split .view-content .tree-item-flair-outer {
