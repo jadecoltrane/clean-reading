@@ -498,7 +498,7 @@ body.is-mobile .markdown-preview-view:not(.workbench) blockquote {
 
 
 /* 08. 中性浅色工作区：颜色仅属于应用主界面，不传给设置模态窗口。 */
-body.theme-light .app-container {
+body.theme-light :is(.workspace, .titlebar, .status-bar) {
   --color-base-00: #ffffff;
   --color-base-05: #f4f4f4;
   --color-base-10: #eeeeee;
@@ -570,7 +570,7 @@ body.theme-light .app-container {
 }
 
 /* 08. 内置黑灰夜间工作区：深色调仅作用于应用主界面，设置窗口保留主题原色。 */
-body.theme-dark .app-container {
+body.theme-dark :is(.workspace, .titlebar, .status-bar) {
   --color-base-00: #202124 !important;
   --color-base-05: #232428 !important;
   --color-base-10: #27282c !important;
@@ -687,6 +687,30 @@ body:not(.is-mobile) .workspace-split.mod-left-split
   line-height: 1.5;
 }
 
+/* 文件树折叠箭头在行内占位，不再向窗口边缘悬挂。
+   只调整文件浏览器，子文件夹仍沿用原有树层级缩进。 */
+body:not(.is-mobile) .workspace-split.mod-left-split
+  .workspace-leaf-content[data-type="file-explorer"] .nav-folder-title {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+}
+body:not(.is-mobile) .workspace-split.mod-left-split
+  .workspace-leaf-content[data-type="file-explorer"] .nav-folder-title:has(> .collapse-icon)::before {
+  content: none !important;
+  display: none !important;
+}
+body:not(.is-mobile) .workspace-split.mod-left-split
+  .workspace-leaf-content[data-type="file-explorer"] .nav-folder-title > .collapse-icon {
+  position: static !important;
+  inset: auto !important;
+  transform: none !important;
+  flex: 0 0 16px;
+  width: 16px;
+  padding-inline: 0 !important;
+  margin-inline: 0 !important;
+}
+
 /* 浅色侧栏参考 ChatGPT 的中性灰白；颜色只作用于侧栏。 */
 body.theme-light :is(.mod-left-split, .mod-right-split) {
   --background-mod-left-split: #f4f4f4 !important;
@@ -774,44 +798,7 @@ body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-table-wid
   margin-inline: 0 !important;
 }
 
-/* 操作区配色留在工作区内。设置弹窗、设置栏、表单沿用 Obsidian 当前主题，
-   不覆盖 modal / vertical-tab 的颜色与交互状态。 */
-body.theme-light .app-container {
-  --background-underlying: #f4f4f4;
-  --workspace-background-translucent: #f4f4f4;
-  --raised-background: #f4f4f4;
-  --prompt-background: #f4f4f4;
-  --menu-background: #f4f4f4;
-  --popover-background: #f4f4f4;
-  --background-modifier-form-field: #f4f4f4;
-  --background-modifier-form-field-highlighted: #e8e8e8;
-  --interactive-normal: #f4f4f4;
-  --interactive-hover: #e8e8e8;
-  --search-result-background: #f4f4f4;
-  --search-result-background-hover: #e8e8e8;
-  --background-modifier-message: #f4f4f4;
-  --tooltip-background: #f4f4f4;
-  --tooltip-color: #353535;
-}
-body.theme-light :is(.suggestion-container, .suggestion, .suggestion-content,
-  .prompt, .prompt-results, .prompt-instructions, .menu, .menu-scroll,
-  .popover, .hover-popover, .tooltip, .notice) {
-  background-color: #f4f4f4 !important;
-  background-image: none !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  color: #353535;
-}
-body.theme-light :is(input[type="text"], input[type="search"],
-  input[type="email"], input[type="password"], input[type="number"],
-  input[type="url"], input.prompt-input, textarea, select, .dropdown):not(.modal *) {
-  background-color: #f4f4f4 !important;
-  background-image: none !important;
-}
-body.theme-light :is(.suggestion-item.is-selected, .menu-item.selected,
-  .suggestion-item:hover, .menu-item:not(.is-disabled):hover) {
-  background-color: #e8e8e8 !important;
-}
+/* 设置窗口、系统弹窗、菜单与输入控件沿用当前主题配色。 */
 
 /* 正文纸面为白色；浅灰只用于界面和工具栏，Home 继续使用工作台样式。 */
 body.theme-light {
