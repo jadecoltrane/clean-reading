@@ -1122,9 +1122,11 @@ body:not(.is-mobile) .workspace-split.mod-right-split .workspace-tab-header-inne
   font-weight: 400 !important;
 }
 
-/* 右侧属性、大纲、链接等内容区统一留白；Git 使用上方已有的独立布局。 */
+/* 右侧普通面板（属性、大纲、链接等）左侧增加留白；
+   仅内容区左侧从 16px 提至 28px，右侧保持 16px，Git 与顶栏不变。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content:not([data-type="git-view"]) > .view-content {
   box-sizing: border-box;
-  padding-inline: var(--cr-right-panel-inset, 16px) !important;
+  padding-inline-start: var(--cr-right-content-inset, 28px) !important;
+  padding-inline-end: var(--cr-right-panel-inset, 16px) !important;
 }
