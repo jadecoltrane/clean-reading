@@ -1422,3 +1422,25 @@ body.theme-dark .workspace-split.mod-root
   :is(.view-header, .view-header-title-container, .view-header-nav-buttons) {
   background-color: var(--cr-night-reading-bg, #1a1b1f) !important;
 }
+
+/* 深色顶部表面与下方内容同色。只处理背景，不重画标签边框、
+   强调线、选中态形状或布局。覆盖第三方主题单独使用的 #1c1c1c 顶栏底色。 */
+body.theme-dark .workspace-split.mod-root {
+  --tab-container-background: var(--cr-night-reading-bg, #1a1b1f);
+  --tab-background-active: var(--cr-night-reading-bg, #1a1b1f);
+  --background-activated-tab-header-dark: var(--cr-night-reading-bg, #1a1b1f);
+}
+body.theme-dark .workspace-split.mod-root
+  :is(.workspace-tab-header-container, .workspace-tab-header-container-inner,
+      .workspace-tab-header-tab-list, .workspace-tab-header-new-tab,
+      .workspace-tab-header, .workspace-tab-header-inner) {
+  background-color: var(--cr-night-reading-bg, #1a1b1f) !important;
+}
+
+/* 设置页的顶端标题区与右侧内容底板使用同一背景色。
+   原有设置卡片、左侧导航与表单配色保持不变。 */
+body.theme-dark :is(.modal.mod-settings, .modal:has(.vertical-tab-header))
+  :is(.modal-header, .modal-title, .vertical-tab-content-header,
+      .setting-tab-header, .setting-tab-title) {
+  background-color: var(--modal-background, #1a1b1f) !important;
+}
