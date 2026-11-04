@@ -1162,3 +1162,42 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   width: var(--icon-s, 16px);
   height: var(--icon-s, 16px);
 }
+
+/* 标签列表自己承担水平留白，避免滚动容器与 view-content 的布局相互抵消。 */
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="tag"] > .view-content {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="tag"] > .view-content.tag-container,
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="tag"] > .view-content > .tag-container,
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="tag"] > .view-content > .node-insert-event > .tag-container {
+  box-sizing: border-box;
+  padding-left: var(--cr-right-panel-inset) !important;
+  padding-right: var(--cr-right-panel-inset) !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="tag"] > .view-content .nav-header {
+  padding-left: var(--cr-right-panel-inset) !important;
+  padding-right: var(--cr-right-panel-inset) !important;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="tag"] > .view-content.tag-container .nav-header {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+/* Border 的标签伪元素使用负 margin-left；同时覆盖物理与逻辑方向的偏移。 */
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="tag"] .tree-item-self::before {
+  position: static !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+  flex: 0 0 auto;
+}
