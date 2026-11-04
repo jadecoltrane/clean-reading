@@ -171,7 +171,7 @@ body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-sizer {
   line-height: 1.45;
   margin-block: 1.35em 0.48em;
 }
-/* 标题层级：H1 顶部短线、H2 文字右侧淡线，H3 左上折角。 */
+/* 标题层级：H1 顶部短线、H2 纯文字留白，H3 左上折角。 */
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
   --cr-heading-accent: var(--interactive-accent, var(--text-accent));
   --cr-heading-rule: color-mix(in srgb, var(--cr-heading-accent) 30%, transparent);
@@ -202,7 +202,7 @@ body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-sizer {
 }
 .markdown-preview-view:not(.workbench) h2,
 .markdown-source-view.mod-cm6:not(.workbench) .cm-line.HyperMD-header-2 {
-  /* H2 文字后的一小段细线标识章节，不画通栏底线。 */
+  /* H2 只通过字号、字重和上下留白标识章节，不画横线。 */
   border-block-end: 0 !important;
   background-image: none !important;
   box-shadow: none !important;
@@ -210,13 +210,9 @@ body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-sizer {
 }
 .markdown-preview-view:not(.workbench) h2::after,
 .markdown-source-view.mod-cm6:not(.workbench) .cm-line.HyperMD-header-2::after {
-  content: "" !important;
-  display: inline-block !important;
-  vertical-align: middle;
-  width: 2.4em;
-  height: 1px;
-  margin-inline-start: 0.65em;
-  background-color: var(--cr-heading-rule);
+  /* 二级标题只靠文字与留白分层，避免主题伪元素添线。 */
+  content: none !important;
+  display: none !important;
 }
 .markdown-preview-view:not(.workbench) h3,
 .markdown-source-view.mod-cm6:not(.workbench) .cm-line.HyperMD-header-3 {
