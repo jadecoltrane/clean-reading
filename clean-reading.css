@@ -497,8 +497,8 @@ body.is-mobile .markdown-preview-view:not(.workbench) blockquote {
 }
 
 
-/* 08. 中性浅色界面：使用基础变量，不覆盖用户自己的按钮和 Home 样式。 */
-body.theme-light {
+/* 08. 中性浅色工作区：颜色仅属于应用主界面，不传给设置模态窗口。 */
+body.theme-light .app-container {
   --color-base-00: #ffffff;
   --color-base-05: #f4f4f4;
   --color-base-10: #eeeeee;
@@ -569,8 +569,8 @@ body.theme-light {
   border-radius: 8px;
 }
 
-/* 08. 内置黑灰夜间模式：跟随 Obsidian 深色外观，覆盖界面基本配色。 */
-body.theme-dark {
+/* 08. 内置黑灰夜间工作区：深色调仅作用于应用主界面，设置窗口保留主题原色。 */
+body.theme-dark .app-container {
   --color-base-00: #202124 !important;
   --color-base-05: #232428 !important;
   --color-base-10: #27282c !important;
@@ -602,7 +602,7 @@ body.theme-dark {
 
 /* 兼容部分主题的底层背景着色类；不要求安装特定主题。 */
 body.theme-dark:not(.is-mobile).background-underlying-CSS-dark:has(> .app-container) {
-  background: var(--background-underlying) !important;
+  background: #17181c !important;
   background-blend-mode: normal !important;
 }
 
@@ -774,13 +774,12 @@ body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-table-wid
   margin-inline: 0 !important;
 }
 
-/* 系统浮层与输入控件使用实色中性背景，避免主题毛玻璃再次染色。 */
-body.theme-light {
+/* 操作区配色留在工作区内。设置弹窗、设置栏、表单沿用 Obsidian 当前主题，
+   不覆盖 modal / vertical-tab 的颜色与交互状态。 */
+body.theme-light .app-container {
   --background-underlying: #f4f4f4;
   --workspace-background-translucent: #f4f4f4;
   --raised-background: #f4f4f4;
-  --modal-background: #f4f4f4;
-  --modal-sidebar-background: #f4f4f4;
   --prompt-background: #f4f4f4;
   --menu-background: #f4f4f4;
   --popover-background: #f4f4f4;
@@ -794,9 +793,7 @@ body.theme-light {
   --tooltip-background: #f4f4f4;
   --tooltip-color: #353535;
 }
-body.theme-light :is(.modal, .modal-content, .modal-sidebar,
-  .vertical-tab-header, .vertical-tab-content,
-  .suggestion-container, .suggestion, .suggestion-content,
+body.theme-light :is(.suggestion-container, .suggestion, .suggestion-content,
   .prompt, .prompt-results, .prompt-instructions, .menu, .menu-scroll,
   .popover, .hover-popover, .tooltip, .notice) {
   background-color: #f4f4f4 !important;
@@ -807,13 +804,12 @@ body.theme-light :is(.modal, .modal-content, .modal-sidebar,
 }
 body.theme-light :is(input[type="text"], input[type="search"],
   input[type="email"], input[type="password"], input[type="number"],
-  input[type="url"], input.prompt-input, textarea, select, .dropdown) {
+  input[type="url"], input.prompt-input, textarea, select, .dropdown):not(.modal *) {
   background-color: #f4f4f4 !important;
   background-image: none !important;
 }
 body.theme-light :is(.suggestion-item.is-selected, .menu-item.selected,
-  .vertical-tab-nav-item.is-active, .suggestion-item:hover,
-  .menu-item:not(.is-disabled):hover) {
+  .suggestion-item:hover, .menu-item:not(.is-disabled):hover) {
   background-color: #e8e8e8 !important;
 }
 
@@ -1002,25 +998,6 @@ body:not(.is-mobile) .workspace-split.mod-right-split
 }
 
 
-/* 设置窗口背景取自参考截图右侧框内：#fbfbfb；白色设置卡片保持原样。 */
-body.theme-light .modal.mod-settings,
-body.theme-light .modal:has(.vertical-tab-header) {
-  --modal-background: #fbfbfb;
-  --modal-sidebar-background: #fbfbfb;
-  background-color: #fbfbfb !important;
-}
-body.theme-light :is(.modal.mod-settings, .modal:has(.vertical-tab-header))
-  :is(.modal-content, .modal-sidebar, .vertical-tab-header, .vertical-tab-content) {
-  background-color: #fbfbfb !important;
-  background-image: none !important;
-}
-
-/* 设置菜单选中底色与文件列表一致；参考截图取样为 #eff0f0。 */
-body.theme-light :is(.modal.mod-settings, .modal:has(.vertical-tab-header))
-  .vertical-tab-nav-item.is-active {
-  background-color: #eff0f0 !important;
-}
-
 /* 侧栏导航与正文共用字体来源和常规字重。 */
 :is(.mod-left-split, .mod-right-split)
   :is(.nav-file-title, .nav-folder-title, .nav-file-title-content, .nav-folder-title-content) {
@@ -1048,17 +1025,13 @@ body:not(.is-mobile) .workspace-split.mod-right-split .workspace-tab-header-inne
   height: var(--cr-sidebar-action-icon-size);
 }
 
-/* 文件列表与设置菜单统一使用 8px 选中圆角，不改变行高与缩进。 */
+/* 文件列表保留 8px 选中圆角；设置菜单沿用 Obsidian 原生样式。 */
 :is(.mod-left-split, .mod-right-split) {
   --nav-item-radius: 8px;
 }
 :is(.mod-left-split, .mod-right-split)
-  :is(.nav-file-title, .nav-folder-title).is-active,
-:is(.modal.mod-settings, .modal:has(.vertical-tab-header)) .vertical-tab-nav-item.is-active {
+  :is(.nav-file-title, .nav-folder-title).is-active {
   border-radius: 8px !important;
-}
-:is(.modal.mod-settings, .modal:has(.vertical-tab-header)) .vertical-tab-nav-item {
-  font-weight: 400 !important;
 }
 
 /* 右栏只由 view-content 提供一层水平留白，子容器不再叠加外距。
