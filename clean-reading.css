@@ -1237,3 +1237,71 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   margin-inline-start: -16px !important;
   width: calc(100% + 16px);
 }
+
+/* 深色阅读与侧栏对调层次：正文采用原侧栏 #1a1b1f，
+   左右侧栏采用原正文 #202124。顶栏与其他组件继续保持原样。
+   仅命中应用工作区，不把全局背景变量传进设置窗口。 */
+body.theme-dark .workspace {
+  --cr-night-reading-bg: #1a1b1f;
+  --cr-night-sidebar-bg: #202124;
+  --background-primary: var(--cr-night-reading-bg) !important;
+  --background-secondary: var(--cr-night-sidebar-bg) !important;
+  --background-mod-root-split: var(--cr-night-reading-bg) !important;
+  --background-mod-left-split: var(--cr-night-sidebar-bg) !important;
+  --background-mod-right-split: var(--cr-night-sidebar-bg) !important;
+}
+body.theme-dark .workspace-split.mod-root {
+  background-color: var(--cr-night-reading-bg) !important;
+}
+body.theme-dark .workspace-split.mod-root
+  :is(.workspace-tabs, .workspace-tab-container, .workspace-leaf,
+      .workspace-leaf-content, .view-content,
+      .markdown-preview-view, .markdown-source-view.mod-cm6) {
+  --background-primary: var(--cr-night-reading-bg) !important;
+  background-color: var(--cr-night-reading-bg) !important;
+}
+body.theme-dark .workspace-split:is(.mod-left-split, .mod-right-split) {
+  --background-primary: var(--cr-night-sidebar-bg) !important;
+  --background-secondary: var(--cr-night-sidebar-bg) !important;
+  --background-mod-left-CSS-dark: var(--cr-night-sidebar-bg) !important;
+  --background-mod-right-CSS-dark: var(--cr-night-sidebar-bg) !important;
+  background-color: var(--cr-night-sidebar-bg) !important;
+}
+body.theme-dark .workspace-split:is(.mod-left-split, .mod-right-split)
+  :is(.workspace-tabs, .workspace-tab-container, .workspace-leaf,
+      .workspace-leaf-content, .view-content, .nav-files-container) {
+  --background-primary: var(--cr-night-sidebar-bg) !important;
+  --background-secondary: var(--cr-night-sidebar-bg) !important;
+  background-color: var(--cr-night-sidebar-bg) !important;
+}
+
+/* 设置窗口分栏配色：浅色右侧白、左侧浅灰；
+   深色延续相同的层级逻辑，避免使用白底导致文字对比错误。 */
+body.theme-light :is(.modal.mod-settings, .modal:has(.vertical-tab-header)) {
+  --modal-background: #ffffff;
+  --modal-sidebar-background: #f4f4f4;
+  background-color: #ffffff !important;
+}
+body.theme-light :is(.modal.mod-settings, .modal:has(.vertical-tab-header))
+  :is(.modal-content, .vertical-tab-content) {
+  background-color: #ffffff !important;
+}
+body.theme-light :is(.modal.mod-settings, .modal:has(.vertical-tab-header))
+  :is(.modal-sidebar, .vertical-tab-header) {
+  background-color: #f4f4f4 !important;
+}
+body.theme-dark :is(.modal.mod-settings, .modal:has(.vertical-tab-header)) {
+  --modal-background: #1a1b1f;
+  --modal-sidebar-background: #202124;
+  background-color: #1a1b1f !important;
+}
+body.theme-dark :is(.modal.mod-settings, .modal:has(.vertical-tab-header))
+  :is(.modal-content, .vertical-tab-content) {
+  --background-primary: #1a1b1f;
+  background-color: #1a1b1f !important;
+}
+body.theme-dark :is(.modal.mod-settings, .modal:has(.vertical-tab-header))
+  :is(.modal-sidebar, .vertical-tab-header) {
+  --background-primary: #202124;
+  background-color: #202124 !important;
+}
