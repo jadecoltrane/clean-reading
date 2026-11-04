@@ -977,18 +977,21 @@ body:not(.is-mobile) .workspace-split.mod-left-split
   margin-inline: 0 8px !important;
 }
 
-/* 右侧面板统一留白：只由 view-content 提供 16px，列表与工具栏不重复缩进。 */
+/* 右栏各面板共用内容起点：16px 外层留白 + 6px 工具按钮内距。 */
 body:not(.is-mobile) .workspace-split.mod-right-split {
-  --cr-right-panel-inset: 16px;
+  --cr-right-panel-inset: 22px;
+  --cr-right-button-padding: 6px;
+  --cr-right-button-size: 28px;
   --nav-item-padding: 6px 0;
   --nav-item-parent-padding: 6px 0;
   --nav-item-margin-bottom: 1px;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content > .view-content {
+  .workspace-leaf-content[data-type] > .view-content {
   box-sizing: border-box;
   min-width: 0;
-  padding-inline: var(--cr-right-panel-inset) !important;
+  padding-left: var(--cr-right-panel-inset) !important;
+  padding-right: var(--cr-right-panel-inset) !important;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content > .view-content > *,
@@ -1034,9 +1037,11 @@ body:not(.is-mobile) .workspace-split.mod-right-split .view-content
    Border 真正绘制的标签图标继续使用主题本身的宽度。 */
 body:not(.is-mobile) .workspace-split.mod-right-split .view-content .tree-item-self::before {
   position: static !important;
+  left: auto !important;
+  right: auto !important;
   transform: none !important;
   flex: 0 0 auto;
-  margin-inline: 0 !important;
+  margin: 0 !important;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split .view-content
   .tree-item-self:has(> .tree-item-icon)::before {
@@ -1072,15 +1077,15 @@ body:not(.is-mobile) .workspace-split.mod-right-split .view-content .tree-item-f
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content > .nav-header {
   box-sizing: border-box;
-  padding-inline: var(--cr-right-panel-inset) !important;
+  padding-inline: calc(var(--cr-right-panel-inset) - var(--cr-right-button-padding)) !important;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split .view-content .nav-header {
   box-sizing: border-box;
-  width: 100%;
-  margin-inline: 0 !important;
+  width: calc(100% + 2 * var(--cr-right-button-padding));
+  margin-inline: calc(-1 * var(--cr-right-button-padding)) !important;
   padding-inline: 0 !important;
 }
-/* 保留主题原生的按钮内距与点击区域，容器只提供按钮之间的间隔。 */
+/* 按钮使用完整点击区域，统一内距后其图标框与列表起点对齐。 */
 body:not(.is-mobile) .workspace-split.mod-right-split .nav-buttons-container {
   gap: 4px;
   box-sizing: border-box;
@@ -1089,6 +1094,26 @@ body:not(.is-mobile) .workspace-split.mod-right-split .nav-buttons-container {
   justify-content: flex-start !important;
   margin-inline: 0 !important;
   padding-inline: 0 !important;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .nav-buttons-container > .clickable-icon {
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 0 var(--cr-right-button-size);
+  align-items: center;
+  justify-content: center;
+  width: var(--cr-right-button-size) !important;
+  min-width: var(--cr-right-button-size);
+  height: var(--cr-right-button-size) !important;
+  padding: var(--cr-right-button-padding) !important;
+  margin: 0 !important;
+  --icon-size: 16px;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .nav-buttons-container > .clickable-icon svg {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
 }
 /* 顶部标签图标的 6px 按钮留白计入共同起点。 */
 body:not(.is-mobile) .workspace-split.mod-right-split .workspace-tab-header-container {
@@ -1147,57 +1172,19 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content[data-type="git-view"] .nav-buttons-container > * {
   box-sizing: border-box;
   display: flex;
-  flex: 1 0 26px;
+  flex: 0 0 var(--cr-right-button-size);
   align-items: center;
   justify-content: center !important;
-  min-width: 26px;
-  height: 28px;
-  padding: 5px !important;
+  width: var(--cr-right-button-size) !important;
+  min-width: var(--cr-right-button-size);
+  height: var(--cr-right-button-size);
+  padding: var(--cr-right-button-padding) !important;
   margin: 0 !important;
-  --icon-size: var(--icon-s, 16px);
+  --icon-size: 16px;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content[data-type="git-view"] .nav-buttons-container > * svg {
   flex-shrink: 0;
-  width: var(--icon-s, 16px);
-  height: var(--icon-s, 16px);
-}
-
-/* 标签列表自己承担水平留白，避免滚动容器与 view-content 的布局相互抵消。 */
-body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="tag"] > .view-content {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="tag"] > .view-content.tag-container,
-body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="tag"] > .view-content > .tag-container,
-body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="tag"] > .view-content > .node-insert-event > .tag-container {
-  box-sizing: border-box;
-  padding-left: var(--cr-right-panel-inset) !important;
-  padding-right: var(--cr-right-panel-inset) !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
-body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="tag"] > .view-content .nav-header {
-  padding-left: var(--cr-right-panel-inset) !important;
-  padding-right: var(--cr-right-panel-inset) !important;
-}
-body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="tag"] > .view-content.tag-container .nav-header {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-/* Border 的标签伪元素使用负 margin-left；同时覆盖物理与逻辑方向的偏移。 */
-body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="tag"] .tree-item-self::before {
-  position: static !important;
-  left: auto !important;
-  right: auto !important;
-  transform: none !important;
-  margin: 0 !important;
-  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
 }
