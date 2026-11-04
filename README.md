@@ -81,7 +81,9 @@ Clean Reading 让 H1 和 H2 主要通过**字号、字重与上下留白**建立
 
 为避免样式互相覆盖，建议同一时间只启用一套主要负责正文排版的 CSS 片段。关闭 Clean Reading 即可停用效果，笔记内容不会被修改；无需额外插件，也不附带字体。
 
-桌面端整个 Obsidian 界面四周默认增加 **10px 留白**，不改变移动端；可用 `--cr-window-inset` 自定义。若安装 Obsidian Git，右侧 Git 工具栏的八个按钮（包括刷新）会等宽单行排列，窗口很窄时可以横向滚动。
+桌面端 **Obsidian 主工作区四周**默认增加 **10px 留白**（不移动系统原生标题栏，也不改变移动端）；可用 `--cr-window-inset` 自定义。若安装 Obsidian Git，右侧 Git 工具栏的八个按钮（包括刷新）会等宽单行排列，窗口很窄时可以横向滚动。
+
+**更新已安装片段：** GitHub 公开仓库的 CSS 更新不会自动覆盖其他笔记库里的 `.obsidian/snippets/clean-reading.css`。请下载此仓库最新的 [`clean-reading.css`](clean-reading.css) 替换本地同名文件；Obsidian 会在保存或重新加载片段后应用新版样式。
 
 *本文三张实机截图拍摄于 macOS、Obsidian 1.15.0 默认主题，做过裁切与缩放；标题层级图为示意。不同字体、主题或设备下，实际呈现可能有所不同。*
 

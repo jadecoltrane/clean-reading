@@ -1114,11 +1114,12 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   padding-inline: var(--cr-right-panel-inset, 16px) !important;
 }
 
-/* Desktop perimeter: modest breathing room; no resize-handle or OS-titlebar hacks. */
+/* Desktop workspace perimeter: pad the layout container that holds all panes,
+   including tab and sidebar icons. Do not alter the native titlebar or mobile UI. */
 body:not(.is-mobile) {
   --cr-window-inset: 10px;
 }
-body:not(.is-mobile) > .app-container {
+body:not(.is-mobile) .horizontal-main-container {
   box-sizing: border-box;
   padding: var(--cr-window-inset);
 }
