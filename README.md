@@ -8,19 +8,27 @@ Clean Reading 是一份为 Obsidian 长文阅读设计的 CSS 片段。它关心
 
 [设计取舍](#设计取舍) · [安装](#安装)
 
-### 阅读排版：实机前后对比
+### 阅读排版：改前与改后
 
-同一份测试文稿，在开启 Clean Reading 前后的 Obsidian 阅读视图。重点观察标题层级、正文的呼吸感、引用和表格的呈现方式。
+![Clean Reading 改前与改后：相同文案在阅读宽度、段落间距、标题层级和引用样式上的并排示意](assets/reading-before-after.svg)
 
-**改前｜未启用 Clean Reading**
+*左右使用相同文案，示意开启前后的排版风格：行宽更集中、段落更舒展、标题层级更克制。此图为设计示意，非实机截图；具体显示以 Obsidian 中的主题、字体及窗口宽度为准。*
 
-![改前：普通标题、引用和紧凑表格的实际阅读界面](assets/screenshots/reading-before.webp)
+<details>
+<summary>展开查看 Obsidian 实机对比</summary>
 
-**改后｜启用 Clean Reading**
+<table>
+  <tr>
+    <th width="50%">改前 · 未启用 Clean Reading</th>
+    <th width="50%">改后 · 启用 Clean Reading</th>
+  </tr>
+  <tr>
+    <td><img src="assets/screenshots/reading-before.webp" alt="未启用 Clean Reading 的 Obsidian 实机截图" width="100%"></td>
+    <td><img src="assets/screenshots/reading-after.webp" alt="启用 Clean Reading 的 Obsidian 实机截图" width="100%"></td>
+  </tr>
+</table>
 
-![改后：标题标记、柔和引用与舒展表格的实际阅读界面](assets/screenshots/reading-after.webp)
-
-*两张图片均为 Obsidian 实机截图，展示的是同一篇测试文稿。实际效果随主题、字体、窗口宽度及设备而变化。*
+</details>
 
 ## 设计取舍
 
