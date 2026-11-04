@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="760" viewBox="0 0 1440 760" role="img" aria-labelledby="bt bd">
+<title id="bt">Clean Reading · 阅读排版前后对比</title>
+<desc id="bd">对比排版示意：左侧是没有明显标记的较密布局，右侧是加入标题短线、舒适段落留白和轻量三级折角的 Clean Reading 版式；不是实际截图。</desc>
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8f6f9"/><stop offset="1" stop-color="#fdfcfb"/></linearGradient><filter id="soft" x="-12%" y="-15%" width="124%" height="136%"><feDropShadow dx="0" dy="8" stdDeviation="15" flood-color="#6f6578" flood-opacity=".10"/></filter></defs>
+<rect x="0" y="0" width="1440" height="760" rx="0" fill="url(#g)" stroke="none" stroke-width="1" />
+<text x="720" y="70" font-size="40" fill="#302b33" font-weight="550" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" text-anchor="middle">从占满屏幕，到读完一段</text>
+<text x="720" y="111" font-size="20" fill="#77707d" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" text-anchor="middle">同样的内容，让行宽、间距与层级决定阅读节奏</text>
+<g filter="url(#soft)"><rect x="57" y="148" width="635" height="514" rx="21" fill="#fff" stroke="#e8e4e8" stroke-width="1" /><rect x="748" y="148" width="635" height="514" rx="21" fill="#fff" stroke="#ddd4e5" stroke-width="1" /></g>
+<rect x="82" y="174" width="86" height="37" rx="12" fill="#eeecef" stroke="none" stroke-width="1" />
+<text x="125" y="201" font-size="19" fill="#67616c" font-weight="500" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" text-anchor="middle">改前</text>
+<rect x="774" y="174" width="86" height="37" rx="12" fill="#9180ad" stroke="none" stroke-width="1" />
+<text x="816" y="201" font-size="19" fill="#fff" font-weight="500" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" text-anchor="middle">改后</text>
+<text x="93" y="263" font-size="26" fill="#252429" font-weight="650" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >Clean Reading · 电脑手机排版测试</text>
+<text x="93" y="307" font-size="18" fill="#393840" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >这是一份用于比较 Obsidian 电脑端与手机端</text>
+<text x="93" y="337" font-size="18" fill="#393840" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >显示效果的测试笔记，长段落占满整个区域。</text>
+<text x="93" y="367" font-size="18" fill="#393840" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >如果每一行都很长，回到下一行的距离就更远。</text>
+<text x="93" y="402" font-size="25" fill="#27242a" font-weight="650" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >一、段落与阅读宽度</text>
+<text x="93" y="449" font-size="18" fill="#44414a" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >好的排版应该让人顺畅地把一段话从头读到尾，</text><text x="93" y="480" font-size="18" fill="#44414a" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >但文字过于密集时，视线需要频繁寻找行首。</text><text x="93" y="511" font-size="18" fill="#44414a" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >标题与正文之间缺少节奏，章节不容易分开。</text>
+<text x="93" y="577" font-size="23" fill="#302e34" font-weight="600" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >小标题：内容的第二层级</text>
+<text x="93" y="613" font-size="18" fill="#5a565f" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >结构存在，却不够清楚。</text>
+<line x1="785" y1="242" x2="831" y2="242" stroke="#8373a1" stroke-width="3"/>
+<text x="785" y="277" font-size="26" fill="#252429" font-weight="650" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >Clean Reading · 电脑手机排版测试</text>
+<text x="785" y="326" font-size="18" fill="#393840" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >这是一份用于比较 Obsidian 电脑端与手机端</text><text x="785" y="363" font-size="18" fill="#393840" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >显示效果的测试笔记。让正文集中在适合阅读的</text><text x="785" y="400" font-size="18" fill="#393840" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >列宽内，保留恰当的行距和段落呼吸感。</text>
+<text x="785" y="450" font-size="24" fill="#26242a" font-weight="650" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >一、段落与阅读宽度</text>
+<text x="785" y="502" font-size="18" fill="#46414c" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >读者可以在换行时稳定找到下一行的起点。</text><text x="785" y="539" font-size="18" fill="#46414c" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >标题的层级清楚，但不会比内容更抢眼。</text>
+<path d="M786 590 H797 M786 590 V601" stroke="#8d7ab1" stroke-width="2" fill="none"/>
+<text x="810" y="609" font-size="22" fill="#302d34" font-weight="600" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >小标题：内容的第二层级</text>
+<text x="785" y="639" font-size="17" fill="#5f5b64" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >不与列表圆点重复的折角标记。</text>
+<text x="722" y="417" font-size="37" fill="#8f80ae" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" text-anchor="middle">→</text>
+<line x1="84" y1="700" x2="1354" y2="700" stroke="#d9d3db" stroke-width="1"/>
+<text x="720" y="733" font-size="17" fill="#77717f" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" text-anchor="middle">排版层级示意图 · 具体字体与实际显示以 Obsidian 为准</text>
+</svg>
