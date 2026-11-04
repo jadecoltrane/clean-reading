@@ -1448,12 +1448,29 @@ body.theme-dark :is(.modal.mod-settings, .modal:has(.vertical-tab-header))
   background-color: #202124 !important;
 }
 
-/* 深色设置卡片使用与左侧“搜索设置”输入框相同的 #2e2e2e；
-   页面底板、导航和控件颜色不变。 */
+/* 深色设置分组卡片与左侧选中导航项一致：#2f3033。
+   仅改卡片底色，不更改文字、搜索框、右侧底板或选中项状态。 */
 body.theme-dark :is(.modal.mod-settings, .modal:has(.vertical-tab-header)) {
-  --setting-items-background: #2e2e2e;
+  --setting-items-background: #2f3033;
 }
 body.theme-dark :is(.modal.mod-settings, .modal:has(.vertical-tab-header))
   .setting-group > .setting-items {
-  background-color: #2e2e2e !important;
+  background-color: #2f3033 !important;
+}
+
+/* 深色笔记页：将中央标签栏和路径导航行与下方阅读区域同色。
+   仅针对主工作区；左右侧栏顶部标签、设置窗口、悬浮菜单不变。 */
+body.theme-dark .workspace-split.mod-root
+  :is(.workspace-tab-header-container,
+      .workspace-tab-header-container-inner,
+      .workspace-tab-header,
+      .workspace-tab-header-inner,
+      .view-header,
+      .view-header-title-container,
+      .view-header-nav-buttons) {
+  background-color: var(--cr-night-reading-bg, #1a1b1f) !important;
+}
+body.theme-dark .workspace-split.mod-root {
+  --background-secondary: var(--cr-night-reading-bg, #1a1b1f);
+  --tab-container-background: var(--cr-night-reading-bg, #1a1b1f);
 }
