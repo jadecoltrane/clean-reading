@@ -68,8 +68,8 @@
 
 /* Reading settings for ordinary notes on any Obsidian theme. */
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
-  /* 正文默认 15px，可通过 --cr-body-font-size 自定义。 */
-  --font-text-size: var(--cr-body-font-size, 15px);
+  /* 与界面共用正文字号；可通过 --cr-body-font-size 自定义。 */
+  --font-text-size: var(--cr-ui-font-size);
   font-size: var(--font-text-size);
   --line-height-normal: 1.8;
   --line-height-customize: 1.8;
@@ -611,18 +611,71 @@ body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.
   --cr-quote-fill: color-mix(in srgb, var(--background-primary) 94%, var(--cr-quote-tint));
 }
 
-/* 左右侧边栏统一使用 15px；正文区域继续由外观设置管理。 */
-:is(.mod-left-split, .mod-right-split) {
-  --font-ui-smaller: 15px;
-  --font-ui-small: 15px;
-  --font-ui-medium: 15px;
-  --nav-item-size: 15px;
-  font-size: 15px;
+/* 普通界面文字与笔记正文共用字体和字号来源。
+   --cr-body-font-size 可选；未设置时跟随 Obsidian 的正文字号。 */
+body {
+  --cr-ui-font-size: var(--cr-body-font-size, var(--font-text-size, 15px));
+  --font-interface: var(--font-text) !important;
+  --font-ui-smaller: var(--cr-ui-font-size);
+  --font-ui-small: var(--cr-ui-font-size);
+  --font-ui-medium: var(--cr-ui-font-size);
+  --input-font-size: var(--cr-ui-font-size);
+  --nav-item-size: var(--cr-ui-font-size);
+  --tab-font-size: var(--cr-ui-font-size);
+  font-family: var(--font-text);
 }
-:is(.mod-left-split, .mod-right-split)
-  :is(.nav-file-title, .nav-folder-title, .tree-item-self) {
-  font-size: 15px;
+:is(.mod-left-split, .mod-right-split, .workspace-drawer) {
+  --font-ui-smaller: var(--cr-ui-font-size);
+  --font-ui-small: var(--cr-ui-font-size);
+  --font-ui-medium: var(--cr-ui-font-size);
+  --nav-item-size: var(--cr-ui-font-size);
+  font-family: var(--font-text) !important;
+  font-size: var(--cr-ui-font-size);
 }
+/* 搜索标题、匹配片段和计数有各自的核心样式，显式绑定同一字体来源。 */
+:is(.mod-left-split, .mod-right-split, .workspace-drawer)
+  :is(.search-result-file-title, .search-result-file-title-name,
+      .search-result-file-match, .search-result-file-matched-text,
+      .search-result-count, .search-results-info, .search-results-result-count,
+      .tree-item-self, .tree-item-inner, .view-header-title) {
+  font-family: var(--font-text) !important;
+  font-size: var(--cr-ui-font-size) !important;
+}
+:is(.mod-left-split, .mod-right-split, .workspace-drawer)
+  :is(.search-result-file-title, .search-result-file-match) {
+  font-weight: 400;
+}
+:is(.mod-left-split, .mod-right-split, .workspace-drawer)
+  :is(input, textarea, select, button) {
+  font-family: var(--font-text) !important;
+}
+/* 搜索列表自身提供留白，避免折叠箭头向侧栏边缘悬挂。 */
+body:not(.is-mobile) .workspace-split.mod-left-split
+  .workspace-leaf-content[data-type="search"] .search-result-container {
+  box-sizing: border-box;
+  padding-inline: 16px !important;
+}
+body:not(.is-mobile) .workspace-split.mod-left-split
+  .workspace-leaf-content[data-type="search"] .search-result-file-title {
+  position: relative;
+  margin-inline: 0 !important;
+  padding-inline-start: 24px !important;
+  padding-inline-end: 0 !important;
+}
+body:not(.is-mobile) .workspace-split.mod-left-split
+  .workspace-leaf-content[data-type="search"] .search-result-file-title > .collapse-icon {
+  position: absolute !important;
+  inset-inline-start: 0 !important;
+  top: 0.35em;
+  width: 16px;
+  margin-inline: 0 !important;
+  transform: none !important;
+}
+body:not(.is-mobile) .workspace-split.mod-left-split
+  .workspace-leaf-content[data-type="search"] .search-result-file-matches {
+  margin-inline: 0 !important;
+}
+
 
 /* 文件列表通过行内留白增加间距，让虚拟滚动仍可测量真实行高。 */
 :is(.mod-left-split, .mod-right-split) {
@@ -968,18 +1021,18 @@ body.theme-light :is(.modal.mod-settings, .modal:has(.vertical-tab-header))
   background-color: #eff0f0 !important;
 }
 
-/* 侧栏导航保留原字体与 400 字重，常规侧栏默认 15px。 */
+/* 侧栏导航与正文共用字体来源和常规字重。 */
 :is(.mod-left-split, .mod-right-split)
   :is(.nav-file-title, .nav-folder-title, .nav-file-title-content, .nav-folder-title-content) {
   font-family: var(--font-text) !important;
-  font-size: var(--cr-body-font-size, 15px) !important;
+  font-size: var(--cr-ui-font-size) !important;
   font-weight: 400 !important;
 }
 /* 左侧文件/文件夹名称始终比笔记正文小 1px；
-   与 --cr-body-font-size 共用基准，不更改行高、缩进和图标。 */
+   与正文字号共用基准，不更改行高、缩进和图标。 */
 .workspace-leaf-content[data-type="file-explorer"]
   :is(.nav-file-title, .nav-folder-title, .nav-file-title-content, .nav-folder-title-content) {
-  font-size: calc(var(--cr-body-font-size, 15px) - 1px) !important;
+  font-size: calc(var(--cr-ui-font-size) - 1px) !important;
 }
 
 /* 右侧标签图标与 Git 操作图标共用尺寸，按钮保持紧凑。 */
