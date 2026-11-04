@@ -10,7 +10,7 @@ Clean Reading 是一份为 Obsidian 长文阅读设计的 CSS 片段。它关心
 
 *Obsidian 实机阅读视图：一列适合持续阅读的正文，比占满整个窗口更重要。*
 
-[下载 CSS](clean-reading.css) · [设计取舍](#设计取舍) · [安装](#安装)
+[下载 CSS](clean-reading.css) · [阅读演示](examples/阅读体验演示.md) · [设计取舍](#设计取舍) · [安装](#安装)
 
 ### 阅读排版：前后对比
 
