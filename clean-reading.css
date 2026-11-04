@@ -75,7 +75,7 @@
   --line-height-customize: 1.8;
   --p-spacing: 1.1em;
   --heading-spacing: 1.38em;
-  --h1-size: calc(var(--h2-size) * 1.08);
+  --h1-size: 1.30em;
   --h2-size: 1.20em;
   --h3-size: 1.08em;
   --h1-weight: 550;
@@ -550,7 +550,7 @@ body.is-mobile .markdown-source-view.mod-cm6:not(.workbench) .cm-table-widget ta
    上版只设置 --list-indent，编辑视图的列表还用
    --list-indent-editing / --list-indent-source，导致看似不生效。 */
 body.is-mobile :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
-  --h1-size: calc(var(--h2-size) * 1.08);
+  --h1-size: 1.25em;
   --h2-size: 1.16em;
   --h3-size: 1.07em;
   --list-indent: 0.8em;
