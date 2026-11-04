@@ -1230,6 +1230,7 @@ body:not(.is-mobile) .workspace-split.mod-right-split
 
 /* 标签 / 全部属性：按钮图标和行内容共用右栏内容起点。
    外距 = 共用起点 - 按钮内距；行内距与按钮内距相同。
+   标签列表直接使用 .tag-container；属性列表使用 .view-content。
    嵌套标签的真实子节点仍由主题提供层级缩进。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) {
@@ -1239,7 +1240,7 @@ body:not(.is-mobile) .workspace-split.mod-right-split
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) > .nav-header,
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) > .view-content {
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) > :is(.view-content, .tag-container) {
   box-sizing: border-box;
   min-width: 0;
   padding-inline: var(--cr-panel-gutter) !important;
@@ -1247,13 +1248,13 @@ body:not(.is-mobile) .workspace-split.mod-right-split
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) > .nav-header,
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .nav-header {
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) :is(.view-content, .tag-container) .nav-header {
   box-sizing: border-box;
   width: 100% !important;
   margin-inline: 0 !important;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .nav-header {
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) :is(.view-content, .tag-container) .nav-header {
   padding-inline: 0 !important;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
@@ -1264,28 +1265,28 @@ body:not(.is-mobile) .workspace-split.mod-right-split
 
 /* 只清除列表外壳和虚拟根节点的重复留白，不展开真实层级。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) > .view-content > :not(.tree-item):not(.tree-item-children):not(.tree-item-self),
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) > :is(.view-content, .tag-container) > :not(.tree-item):not(.tree-item-children):not(.tree-item-self),
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content :is(.tag-container, .all-properties-container, .all-properties-list, .properties-list),
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) :is(.view-content, .tag-container) :is(.tag-container, .all-properties-container, .all-properties-list, .properties-list),
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content :not(.tree-item):not(.tree-item-children):has(> .tree-item),
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) :is(.view-content, .tag-container) :not(.tree-item):not(.tree-item-children):has(> .tree-item),
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .tree-item.mod-root,
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) :is(.view-content, .tag-container) .tree-item.mod-root,
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .tree-item.mod-root > .tree-item-children {
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) :is(.view-content, .tag-container) .tree-item.mod-root > .tree-item-children {
   box-sizing: border-box;
   min-width: 0;
   padding-inline: 0 !important;
   margin-inline: 0 !important;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .tree-item.mod-root > .tree-item-children {
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) :is(.view-content, .tag-container) .tree-item.mod-root > .tree-item-children {
   border-inline-start: 0;
 }
 
 /* 高亮使用行本身的盒子；长名称收缩，计数保持在行的内边距内。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .tree-item-self {
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) :is(.view-content, .tag-container) .tree-item-self {
   box-sizing: border-box !important;
   display: flex !important;
   align-items: center;
@@ -1302,7 +1303,7 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   box-shadow: none !important;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .tree-item-self::before {
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) :is(.view-content, .tag-container) .tree-item-self::before {
   position: static !important;
   inset: auto !important;
   transform: none !important;
@@ -1311,14 +1312,14 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   margin: 0 8px 0 0 !important;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .tree-item-self:has(> .tree-item-icon)::before,
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) :is(.view-content, .tag-container) .tree-item-self:has(> .tree-item-icon)::before,
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .tree-item-self::after {
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) :is(.view-content, .tag-container) .tree-item-self::after {
   content: none !important;
   display: none !important;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .tree-item-self > .tree-item-icon {
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) :is(.view-content, .tag-container) .tree-item-self > .tree-item-icon {
   box-sizing: border-box;
   position: static !important;
   inset: auto !important;
@@ -1329,7 +1330,7 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   margin-inline: 0 8px !important;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .tree-item-inner {
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) :is(.view-content, .tag-container) .tree-item-inner {
   flex: 1 1 auto;
   min-width: 0;
   overflow: hidden;
@@ -1340,13 +1341,13 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   line-height: 1.3 !important;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .tree-item-flair-outer {
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) :is(.view-content, .tag-container) .tree-item-flair-outer {
   flex: 0 0 auto;
   min-width: 0;
   margin-inline: auto 0 !important;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content :is(.tree-item-flair-outer, .tree-item-flair) {
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) :is(.view-content, .tag-container) :is(.tree-item-flair-outer, .tree-item-flair) {
   padding: 0 !important;
   background: transparent !important;
   border: 0 !important;
@@ -1357,13 +1358,13 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   font-variant-numeric: tabular-nums;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .tree-item-flair {
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) :is(.view-content, .tag-container) .tree-item-flair {
   margin: 0 !important;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content :is(.tree-item-flair-outer, .tree-item-flair)::before,
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) :is(.view-content, .tag-container) :is(.tree-item-flair-outer, .tree-item-flair)::before,
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content :is(.tree-item-flair-outer, .tree-item-flair)::after {
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) :is(.view-content, .tag-container) :is(.tree-item-flair-outer, .tree-item-flair)::after {
   content: none !important;
   display: none !important;
 }
