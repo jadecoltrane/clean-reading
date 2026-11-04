@@ -1210,43 +1210,30 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   height: 16px;
 }
 
-/* 右侧标签列表与属性列表不共享“整行补偿”。
-   Border 主题的普通标签图标画在 ::before 上，默认有负 margin，
-   而折叠标签使用真正的 .tree-item-icon；分别处理，避免图标被裁切。
-   24px 图标槽 = 16px 图标 + 8px 间距，和属性列表一致。 */
+/* 标签面板：标签符号可能由 .tree-item-icon 内的 SVG 或伪元素提供。
+   不再绝对定位整行的 ::before。给每行留出统一起点，
+   保持 Border 和 Obsidian 的图标绘制方式，防止图标被裁掉。
+   树形子层级在行容器外缩进，因此仍保留层级关系。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="tag"] .tree-item-self.tag-pane-tag {
-  position: relative !important;
-  padding-inline-start: 0 !important;
+  .workspace-leaf-content[data-type="tag"] .tag-pane-tag {
+  box-sizing: border-box;
+  padding-inline-start: 28px !important;
 }
+/* 取消早先隐藏左悬挂的伪元素定位：常规标签和可折叠标签均跟随 flex 内容。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="tag"]
-  .tree-item-self.tag-pane-tag:not(:has(> .tree-item-icon.collapse-icon)) {
-  padding-inline-start: 24px !important;
-}
-body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="tag"]
-  .tree-item-self.tag-pane-tag:not(:has(> .tree-item-icon.collapse-icon))::before {
-  position: absolute !important;
-  inset-inline-start: 0 !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  margin: 0 !important;
-  width: 16px;
-  height: 16px;
-}
-body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="tag"]
-  .tree-item-self.tag-pane-tag > .tree-item-icon.collapse-icon {
+  .workspace-leaf-content[data-type="tag"] .tag-pane-tag::before {
   position: static !important;
   inset: auto !important;
-  flex: 0 0 16px;
-  margin-inline: 0 8px !important;
+  transform: none !important;
+  margin: 0 !important;
 }
 
-/* 属性类型图标本来就是 flex 子项：不要再次给整行加 30px。
-   保留基础 22px 内容列起点，计数仍位于列表右端。 */
+/* “全部属性”面板列表默认比工具按钮多一层内缩。
+   只把行本身向左回收 16px，增补同等宽度，避免右侧计数移动或被裁切。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content[data-type="all-properties"] .view-content .tree-item-self {
+  box-sizing: border-box;
   padding-inline-start: 0 !important;
+  margin-inline-start: -16px !important;
+  width: calc(100% + 16px);
 }
