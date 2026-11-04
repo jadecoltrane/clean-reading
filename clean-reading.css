@@ -171,7 +171,7 @@ body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-sizer {
   line-height: 1.45;
   margin-block: 1.35em 0.48em;
 }
-/* 标题层级：H1 顶部短线、H2 文字右侧淡线，H3 小圆点。 */
+/* 标题层级：H1 顶部短线、H2 文字右侧淡线，H3 左上折角。 */
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
   --cr-heading-accent: var(--interactive-accent, var(--text-accent));
   --cr-heading-rule: color-mix(in srgb, var(--cr-heading-accent) 30%, transparent);
@@ -221,19 +221,23 @@ body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-sizer {
 .markdown-preview-view:not(.workbench) h3,
 .markdown-source-view.mod-cm6:not(.workbench) .cm-line.HyperMD-header-3 {
   position: relative;
-  padding-inline-start: 0.8em;
+  padding-inline-start: 0.82em;
 }
 .markdown-preview-view:not(.workbench) h3::before,
 .markdown-source-view.mod-cm6:not(.workbench) .cm-line.HyperMD-header-3::before {
+  /* 左上折角避开列表圆点，也与 H4 底线、H5 竖线区别开。 */
   content: "";
   position: absolute;
-  inset-inline-start: 0.12em;
-  top: 0.67em;
-  width: 0.28em;
-  height: 0.28em;
-  border-radius: 50%;
-  background-color: var(--cr-heading-accent);
-  opacity: 0.78;
+  inset-inline-start: 0.1em;
+  top: 0.38em;
+  width: 0.36em;
+  height: 0.36em;
+  box-sizing: border-box;
+  border-block-start: 1.5px solid var(--cr-heading-accent);
+  border-inline-start: 1.5px solid var(--cr-heading-accent);
+  border-start-start-radius: 1px;
+  background: none;
+  opacity: 0.7;
 }
 
 /* 较深层标题更轻：H4 短底线、H5 浅竖线、H6 弱化文字。
