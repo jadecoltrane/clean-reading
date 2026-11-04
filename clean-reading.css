@@ -1210,118 +1210,99 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   height: 16px;
 }
 
-/* 标签面板：工具栏与列表共用内边距，可单独微调。
-   Obsidian 的普通标签图标由 Border 主题的 ::before 绘制时
-   带有负 margin；改成在行内的图标槽定位，防止左侧裁切。
-   只作用于桌面右栏标签视图，不改变其他面板或嵌套层级。 */
+/* 标签 / 属性面板：两种列表采用同一对齐基准。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="tag"] {
-  --cr-tag-left: 8px;
-  --cr-tag-right: 8px;
-  --cr-tag-icon-inset: var(--cr-right-button-padding, 6px);
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) {
+  --cr-gutter: 8px;
+  --cr-row-pad-x: var(--cr-right-button-padding, 6px);
 }
 
-/* 顶部按钮直接位于 nav-header 时，和列表共享起点。 */
+/* 顶部工具栏共享面板内距。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="tag"] > .nav-header {
-  padding-inline-start: var(--cr-tag-left) !important;
-  padding-inline-end: var(--cr-tag-right) !important;
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) > .nav-header {
+  box-sizing: border-box;
+  padding-inline: var(--cr-gutter) !important;
+  margin-inline: 0 !important;
 }
-
-/* nav-header 在 view-content 内时，不再叠加通用面板的负边距。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="tag"] .view-content .nav-header {
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .nav-header {
+  box-sizing: border-box;
   width: 100% !important;
   margin-inline: 0 !important;
   padding-inline: 0 !important;
 }
-
-/* 外层留白只放在 view-content；内层 tag-container 不重复加。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="tag"] > .view-content {
-  padding-inline-start: var(--cr-tag-left) !important;
-  padding-inline-end: var(--cr-tag-right) !important;
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .nav-buttons-container {
+  margin-inline: 0 !important;
+  padding-inline: 0 !important;
+}
+
+/* 列表容器只设置一层外侧留白。 */
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) > .view-content {
+  box-sizing: border-box;
+  padding-inline: var(--cr-gutter) !important;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="tag"] .tag-container {
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content
+  :is(.tag-container, .all-properties-container, .all-properties-list, .properties-list) {
   box-sizing: border-box;
+  min-width: 0;
   padding-inline: 0 !important;
   margin-inline: 0 !important;
 }
 
-/* 高亮背景覆盖整行，图标/文字在内部，计数留在背景右侧。 */
+/* 选中背景、图标和计数都保持在同一行内。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="tag"] .tree-item-self {
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .tree-item-self {
+  box-sizing: border-box !important;
   position: relative !important;
-  box-sizing: border-box;
-  width: 100%;
+  width: 100% !important;
   min-width: 0;
-  margin: 0 !important;
-  padding: 4px 8px 4px var(--cr-tag-icon-inset) !important;
+  margin-inline: 0 !important;
+  padding-inline: var(--cr-row-pad-x) !important;
   border-radius: 6px !important;
 }
-
-/* 普通标签：为主题绘制的 16px 伪图标预留 24px 宽度；
-   父级可折叠标签直接使用已有 SVG 图标，不额外占位。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="tag"]
-  .tree-item-self:not(:has(> .tree-item-icon.collapse-icon)) {
-  padding-inline-start: calc(var(--cr-tag-icon-inset) + 24px) !important;
+  .workspace-leaf-content[data-type="tag"] .view-content .tree-item-self {
+  padding-block: 4px !important;
 }
+/* 不再为普通标签的主题伪图标预留 24px；折叠箭头依旧存在。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="tag"]
-  .tree-item-self:not(:has(> .tree-item-icon.collapse-icon))::before {
-  position: absolute !important;
-  inset-inline-start: var(--cr-tag-icon-inset) !important;
-  left: var(--cr-tag-icon-inset) !important;
-  right: auto !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  margin: 0 !important;
-  width: 16px;
-  height: 16px;
-}
-body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="tag"]
-  .tree-item-self > .tree-item-icon.collapse-icon {
-  flex: 0 0 16px;
-  width: 16px;
-  margin-inline: 0 8px !important;
+  .workspace-leaf-content[data-type="tag"] .view-content
+  .tree-item-self:not(:has(> .tree-item-icon))::before {
+  content: none !important;
+  display: none !important;
 }
 
+/* 数字右对齐，无背景或独立的选中框。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="tag"] .tree-item-flair-outer {
-  flex-shrink: 0;
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .tree-item-flair-outer {
+  flex: 0 0 auto;
   margin-inline: auto 0 !important;
-  padding-inline: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="tag"] .tree-item-flair {
-  margin-inline: 0 !important;
-  padding-inline: 2px !important;
-  background: transparent;
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) .view-content .tree-item-flair {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  font-variant-numeric: tabular-nums;
 }
 
-/* 选中及悬停态只使用轻量整行背景，夜间跟随当前主题。 */
+/* 整行选中与悬停样式；夜间遵从主题。 */
 body.theme-light:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="tag"]
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"])
   .tree-item-self:is(.is-active, .is-selected, .has-focus, :hover) {
   background-color: #eff0f0 !important;
 }
 body.theme-dark:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="tag"]
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"])
   .tree-item-self:is(.is-active, .is-selected, .has-focus, :hover) {
   background-color: var(--background-modifier-hover) !important;
-}
-
-/* “全部属性”面板列表默认比工具按钮多一层内缩。
-   只把行本身向左回收 16px，增补同等宽度，避免右侧计数移动或被裁切。 */
-body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="all-properties"] .view-content .tree-item-self {
-  box-sizing: border-box;
-  padding-inline-start: 0 !important;
-  margin-inline-start: -16px !important;
-  width: calc(100% + 16px);
 }
 
 /* 深色阅读与侧栏对调层次：正文采用原侧栏 #1a1b1f，
