@@ -171,17 +171,22 @@ body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-sizer {
   line-height: 1.45;
   margin-block: 1.35em 0.48em;
 }
-/* 标题层级：H1 常规文字色与适度字号、H2 字号与留白、H3 小圆点。 */
+/* 标题层级：H1 顶部短线、H2 文字右侧淡线，H3 小圆点。 */
 :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) {
   --cr-heading-accent: var(--interactive-accent, var(--text-accent));
   --cr-heading-rule: color-mix(in srgb, var(--cr-heading-accent) 30%, transparent);
+  --cr-h1-marker: color-mix(in srgb, var(--cr-heading-accent) 35%, var(--text-muted));
 }
 .markdown-preview-view:not(.workbench) h1,
 .markdown-source-view.mod-cm6:not(.workbench) .cm-line.HyperMD-header-1 {
-  /* 一级标题采用纯文字排版，取消主题竖线、底线与装饰底图。 */
+  /* H1 从顶部一段低饱和度短线开始；不用通栏底线或左侧标记。 */
   border: 0 !important;
   padding-inline-start: 0 !important;
-  background-image: none !important;
+  padding-block-start: 0.55em;
+  background-image: linear-gradient(var(--cr-h1-marker), var(--cr-h1-marker)) !important;
+  background-size: 32px 2px;
+  background-position: left top;
+  background-repeat: no-repeat;
   box-shadow: none !important;
   --h1-color: var(--text-normal);
   color: var(--text-normal) !important;
@@ -197,11 +202,21 @@ body:not(.is-mobile) .markdown-source-view.mod-cm6:not(.workbench) .cm-sizer {
 }
 .markdown-preview-view:not(.workbench) h2,
 .markdown-source-view.mod-cm6:not(.workbench) .cm-line.HyperMD-header-2 {
-  /* H2 用字号、字重与上下留白表达层级，不再画通栏底线。 */
+  /* H2 文字后的一小段细线标识章节，不画通栏底线。 */
   border-block-end: 0 !important;
   background-image: none !important;
   box-shadow: none !important;
   padding-block-end: 0;
+}
+.markdown-preview-view:not(.workbench) h2::after,
+.markdown-source-view.mod-cm6:not(.workbench) .cm-line.HyperMD-header-2::after {
+  content: "" !important;
+  display: inline-block !important;
+  vertical-align: middle;
+  width: 2.4em;
+  height: 1px;
+  margin-inline-start: 0.65em;
+  background-color: var(--cr-heading-rule);
 }
 .markdown-preview-view:not(.workbench) h3,
 .markdown-source-view.mod-cm6:not(.workbench) .cm-line.HyperMD-header-3 {
