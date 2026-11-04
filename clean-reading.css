@@ -1189,23 +1189,15 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   height: 16px;
 }
 
-/* 右侧列表以顶部操作图标的左边界为基准。
-   标签行的图标（含主题提供的伪元素）会向栏外悬挂，
-   因此平移整行而非只给文本加 padding；计数仍贴齐原右侧边界。
-   真实子级原有缩进保持不变。 */
+/* 右侧“标签 / 全部属性”中，真正承载图标与文字的是 .tree-item-self。
+   用同一可见图标基线与上方第一个工具按钮对齐：标签约需 50px，
+   属性约需 30px。只调整行内起点；保留计数的右对齐、hover 宽度、
+   嵌套标签的相对层级和左侧文件栏。桌面端生效。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .tag-container .tag-pane-tag {
-  --cr-tag-row-shift: 34px;
-  box-sizing: border-box;
-  margin-inline-start: var(--cr-tag-row-shift) !important;
-  width: calc(100% - var(--cr-tag-row-shift));
-  max-width: calc(100% - var(--cr-tag-row-shift));
+  .workspace-leaf-content[data-type="tag"] .tag-container .tree-item-self {
+  padding-inline-start: 50px !important;
 }
-
-/* “全部属性”列表的类型图标原本比顶部操作按钮多内缩一层。
-   取消这层外侧留白，和标签面板使用同一左侧视觉基线。
-   不影响其他面板的内距、行高或手机端。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content[data-type="all-properties"] > .view-content {
-  padding-inline-start: 0 !important;
+  .workspace-leaf-content[data-type="all-properties"] .view-content .tree-item-self {
+  padding-inline-start: 30px !important;
 }
