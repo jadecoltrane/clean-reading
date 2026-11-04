@@ -1085,7 +1085,7 @@ body:not(.is-mobile) .workspace-split.mod-right-split
 /* 首层树行的图标在内容起点内占位；子行沿用原有缩进。
    Border 的标签图标由 ::before 绘制，也必须取消悬挂外移。 */
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:not([data-type="git-view"]) > .view-content
+  .workspace-leaf-content:not([data-type="git-view"]):not([data-type="tag"]):not([data-type="all-properties"]) > .view-content
   .tree-item-self:not(.tree-item-children .tree-item-self) {
   display: flex;
   align-items: center;
@@ -1094,7 +1094,7 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   margin-inline-start: 0 !important;
 }
 body:not(.is-mobile) .workspace-split.mod-right-split
-  .workspace-leaf-content:not([data-type="git-view"]) > .view-content
+  .workspace-leaf-content:not([data-type="git-view"]):not([data-type="tag"]):not([data-type="all-properties"]) > .view-content
   .tree-item-self:not(.tree-item-children .tree-item-self) > .tree-item-icon,
 body:not(.is-mobile) .workspace-split.mod-right-split
   .workspace-leaf-content[data-type="tag"] > .view-content
@@ -1151,3 +1151,48 @@ body:not(.is-mobile) .workspace-split.mod-right-split
   padding-inline: 0;
 }
 
+
+/* 标签与全部属性使用相同的列表边距：外层 12px，行内 8px。
+   属性列表为平面列表，清除树容器的额外内距，不平移整个面板。 */
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) > .view-content {
+  padding-inline: 12px !important;
+  --nav-item-padding: 6px 8px;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="all-properties"] > .view-content
+  :is(.tree-item, .tree-item-children) {
+  padding-inline: 0 !important;
+  margin-inline: 0 !important;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="all-properties"] > .view-content .tree-item-self,
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="tag"] > .view-content
+  .tree-item-self:not(.tree-item-children .tree-item-self) {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  padding-inline: 8px !important;
+  margin-inline: 0 !important;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="all-properties"] > .view-content .tree-item-self > .tree-item-icon {
+  position: static !important;
+  flex: 0 0 16px;
+  width: 16px;
+  margin-inline: 0 !important;
+  transform: none !important;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content[data-type="all-properties"] > .view-content .tree-item-inner {
+  min-width: 0;
+  margin-inline: 0 !important;
+}
+body:not(.is-mobile) .workspace-split.mod-right-split
+  .workspace-leaf-content:is([data-type="tag"], [data-type="all-properties"]) > .view-content
+  .tree-item-flair-outer {
+  flex-shrink: 0;
+  margin-inline-start: auto;
+}
