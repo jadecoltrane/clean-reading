@@ -312,8 +312,7 @@ body:not(.is-mobile) .markdown-preview-view:not(.workbench) .markdown-preview-si
 
 /* 普通引用在阅读模式为整块、实时预览为逐行渲染；
    用背景绘制 2px 细竖线，不改变盒模型宽度，也避免双线。 */
-:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
-  :is(blockquote, .cm-line.HyperMD-quote) {
+.markdown-preview-view:not(.workbench) blockquote {
   background-color: var(--cr-quote-fill) !important;
   background-image: linear-gradient(to right, var(--cr-quote-rule) 0 2px, transparent 2px) !important;
   background-size: 100% 100% !important;
@@ -340,125 +339,19 @@ body:not(.is-mobile) .markdown-preview-view:not(.workbench) .markdown-preview-si
 }
 
 /* 有些主题通过 blockquote::before 绘制左竖线，统一取消它。 */
-:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
-  blockquote::before,
-:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
-  .markdown-rendered blockquote::before,
-.markdown-source-view.mod-cm6:not(.workbench) .cm-line.HyperMD-quote::before {
+.markdown-preview-view:not(.workbench) blockquote::before,
+.markdown-preview-view:not(.workbench) .markdown-rendered blockquote::before {
   content: none !important;
   display: none !important;
   width: 0;
   border: 0;
   background: none;
 }
-.markdown-source-view.mod-cm6:not(.workbench) .cm-line.HyperMD-quote {
-  border-left-width: 0 !important;
-  border-inline-start-width: 0 !important;
-}
 .markdown-preview-view:not(.workbench) blockquote p:last-child {
   margin-bottom: 0;
 }
 
-/* Callout 的点阵与图标共用语义色，未知类型回落为中性灰。 */
-:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) .callout {
-  --cr-signal: var(--text-muted);
-  --cr-callout-dot: color-mix(in srgb, var(--cr-signal) 24%, transparent);
-  --callout-border-width: 0px;
-  --callout-border-opacity: 0;
-  --callout-padding: 0.7em 0.9em;
-  background-color: var(--cr-quote-fill) !important;
-  background-image: radial-gradient(circle, var(--cr-callout-dot) 0.65px, transparent 0.95px) !important;
-  background-size: 6px 6px !important;
-  background-repeat: repeat !important;
-  border: 0 !important;
-  border-inline-start: 0 !important;
-  border-radius: 8px !important;
-  box-shadow: none !important;
-}
-:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
-  .callout :is(.callout-title, .callout-title-inner) {
-  color: var(--text-normal) !important;
-}
-.markdown-preview-view:not(.workbench) .callout-title {
-  font-weight: var(--cr-bold-weight);
-}
-/* Note、Abstract、Summary、Quote、Example 等说明类使用中性灰点阵与图标。
-   Info／Tip 蓝，Warning 琥珀，Danger／Error 红，Success 绿。
-   标题与正文保持正常文字色，不使用整块高饱和度背景。 */
-:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
-  .callout:is([data-callout="note"], [data-callout="abstract"], [data-callout="summary"],
-              [data-callout="tldr"], [data-callout="quote"], [data-callout="cite"],
-              [data-callout="example"]) {
-  --cr-signal: var(--text-muted);
-}
-/* 语义色用于图标与点阵，而不用于标题文字。 */
-:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
-  .callout .callout-icon {
-  color: var(--cr-signal, var(--text-muted));
-  opacity: 0.92;
-}
-:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
-  .callout .callout-icon svg {
-  color: inherit;
-}
-:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
-  .callout:is([data-callout="warning"], [data-callout="caution"], [data-callout="attention"]) {
-  --cr-signal: #d07932;
-}
-:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
-  .callout:is([data-callout="danger"], [data-callout="error"], [data-callout="failure"]) {
-  --cr-signal: #b3484e;
-}
-:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
-  .callout:is([data-callout="success"], [data-callout="check"], [data-callout="done"]) {
-  --cr-signal: #287b59;
-}
-:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
-  .callout:is([data-callout="info"], [data-callout="tip"], [data-callout="hint"]) {
-  --cr-signal: #436da4;
-}
-body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
-  .callout:is([data-callout="warning"], [data-callout="caution"], [data-callout="attention"]) {
-  --cr-signal: #f0b84d;
-}
-body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
-  .callout:is([data-callout="danger"], [data-callout="error"], [data-callout="failure"]) {
-  --cr-signal: #e68e93;
-}
-body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
-  .callout:is([data-callout="success"], [data-callout="check"], [data-callout="done"]) {
-  --cr-signal: #88c6a2;
-}
-body.theme-dark :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
-  .callout:is([data-callout="info"], [data-callout="tip"], [data-callout="hint"]) {
-  --cr-signal: #8ab4ff;
-}
-/* Callout 的标题与正文均使用正常文字颜色。
-   保留原有字号、行距、字重及点阵布局。 */
-:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench) .callout-content {
-  font-size: 1em;
-  line-height: var(--line-height-normal);
-  font-weight: var(--cr-text-weight);
-  color: var(--cr-text);
-}
-.markdown-preview-view:not(.workbench) .callout-content :is(p, li) {
-  font-size: inherit;
-  line-height: inherit;
-  color: inherit;
-  font-weight: inherit;
-}
-/* Callout 最后一段不继承正文 1.1em 段后距。
-   直接 p 与部分主题使用的 .el-p 包装层均兼容；
-   只去末端空白，不动正文段距、Callout 正常内边距与多段分隔。 */
-:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
-  .callout .callout-content > :last-child,
-:is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(.workbench)
-  .callout .callout-content > .el-p:last-child > p:last-child {
-  margin-block-end: 0 !important;
-}
-.markdown-preview-view:not(.workbench) .callout .callout-content strong {
-  font-weight: var(--cr-bold-weight) !important;
-}
+/* Callout 保留当前 Obsidian 主题的原生配色、图标、边框、背景与间距。 */
 
 /* 06. 无外框的全宽表格：透明表头、浅横线，手机保留自适应换行。 */
 .markdown-preview-view:not(.workbench) table,
@@ -1089,11 +982,11 @@ body.theme-light :is(.modal.mod-settings, .modal:has(.vertical-tab-header))
   font-size: var(--cr-body-font-size, 15px) !important;
   font-weight: 400 !important;
 }
-/* 文件浏览器名称独立设为 14px，避免跟随正文放大。
-   直接命中文件、文件夹标题及内容节点；不改变行高、缩进和图标。 */
+/* 左侧文件/文件夹名称始终比笔记正文小 1px；
+   与 --cr-body-font-size 共用基准，不更改行高、缩进和图标。 */
 .workspace-leaf-content[data-type="file-explorer"]
   :is(.nav-file-title, .nav-folder-title, .nav-file-title-content, .nav-folder-title-content) {
-  font-size: var(--cr-file-tree-font-size, 14px) !important;
+  font-size: calc(var(--cr-body-font-size, 15px) - 1px) !important;
 }
 
 /* 右侧标签图标与 Git 操作图标共用尺寸，按钮保持紧凑。 */
