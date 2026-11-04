@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="850" viewBox="0 0 1440 850" role="img" aria-labelledby="ct cd">
+<title id="ct">Clean Reading · 安静的阅读空间</title>
+<desc id="cd">Clean Reading Obsidian CSS 片段的宣传封面：浅灰背景、淡紫色强调线、符合实际布局的三栏 Obsidian 示意。</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8f6f9"/><stop offset=".55" stop-color="#fcfbfa"/><stop offset="1" stop-color="#f0ecf3"/></linearGradient>
+<filter id="sh" x="-15%" y="-20%" width="130%" height="150%"><feDropShadow dx="0" dy="15" stdDeviation="25" flood-color="#6f6478" flood-opacity=".13"/></filter>
+<clipPath id="win"><rect x="72" y="253" width="1296" height="476" rx="18"/></clipPath>
+</defs>
+<rect x="0" y="0" width="1440" height="850" rx="0" fill="url(#bg)" stroke="none" stroke-width="1" />
+<circle cx="10" cy="-52" r="226" fill="#eae4ef" opacity=".40"/>
+<circle cx="1493" cy="790" r="275" fill="#e7e1ed" opacity=".43"/>
+<line x1="482" y1="53" x2="550" y2="53" stroke="#c9bfce" stroke-width="2"/>
+<text x="570" y="59" font-size="17" fill="#77717c" font-weight="500" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" letter-spacing="5">FOR OBSIDIAN  /  CSS SNIPPET</text>
+<line x1="1002" y1="53" x2="1070" y2="53" stroke="#c9bfce" stroke-width="2"/>
+<text x="720" y="154" fill="#29272c" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="89" letter-spacing="-2">Clean Reading</text>
+<text x="720" y="203" font-size="26" fill="#59535e" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" text-anchor="middle" letter-spacing="6">让界面退后，让阅读发生。</text>
+<rect x="686" y="229" width="68" height="3" rx="1" fill="#8977a5" stroke="none" stroke-width="1" />
+<g filter="url(#sh)"><rect x="72" y="253" width="1296" height="476" rx="18" fill="#fff" stroke="#e6e1e6" stroke-width="1" /></g>
+<g clip-path="url(#win)">
+<rect x="72" y="253" width="1296" height="44" rx="0" fill="#f8f7f8" stroke="none" stroke-width="1" />
+<line x1="72" y1="297" x2="1368" y2="297" stroke="#e5e3e7" stroke-width="1"/>
+<circle cx="101" cy="275" r="7" fill="#f06860"/><circle cx="123" cy="275" r="7" fill="#f4bd4b"/><circle cx="145" cy="275" r="7" fill="#61c56c"/>
+<text x="195" y="282" font-size="25" fill="#8b8a8f" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >⌕</text>
+<text x="240" y="282" font-size="21" fill="#77757c" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >▣</text>
+<rect x="352" y="259" width="296" height="35" rx="8" fill="#fff" stroke="#e5e3e7" stroke-width="1" />
+<text x="372" y="283" font-size="17" fill="#393b41" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >▤  电脑手机排版测试</text>
+<text x="670" y="283" font-size="21" fill="#77757c" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >＋</text>
+<line x1="355" y1="297" x2="355" y2="729" stroke="#e4e2e5" stroke-width="1"/>
+<line x1="1067" y1="297" x2="1067" y2="729" stroke="#e4e2e5" stroke-width="1"/>
+<rect x="73" y="298" width="282" height="431" rx="0" fill="#fafafb" stroke="none" stroke-width="1" />
+<rect x="1068" y="298" width="300" height="431" rx="0" fill="#fbfbfc" stroke="none" stroke-width="1" />
+<text x="104" y="333" font-size="20" fill="#7b7a80" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >▣   ▤   ▥    ≡</text>
+<text x="108" y="375" font-size="18" fill="#414046" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >▸   📓  Notes</text><text x="108" y="418" font-size="18" fill="#414046" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >▸   🧠  Concepts</text><text x="108" y="461" font-size="18" fill="#414046" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >▸   🌙  Diary</text><text x="108" y="504" font-size="18" fill="#414046" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >▸   🎨  Works</text><text x="108" y="547" font-size="18" fill="#414046" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >▸   📦  Archive</text><text x="108" y="590" font-size="18" fill="#414046" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >▸   🔧  Meta</text><text x="108" y="633" font-size="18" fill="#414046" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >▸   👤  Profile</text>
+<line x1="102" y1="678" x2="325" y2="678" stroke="#e3e1e4" stroke-width="1"/>
+<text x="110" y="709" font-size="18" fill="#44434b" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >⌂   Home</text>
+<text x="390" y="337" font-size="16" fill="#77757c" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >‹    ›        Works / Clean-Reading / 电脑手机排版测试</text>
+<line x1="389" y1="351" x2="1036" y2="351" stroke="#f0eff0" stroke-width="1"/>
+<text x="414" y="402" font-size="28" fill="#2d2d32" font-weight="600" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >电脑手机排版测试</text>
+<text x="414" y="435" font-size="16" fill="#4a494e" font-weight="600" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >笔记属性</text>
+<text x="414" y="465" font-size="16" fill="#74727a" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >▢   created       11/03/2026</text>
+<line x1="414" y1="495" x2="455" y2="495" stroke="#8879a7" stroke-width="3"/>
+<text x="414" y="531" font-size="22" fill="#2d2d32" font-weight="600" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >Clean Reading · 电脑与手机排版测试</text>
+<text x="414" y="560" font-size="16" fill="#36343b" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >这是一份用于比较 Obsidian 电脑端和手机端</text><text x="414" y="591" font-size="16" fill="#36343b" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >显示效果的公开测试笔记。正文居中、行距舒展，</text><text x="414" y="622" font-size="16" fill="#36343b" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >列表、引用与 Callout 都以阅读为优先。</text>
+<text x="414" y="675" font-size="19" fill="#2d2d32" font-weight="600" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >一、段落与阅读宽度</text>
+<text x="414" y="704" font-size="15" fill="#56535a" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >好的排版不会立即吸引注意，而是让阅读自然发生。</text>
+<text x="1097" y="338" font-size="19" fill="#7a777f" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >↑     ✓     ⊕     ⊖     ↻</text>
+<rect x="1092" y="355" width="250" height="44" rx="7" fill="#fff" stroke="#e6e3e8" stroke-width="1" />
+<text x="1106" y="383" font-size="17" fill="#424047" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >vault backup: {{date}}</text>
+<text x="1098" y="441" font-size="17" fill="#4a484e" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >⌄  Staged Changes      0</text>
+<text x="1098" y="486" font-size="17" fill="#4a484e" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >⌄  Changes                 0</text>
+<text x="1098" y="531" font-size="17" fill="#4a484e" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >⌄  Recently Pulled Files</text>
+<text x="1114" y="566" font-size="16" fill="#55515b" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >clean-reading.css</text>
+<line x1="72" y1="709" x2="1368" y2="709" stroke="#e9e5e9" stroke-width="1"/>
+<rect x="72" y="710" width="1296" height="19" rx="0" fill="#f8f7f8" stroke="none" stroke-width="1" />
+<text x="90" y="723" font-size="12" fill="#77737a" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >memory</text>
+<text x="1103" y="723" font-size="12" fill="#77737a" font-weight="400" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" >Custom sort: ON      ✓     main</text>
+</g>
+<text x="237" y="796" font-size="22" fill="#55505d" font-weight="500" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" text-anchor="middle">清晰的层级</text>
+<line x1="400" y1="774" x2="400" y2="810" stroke="#d4ced6" stroke-width="1"/>
+<text x="566" y="796" font-size="22" fill="#55505d" font-weight="500" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" text-anchor="middle">舒适的阅读宽度</text>
+<line x1="750" y1="774" x2="750" y2="810" stroke="#d4ced6" stroke-width="1"/>
+<text x="901" y="796" font-size="22" fill="#55505d" font-weight="500" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" text-anchor="middle">克制的视觉语言</text>
+<line x1="1079" y1="774" x2="1079" y2="810" stroke="#d4ced6" stroke-width="1"/>
+<text x="1223" y="796" font-size="22" fill="#55505d" font-weight="500" font-family="'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif" text-anchor="middle">双端适配</text>
+</svg>
