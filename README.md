@@ -6,7 +6,7 @@ Clean Reading 是一份以 Obsidian 长文阅读为中心的 CSS 样式片段。
 
 此外，它也会调整工作区的配色与界面字体，以及设置窗口、文件浏览器、搜索结果和部分 Git 插件界面的视觉层次。
 
-![Clean Reading：浅色 Obsidian 实机界面，展示文件树、阅读正文与右侧属性面板](assets/clean-reading-cover.svg)
+![Clean Reading：浅色 Obsidian 实机界面，展示文件树、阅读正文与右侧属性面板](assets/clean-reading-cover-v2.svg)
 
 ## 主要特点
 
@@ -95,7 +95,7 @@ H1 用顶部短线起笔；H2 只靠文字与留白提示章节；H3 到 H6 则�
 
 **变化的是光照条件，不变的是信息秩序。** 正文保持清晰，标题不过分突出，链接仍可辨认；普通引用保留细线，Callout 沿用主题的语义色。阅读模式与实时预览遵循同样的排版原则。
 
-![Clean Reading 夜间模式：左侧为原始实机截图，右侧说明黑灰底色、清晰文字与轻量分隔的配色](assets/dark-mode-reading.svg)
+![Clean Reading 夜间模式：左侧为原始实机截图，右侧说明黑灰底色、清晰文字与轻量分隔的配色](assets/dark-mode-reading-v2.svg)
 
 *夜间模式实机截图与配色标注。*
 
