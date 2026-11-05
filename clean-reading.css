@@ -843,22 +843,22 @@ body.theme-light :is(.markdown-preview-view, .markdown-source-view.mod-cm6):not(
   background-image: none !important;
 }
 
-/* 右栏内容面板与左侧文件区统一为 #fcfcfc。 */
+/* 右栏内容面板为白色。 */
 body.theme-light .workspace-split.mod-right-split {
-  --background-primary: #fcfcfc;
-  --background-secondary: #fcfcfc;
-  --background-secondary-alt: #fcfcfc;
-  --background-mod-right-split: #fcfcfc !important;
-  --background-mod-right-split-light: #fcfcfc !important;
-  --background-mod-right-CSS-light: #fcfcfc !important;
-  background-color: #fcfcfc !important;
+  --background-primary: #ffffff;
+  --background-secondary: #ffffff;
+  --background-secondary-alt: #ffffff;
+  --background-mod-right-split: #ffffff !important;
+  --background-mod-right-split-light: #ffffff !important;
+  --background-mod-right-CSS-light: #ffffff !important;
+  background-color: #ffffff !important;
 }
 body.theme-light .workspace-split.mod-right-split
   :is(.workspace-tab-container, .workspace-leaf, .workspace-leaf-content,
       .view-content, .nav-files-container),
 body.theme-light .workspace-split.mod-right-split .view-content
   :is(input[type="text"], input[type="search"], textarea, .dropdown) {
-  background-color: #fcfcfc !important;
+  background-color: #ffffff !important;
   background-image: none !important;
 }
 
@@ -877,9 +877,9 @@ body.theme-light .workspace-split.mod-left-split
   background-color: #eff0f0 !important;
 }
 
-/* 右侧标签/操作按钮区与下方 #fcfcfc 面板一致。 */
+/* 右侧标签/操作按钮区与下方白色面板一致。 */
 body.theme-light .workspace-split.mod-right-split .nav-header {
-  background-color: #fcfcfc !important;
+  background-color: #ffffff !important;
   background-image: none !important;
 }
 
